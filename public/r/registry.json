@@ -4,6 +4,55 @@
   "homepage": "https://acme.com",
   "items": [
     {
+      "name": "typography",
+      "type": "registry:component",
+      "title": "Typography",
+      "description": "A polymorphic typography primitive with semantic wrapper components.",
+      "dependencies": [
+        "@tailwindcss/typography",
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/components/typography/typography.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/heading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/text.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/code.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/blockquote.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/lead.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/muted.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/prose.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/components/typography/index.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "hello-world",
       "type": "registry:component",
       "title": "Hello World",
