@@ -47,6 +47,10 @@
           "type": "registry:component"
         },
         {
+          "path": "registry/components/typography/tiptap.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "registry/components/typography/index.ts",
           "type": "registry:component"
         }

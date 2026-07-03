@@ -5,4 +5,5 @@ export * from "./lead";
 export * from "./muted";
 export * from "./prose";
 export * from "./text";
+export * from "./tiptap";
 export * from "./typography";
