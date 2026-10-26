@@ -11,11 +11,14 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@/registry/components",
-    "utils": "@/registry/lib",
-    "ui": "@/registry/components/ui",
-    "lib": "@/registry/lib",
-    "hooks": "@/registry/hooks"
+    "components": "@/registry/bravo/components",
+    "utils": "@/registry/bravo/lib/utils",
+    "ui": "@/registry/bravo/ui",
+    "lib": "@/registry/bravo/lib",
+    "hooks": "@/registry/bravo/hooks"
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "lucide",
+  "registries": {
+    "@bravo": "http://localhost:3000/r/{name}.json"
+  }
 }

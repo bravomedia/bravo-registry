@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tailwind",
+  "title": "Tailwind Helpers",
+  "description": "Reusable class name helpers for focus, disabled and input styles.",
+  "registryDependencies": [
+    "@bravo/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/lib/tailwind.ts",
+      "content": "import { cn } from \"@/registry/bravo/lib/utils\";\n\nexport function focusRing() {\n  return \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2\";\n}\n\nexport function disabledStyles() {\n  return \"disabled:opacity-50 disabled:pointer-events-none\";\n}\n\nexport function inputStyles() {\n  return cn(\n    \"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm\",\n    focusRing(),\n    disabledStyles(),\n  );\n}\n\nexport function buttonBase() {\n  return cn(\n    \"inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors\",\n    focusRing(),\n    disabledStyles(),\n  );\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

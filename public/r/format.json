@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "format",
+  "title": "Format",
+  "description": "Date, number and currency formatting helpers.",
+  "files": [
+    {
+      "path": "registry/bravo/lib/format.ts",
+      "content": "export function formatDate(date: Date | string) {\n  const d = new Date(date);\n\n  return new Intl.DateTimeFormat(\"sv-SE\", {\n    year: \"numeric\",\n    month: \"short\",\n    day: \"2-digit\",\n  }).format(d);\n}\n\nexport function formatNumber(num: number) {\n  return new Intl.NumberFormat(\"sv-SE\").format(num);\n}\n\nexport function formatCurrency(amount: number, currency = \"SEK\") {\n  return new Intl.NumberFormat(\"sv-SE\", {\n    style: \"currency\",\n    currency,\n  }).format(amount);\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

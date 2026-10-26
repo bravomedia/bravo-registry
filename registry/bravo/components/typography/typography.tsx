@@ -2,7 +2,7 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "radix-ui";
 
-import { cn } from "@/registry/lib/index";
+import { cn } from "@/registry/bravo/lib/utils";
 
 const typographyVariantClassNames = {
   display:

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/registry/lib/index";
+import { cn } from "@/registry/bravo/lib/utils";
 
 type ProseProps = React.ComponentPropsWithoutRef<"article">;
 

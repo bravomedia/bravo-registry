@@ -1,8 +1,207 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "acme",
-  "homepage": "https://acme.com",
+  "name": "bravo",
+  "homepage": "http://localhost:3000",
   "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "The cn() class name helper.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/bravo/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "bravo-base",
+      "type": "registry:style",
+      "extends": "none",
+      "title": "Bravo Base",
+      "description": "Foundation for Bravo sites: theme tokens, base styles and utils.",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "tw-animate-css"
+      ],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [],
+      "cssVars": {
+        "theme": {
+          "font-sans": "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+          "font-mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+          "radius-sm": "calc(var(--radius) - 4px)",
+          "radius-md": "calc(var(--radius) - 2px)",
+          "radius-lg": "var(--radius)",
+          "radius-xl": "calc(var(--radius) + 4px)"
+        },
+        "light": {
+          "radius": "0.625rem",
+          "background": "oklch(1 0 0)",
+          "foreground": "oklch(0.145 0 0)",
+          "card": "oklch(1 0 0)",
+          "card-foreground": "oklch(0.145 0 0)",
+          "popover": "oklch(1 0 0)",
+          "popover-foreground": "oklch(0.145 0 0)",
+          "primary": "oklch(0.205 0 0)",
+          "primary-foreground": "oklch(0.985 0 0)",
+          "secondary": "oklch(0.97 0 0)",
+          "secondary-foreground": "oklch(0.205 0 0)",
+          "muted": "oklch(0.97 0 0)",
+          "muted-foreground": "oklch(0.556 0 0)",
+          "accent": "oklch(0.97 0 0)",
+          "accent-foreground": "oklch(0.205 0 0)",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "border": "oklch(0.922 0 0)",
+          "input": "oklch(0.922 0 0)",
+          "ring": "oklch(0.708 0 0)"
+        },
+        "dark": {
+          "background": "oklch(0.145 0 0)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.205 0 0)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.205 0 0)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "primary": "oklch(0.922 0 0)",
+          "primary-foreground": "oklch(0.205 0 0)",
+          "secondary": "oklch(0.269 0 0)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.269 0 0)",
+          "muted-foreground": "oklch(0.708 0 0)",
+          "accent": "oklch(0.269 0 0)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "ring": "oklch(0.556 0 0)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "*": {
+            "@apply border-border outline-ring/50": {}
+          },
+          "body": {
+            "@apply bg-background text-foreground": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "format",
+      "type": "registry:lib",
+      "title": "Format",
+      "description": "Date, number and currency formatting helpers.",
+      "files": [
+        {
+          "path": "registry/bravo/lib/format.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "string",
+      "type": "registry:lib",
+      "title": "String",
+      "description": "String helpers: capitalize, slugify, truncate.",
+      "files": [
+        {
+          "path": "registry/bravo/lib/string.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "colors",
+      "type": "registry:lib",
+      "title": "Semantic Colors",
+      "description": "Semantic text color classes.",
+      "files": [
+        {
+          "path": "registry/bravo/lib/colors.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "tailwind",
+      "type": "registry:lib",
+      "title": "Tailwind Helpers",
+      "description": "Reusable class name helpers for focus, disabled and input styles.",
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/bravo/lib/tailwind.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "dependencies": ["@radix-ui/react-label"],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
     {
       "name": "typography",
       "type": "registry:component",
@@ -13,118 +212,46 @@
         "class-variance-authority",
         "radix-ui"
       ],
+      "registryDependencies": ["@bravo/utils"],
       "files": [
         {
-          "path": "registry/components/typography/typography.tsx",
+          "path": "registry/bravo/components/typography/typography.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/heading.tsx",
+          "path": "registry/bravo/components/typography/heading.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/text.tsx",
+          "path": "registry/bravo/components/typography/text.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/code.tsx",
+          "path": "registry/bravo/components/typography/code.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/blockquote.tsx",
+          "path": "registry/bravo/components/typography/blockquote.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/lead.tsx",
+          "path": "registry/bravo/components/typography/lead.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/muted.tsx",
+          "path": "registry/bravo/components/typography/muted.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/prose.tsx",
+          "path": "registry/bravo/components/typography/prose.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/tiptap.tsx",
+          "path": "registry/bravo/components/typography/tiptap.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/components/typography/index.ts",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "hello-world",
-      "type": "registry:component",
-      "title": "Hello World",
-      "description": "A simple hello world component",
-      "registryDependencies": ["button"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "example-form",
-      "type": "registry:component",
-      "title": "Example Form",
-      "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/example-form/example-form.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "complex-component",
-      "type": "registry:component",
-      "title": "Complex Component",
-      "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/complex-component/page.tsx",
-          "type": "registry:page",
-          "target": "app/pokemon/page.tsx"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-image.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/lib/pokemon.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/hooks/use-pokemon.ts",
-          "type": "registry:hook"
-        }
-      ]
-    },
-    {
-      "name": "example-with-css",
-      "type": "registry:component",
-      "title": "Example with CSS",
-      "description": "A login form with a CSS file.",
-      "files": [
-        {
-          "path": "registry/new-york/blocks/example-with-css/example-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/example-with-css/example-card.css",
+          "path": "registry/bravo/components/typography/index.ts",
           "type": "registry:component"
         }
       ]

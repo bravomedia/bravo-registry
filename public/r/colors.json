@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "colors",
+  "title": "Semantic Colors",
+  "description": "Semantic text color classes.",
+  "files": [
+    {
+      "path": "registry/bravo/lib/colors.ts",
+      "content": "export const semanticColors = {\n  success: \"text-green-600 dark:text-green-400\",\n  warning: \"text-yellow-600 dark:text-yellow-400\",\n  error: \"text-red-600 dark:text-red-400\",\n  info: \"text-blue-600 dark:text-blue-400\",\n};\n\nexport function getSemanticColor(type: keyof typeof semanticColors) {\n  return semanticColors[type];\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

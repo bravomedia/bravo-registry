@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "string",
+  "title": "String",
+  "description": "String helpers: capitalize, slugify, truncate.",
+  "files": [
+    {
+      "path": "registry/bravo/lib/string.ts",
+      "content": "export function capitalize(str: string) {\n  if (!str) return \"\";\n  return str.charAt(0).toUpperCase() + str.slice(1);\n}\n\nexport function slugify(str: string) {\n  return str\n    .toLowerCase()\n    .trim()\n    .replace(/[\\s\\W-]+/g, \"-\");\n}\n\nexport function truncate(str: string, length = 100) {\n  if (str.length <= length) return str;\n  return str.slice(0, length) + \"...\";\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

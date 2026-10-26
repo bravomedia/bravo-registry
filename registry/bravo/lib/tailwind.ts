@@ -1,4 +1,4 @@
-import { cn } from "./cn";
+import { cn } from "@/registry/bravo/lib/utils";
 
 export function focusRing() {
   return "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
