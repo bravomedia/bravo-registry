@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "tokens:convert": "node scripts/convert-figma-color-tokens.mjs",
+    "tokens:theme": "node scripts/build-tailwind-theme.mjs tokens/colors.tokens.json registry/bravo/styles/theme.css"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",

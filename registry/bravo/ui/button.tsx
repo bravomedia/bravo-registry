@@ -5,25 +5,25 @@ import { Slot } from "radix-ui"
 import { cn } from "@/registry/bravo/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-lg text-base font-semibold leading-6 whitespace-nowrap transition-[background-color,border-color,box-shadow,color] outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-lg text-base font-semibold leading-6 whitespace-nowrap transition-[background-color,box-shadow,color] outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
   {
     variants: {
       variant: {
         default:
-          "bg-[#0965c0] text-white hover:bg-[#1680de] focus-visible:ring-[#0965c0] disabled:bg-[#bddbfa]",
+          "bg-bg-content-brand text-text-primary-inverse hover:bg-bg-content-brand-hover focus-visible:outline-border-brand-focus disabled:bg-bg-content-brand-disabled",
         destructive:
-          "bg-[#c10007] text-white hover:bg-[#e7000b] focus-visible:ring-[#c10007] disabled:bg-[#ffc9c9]",
+          "bg-bg-content-destructive text-text-primary-inverse hover:bg-bg-content-destructive-hover focus-visible:outline-border-desctructive-focus disabled:bg-bg-content-desctructive-disabled",
         outline:
-          "border-2 border-[#525252] bg-white text-black hover:bg-[#f5f5f5] focus-visible:ring-[#525252] disabled:border-[#a3a3a3] disabled:text-[#a3a3a3]",
+          "inset-ring-2 inset-ring-border-dark bg-transparent text-text-primary hover:inset-ring-transparent hover:bg-bg-content-subtle focus-visible:outline-offset-4 focus-visible:outline-border-subtle-focus disabled:inset-ring-border-disabled disabled:text-text-disabled",
         secondary:
-          "bg-white text-black hover:bg-[#fafafa] focus-visible:ring-[#f5f5f5] disabled:bg-[#f5f5f5] disabled:text-[#a3a3a3]",
+          "bg-bg-content-base text-text-primary hover:bg-bg-content-base-hover focus-visible:outline-border-subtle-focus-inverse disabled:bg-bg-content-base-disabled disabled:text-text-disabled",
         inverse:
-          "bg-white text-black hover:bg-[#fafafa] focus-visible:ring-[#f5f5f5] disabled:bg-[#f5f5f5] disabled:text-[#a3a3a3]",
+          "bg-bg-content-base text-text-primary hover:bg-bg-content-base-hover focus-visible:outline-border-subtle-focus-inverse disabled:bg-bg-content-base-disabled disabled:text-text-disabled",
         "outline-inverse":
-          "border-2 border-white bg-transparent text-white hover:bg-[#404040] focus-visible:ring-white disabled:border-[#a3a3a3] disabled:text-[#a3a3a3]",
+          "inset-ring-2 inset-ring-border-inverse bg-transparent text-text-primary-inverse hover:inset-ring-transparent hover:bg-bg-content-strong focus-visible:outline-offset-4 focus-visible:outline-border-subtle-focus-inverse disabled:inset-ring-border-disabled disabled:text-text-disabled",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+          "text-text-primary hover:bg-bg-content-subtle focus-visible:outline-border-subtle-focus disabled:text-text-disabled",
+        link: "text-text-brand underline-offset-4 hover:text-text-brand-hover hover:underline focus-visible:outline-border-brand-focus disabled:text-text-brand-disabled",
       },
       size: {
         default: "min-h-12 px-6 py-3",
