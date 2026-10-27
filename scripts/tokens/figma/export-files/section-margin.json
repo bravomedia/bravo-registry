@@ -1,0 +1,69 @@
+{
+  "section-margin-mobile": {
+    "$type": "number",
+    "$value": 80,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:4230:1114",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:20cdbaa5d2542af32bf3138c207d9723fbd4e4c4/-1:-1",
+        "targetVariableName": "space-20",
+        "targetVariableSetId": "VariableCollectionId:fcae9276585d00e9f3370c5e7f5a2cf8c6331cb2/-1:-1",
+        "targetVariableSetName": "Spacing"
+      }
+    }
+  },
+  "section-margin-tablet": {
+    "$type": "number",
+    "$value": 80,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:4230:1115",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:20cdbaa5d2542af32bf3138c207d9723fbd4e4c4/-1:-1",
+        "targetVariableName": "space-20",
+        "targetVariableSetId": "VariableCollectionId:fcae9276585d00e9f3370c5e7f5a2cf8c6331cb2/-1:-1",
+        "targetVariableSetName": "Spacing"
+      }
+    }
+  },
+  "section-margin-laptop": {
+    "$type": "number",
+    "$value": 96,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:4230:1108",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:9db1108a4b689c761bf1eeb805399bac09051e7f/-1:-1",
+        "targetVariableName": "space-24",
+        "targetVariableSetId": "VariableCollectionId:fcae9276585d00e9f3370c5e7f5a2cf8c6331cb2/-1:-1",
+        "targetVariableSetName": "Spacing"
+      }
+    }
+  },
+  "section-margin-large-desktop": {
+    "$type": "number",
+    "$value": 112,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:4230:1104",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:c18bec51bb22b78a44d4ee2466b1a42e4caaad0b/-1:-1",
+        "targetVariableName": "space-28",
+        "targetVariableSetId": "VariableCollectionId:fcae9276585d00e9f3370c5e7f5a2cf8c6331cb2/-1:-1",
+        "targetVariableSetName": "Spacing"
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

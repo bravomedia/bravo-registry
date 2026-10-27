@@ -191,10 +191,32 @@
       ]
     },
     {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Form field wrapper with label, tooltip, description and error message. Accepts Inertia errors directly.",
+      "dependencies": ["lucide-react", "radix-ui"],
+      "registryDependencies": [
+        "@bravo/utils",
+        "@bravo/bravo-theme",
+        "@bravo/label"
+      ],
+      "files": [
+        {
+          "path": "registry/bravo/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "registryDependencies": ["@bravo/utils"],
+      "registryDependencies": [
+        "@bravo/utils",
+        "@bravo/bravo-theme",
+        "@bravo/field"
+      ],
       "files": [
         {
           "path": "registry/bravo/ui/input.tsx",
@@ -207,7 +229,7 @@
       "type": "registry:ui",
       "title": "Label",
       "dependencies": ["@radix-ui/react-label"],
-      "registryDependencies": ["@bravo/utils"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
       "files": [
         {
           "path": "registry/bravo/ui/label.tsx",
@@ -219,7 +241,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "registryDependencies": ["@bravo/utils"],
+      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
       "files": [
         {
           "path": "registry/bravo/ui/textarea.tsx",
@@ -228,56 +250,113 @@
       ]
     },
     {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "description": "A styled native select: native picker on mobile, submits with Inertia's <Form>. Default choice for plain options.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@bravo/field", "@bravo/input"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "shadcn Select styled to the Bravo design. Pass `name` to submit with Inertia's <Form>.",
+      "dependencies": ["lucide-react", "radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "A password input with a visibility toggle.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/password-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:ui",
+      "title": "Number Input",
+      "description": "A number input with an optional unit suffix.",
+      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/number-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-input",
+      "type": "registry:ui",
+      "title": "Date Input",
+      "description": "A native date input with a calendar button.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/date-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "typography",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Typography",
       "description": "A polymorphic typography primitive with semantic wrapper components.",
-      "dependencies": [
-        "@tailwindcss/typography",
-        "class-variance-authority",
-        "radix-ui"
-      ],
+      "dependencies": ["class-variance-authority", "radix-ui"],
       "registryDependencies": ["@bravo/utils"],
       "files": [
         {
-          "path": "registry/bravo/components/typography/typography.tsx",
-          "type": "registry:component"
-        },
+          "path": "registry/bravo/ui/typography.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "prose",
+      "type": "registry:ui",
+      "title": "Prose",
+      "description": "Wrapper for rich text content using @tailwindcss/typography.",
+      "dependencies": ["@tailwindcss/typography"],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
         {
-          "path": "registry/bravo/components/typography/heading.tsx",
-          "type": "registry:component"
-        },
+          "path": "registry/bravo/ui/prose.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tiptap",
+      "type": "registry:ui",
+      "title": "Tiptap Typography",
+      "description": "Typography class names and wrapper for Tiptap editor content.",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/typography"],
+      "files": [
         {
-          "path": "registry/bravo/components/typography/text.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/bravo/components/typography/code.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/bravo/components/typography/blockquote.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/bravo/components/typography/lead.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/bravo/components/typography/muted.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/bravo/components/typography/prose.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/bravo/components/typography/tiptap.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/bravo/components/typography/index.ts",
-          "type": "registry:component"
+          "path": "registry/bravo/ui/tiptap.tsx",
+          "type": "registry:ui"
         }
       ]
     }

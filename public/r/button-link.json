@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-link",
+  "title": "Button Link",
+  "description": "An inline link action with optional icons and Figma-aligned interaction states.",
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/button-link.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\n\ntype ButtonLinkProps = React.ComponentProps<\"a\"> & {\n  disabled?: boolean\n}\n\nfunction ButtonLink({\n  className,\n  disabled = false,\n  onClick,\n  tabIndex,\n  ...props\n}: ButtonLinkProps) {\n  return (\n    <a\n      data-slot=\"button-link\"\n      aria-disabled={disabled || undefined}\n      tabIndex={disabled ? -1 : tabIndex}\n      className={cn(\n        \"inline-flex items-center gap-2 text-base font-semibold leading-6 text-text-brand underline decoration-solid underline-offset-2 transition-colors hover:text-text-brand-hover focus-visible:rounded-lg focus-visible:outline-solid focus-visible:outline-[2px] focus-visible:outline-offset-[6px] focus-visible:outline-[var(--border-brand-focus)] aria-disabled:pointer-events-none aria-disabled:text-text-brand-disabled [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6\",\n        className\n      )}\n      onClick={(event) => {\n        if (disabled) {\n          event.preventDefault()\n          return\n        }\n\n        onClick?.(event)\n      }}\n      {...props}\n    />\n  )\n}\n\nexport { ButtonLink, type ButtonLinkProps }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

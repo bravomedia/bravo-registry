@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "prose",
+  "title": "Prose",
+  "description": "Wrapper for rich text content using @tailwindcss/typography.",
+  "dependencies": [
+    "@tailwindcss/typography"
+  ],
+  "registryDependencies": [
+    "@bravo/utils"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/prose.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/registry/bravo/lib/utils\";\n\ntype ProseProps = React.ComponentPropsWithoutRef<\"article\">;\n\nfunction Prose({ className, ...props }: ProseProps) {\n  return (\n    <article\n      data-slot=\"prose\"\n      className={cn(\n        \"prose prose-neutral max-w-none dark:prose-invert\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Prose };\nexport type { ProseProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

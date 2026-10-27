@@ -25,9 +25,10 @@ npx shadcn@latest add @bravo/bravo-theme
 
 Import `theme.css` after `tailwindcss` in the consumer's main stylesheet. It provides primitive variables such as `--neutral-700` and Tailwind utilities such as `text-text-secondary`, `bg-bg-content-brand`, and `border-border-dark`.
 
-To update the theme after exporting the Figma `Color palette` and `Color tokens` collections, run:
+To update the theme, export the Figma `Color palette`, `Color tokens`, `Section margin`, and `Type properties` collections into `scripts/tokens/figma/export-files/` (as `color-palette.json`, `color-tokens.json`, `section-margin.json`, and `type-properties.json`), then run:
 
 ```sh
-npm run tokens:convert -- <palette-export.json> <semantic-export.json> tokens/colors.tokens.json
-npm run tokens:theme
+npm run tokens:build
 ```
+
+This converts the Figma exports and writes `registry/bravo/styles/theme.css`. Each Figma collection has its own converter in `scripts/tokens/figma/`.

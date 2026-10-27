@@ -2,7 +2,7 @@ import * as React from "react";
 import { Slot } from "radix-ui";
 
 import { cn } from "@/registry/bravo/lib/utils";
-import { typographyVariantClassNames } from "./typography";
+import { typographyVariantClassNames } from "@/registry/bravo/ui/typography";
 
 type TiptapHtmlAttributes = Record<string, unknown> & {
   class?: string;

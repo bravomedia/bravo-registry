@@ -1,6 +1,6 @@
 import { Info } from "lucide-react";
 
-import { H1, H2, H3, Lead, Muted } from "@/registry/bravo/components/typography";
+import { H1, H2, H3, Lead, Muted } from "@/registry/bravo/ui/typography";
 import { Button } from "@/registry/bravo/ui/button";
 import { ButtonLink } from "@/registry/bravo/ui/button-link";
 import {
@@ -9,8 +9,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/bravo/ui/card";
+import { DateInput } from "@/registry/bravo/ui/date-input";
+import { Field } from "@/registry/bravo/ui/field";
 import { Input } from "@/registry/bravo/ui/input";
-import { Label } from "@/registry/bravo/ui/label";
+import { NativeSelect } from "@/registry/bravo/ui/native-select";
+import { NumberInput } from "@/registry/bravo/ui/number-input";
+import { PasswordInput } from "@/registry/bravo/ui/password-input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/registry/bravo/ui/select";
 import { Textarea } from "@/registry/bravo/ui/textarea";
 
 const buttonRows = [
@@ -96,15 +107,86 @@ export default function Home() {
           <CardHeader>
             <CardTitle>Form fields</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="message">Message</Label>
-              <Textarea id="message" />
-            </div>
+          <CardContent className="flex flex-col gap-6">
+            <Field
+              label="Text"
+              tooltip="Hjälptext för fältet"
+              description="Description"
+            >
+              <Input name="text" placeholder="Placeholder" />
+            </Field>
+            <Field label="Text (error)" error="Error message">
+              <Input name="text_error" defaultValue="Text" />
+            </Field>
+            <Field label="Text (disabled)" description="Description" disabled>
+              <Input name="text_disabled" placeholder="Placeholder" />
+            </Field>
+            <Field label="Native select" description="Description">
+              <NativeSelect name="native_select" placeholder="Välj alternativ">
+                <option value="a">Option</option>
+                <option value="b">Option 2</option>
+              </NativeSelect>
+            </Field>
+            <Field label="Native select (error)" error="Error message">
+              <NativeSelect name="native_select_error" defaultValue="a">
+                <option value="a">Option</option>
+              </NativeSelect>
+            </Field>
+            <Field label="Select" description="Description">
+              <Select name="select">
+                <SelectTrigger>
+                  <SelectValue placeholder="Välj alternativ" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="a">Option</SelectItem>
+                  <SelectItem value="b">Option 2</SelectItem>
+                </SelectContent>
+              </Select>
+            </Field>
+            <Field label="Select (error)" error="Error message">
+              <Select name="select_error" defaultValue="a">
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="a">Option</SelectItem>
+                </SelectContent>
+              </Select>
+            </Field>
+            <Field label="Select (disabled)" disabled>
+              <Select name="select_disabled" defaultValue="a">
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="a">Option</SelectItem>
+                </SelectContent>
+              </Select>
+            </Field>
+            <Field label="Number" description="Description">
+              <NumberInput name="number" unit="mm" placeholder="0" />
+            </Field>
+            <Field label="Number (error)" error="Error message">
+              <NumberInput name="number_error" unit="mm" defaultValue={0} />
+            </Field>
+            <Field label="Password" description="Description">
+              <PasswordInput name="password" />
+            </Field>
+            <Field label="Password (error)" error="Error message">
+              <PasswordInput name="password_error" defaultValue="secret" />
+            </Field>
+            <Field label="Datepicker" description="Description">
+              <DateInput name="date" />
+            </Field>
+            <Field label="Datepicker (disabled)" disabled>
+              <DateInput name="date_disabled" />
+            </Field>
+            <Field label="Textarea" description="Description">
+              <Textarea name="textarea" placeholder="Placeholder" />
+            </Field>
+            <Field label="Textarea (error)" error={["Error message"]}>
+              <Textarea name="textarea_error" defaultValue="Text" />
+            </Field>
           </CardContent>
         </Card>
 

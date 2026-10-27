@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-input",
+  "title": "Number Input",
+  "description": "A number input with an optional unit suffix.",
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/field",
+    "@bravo/input"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/number-input.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { useFieldControl } from \"@/registry/bravo/ui/field\"\nimport { InputGroup, inputGroupControl } from \"@/registry/bravo/ui/input\"\n\ntype NumberInputProps = Omit<React.ComponentProps<\"input\">, \"type\"> & {\n  unit?: React.ReactNode\n}\n\nfunction NumberInput({ className, unit, ...props }: NumberInputProps) {\n  const field = useFieldControl(props)\n  const unitId = React.useId()\n  const describedBy =\n    [field.props[\"aria-describedby\"], unit ? unitId : undefined]\n      .filter(Boolean)\n      .join(\" \") || undefined\n\n  return (\n    <InputGroup\n      invalid={field.invalid}\n      disabled={field.disabled}\n      className={className}\n    >\n      <input\n        type=\"number\"\n        data-slot=\"number-input\"\n        className={cn(\n          inputGroupControl,\n          \"[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none\",\n          !unit && \"pr-4\"\n        )}\n        {...field.props}\n        aria-describedby={describedBy}\n      />\n      {unit && (\n        <span\n          id={unitId}\n          className=\"shrink-0 pr-4 pl-2 text-text-muted group-data-invalid/input:text-text-error\"\n        >\n          {unit}\n        </span>\n      )}\n    </InputGroup>\n  )\n}\n\nexport { NumberInput, type NumberInputProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

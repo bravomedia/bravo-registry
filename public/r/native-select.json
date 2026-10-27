@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "native-select",
+  "title": "Native Select",
+  "description": "A styled native select: native picker on mobile, submits with Inertia's <Form>. Default choice for plain options.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@bravo/field",
+    "@bravo/input"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/native-select.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { ChevronDown } from \"lucide-react\"\n\nimport { useFieldControl } from \"@/registry/bravo/ui/field\"\nimport { InputGroup } from \"@/registry/bravo/ui/input\"\n\ntype NativeSelectProps = React.ComponentProps<\"select\"> & {\n  /** Rendered as an empty-value first option. */\n  placeholder?: string\n}\n\nfunction NativeSelect({\n  className,\n  placeholder,\n  children,\n  ...props\n}: NativeSelectProps) {\n  const field = useFieldControl(props)\n\n  return (\n    <InputGroup\n      invalid={field.invalid}\n      disabled={field.disabled}\n      className={className}\n    >\n      <select\n        data-slot=\"native-select\"\n        className=\"w-full min-w-0 cursor-pointer appearance-none bg-transparent py-4 pr-12 pl-4 outline-none disabled:cursor-not-allowed has-[option[value='']:checked]:text-text-muted [&_option]:bg-bg-content-base [&_option]:text-text-primary\"\n        {...field.props}\n      >\n        {placeholder !== undefined && <option value=\"\">{placeholder}</option>}\n        {children}\n      </select>\n      <ChevronDown\n        aria-hidden\n        className=\"pointer-events-none absolute right-4 size-6 text-text-primary group-data-disabled/input:text-text-muted group-data-invalid/input:text-text-error\"\n      />\n    </InputGroup>\n  )\n}\n\nexport { NativeSelect, type NativeSelectProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

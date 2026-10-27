@@ -1,4 +1,4 @@
-/* Generated from tokens/colors.tokens.json. Do not edit directly. */
+/* Generated from Figma exports by scripts/tokens/build-theme.mjs. Do not edit directly. */
 
 :root {
   --white: #FFFFFF;
@@ -128,9 +128,33 @@
   --bg-content-warning: var(--warning-100);
   --bg-content-success: var(--success-100);
   --bg-content-information: var(--information-100);
+  --section-margin-mobile: 80px;
+  --section-margin-tablet: 80px;
+  --section-margin-laptop: 96px;
+  --section-margin-large-desktop: 112px;
+  --family-heading: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --family-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --weight-bold: 600;
+  --weight-medium: 500;
+  --weight-regular: 400;
+  --section-margin: var(--section-margin-mobile);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-margin: var(--section-margin-laptop);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --section-margin: var(--section-margin-large-desktop);
+  }
 }
 
 @theme inline {
+  --breakpoint-base: 430px;
+  --spacing-section: var(--section-margin);
   --color-white: var(--white);
   --color-black: var(--black);
   --color-brand-50: var(--brand-50);
@@ -258,4 +282,23 @@
   --color-bg-content-warning: var(--bg-content-warning);
   --color-bg-content-success: var(--bg-content-success);
   --color-bg-content-information: var(--bg-content-information);
+  --font-heading: var(--family-heading);
+  --font-body: var(--family-body);
+  --font-weight-bold: var(--weight-bold);
+  --font-weight-medium: var(--weight-medium);
+  --font-weight-regular: var(--weight-regular);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--family-heading);
+  }
+  p {
+    font-family: var(--family-body);
+  }
 }

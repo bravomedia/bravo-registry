@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-input",
+  "title": "Date Input",
+  "description": "A native date input with a calendar button.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/field",
+    "@bravo/input"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/date-input.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Calendar } from \"lucide-react\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { useFieldControl } from \"@/registry/bravo/ui/field\"\nimport { InputGroup, inputGroupControl } from \"@/registry/bravo/ui/input\"\n\ntype DateInputProps = Omit<React.ComponentProps<\"input\">, \"type\">\n\nfunction DateInput({ className, ref, onChange, ...props }: DateInputProps) {\n  const field = useFieldControl(props)\n  const inputRef = React.useRef<HTMLInputElement | null>(null)\n  const [hasValue, setHasValue] = React.useState(\n    Boolean(props.value ?? props.defaultValue)\n  )\n  const empty = props.value !== undefined ? !props.value : !hasValue\n\n  const setRefs = React.useCallback(\n    (node: HTMLInputElement | null) => {\n      inputRef.current = node\n      if (typeof ref === \"function\") return ref(node)\n      if (ref) ref.current = node\n    },\n    [ref]\n  )\n\n  return (\n    <InputGroup\n      invalid={field.invalid}\n      disabled={field.disabled}\n      className={className}\n    >\n      <input\n        ref={setRefs}\n        type=\"date\"\n        data-slot=\"date-input\"\n        data-empty={empty || undefined}\n        className={cn(\n          inputGroupControl,\n          \"[&::-webkit-calendar-picker-indicator]:hidden data-empty:[&::-webkit-datetime-edit]:text-text-muted\"\n        )}\n        onChange={(event) => {\n          setHasValue(event.currentTarget.value !== \"\")\n          onChange?.(event)\n        }}\n        {...field.props}\n      />\n      <button\n        type=\"button\"\n        tabIndex={-1}\n        aria-hidden\n        disabled={field.disabled}\n        onClick={() => {\n          inputRef.current?.focus()\n          inputRef.current?.showPicker?.()\n        }}\n        className=\"mx-2 inline-flex size-9 shrink-0 items-center justify-center text-text-primary group-data-disabled/input:text-text-muted group-data-invalid/input:text-text-error disabled:cursor-not-allowed\"\n      >\n        <Calendar className=\"size-5\" />\n      </button>\n    </InputGroup>\n  )\n}\n\nexport { DateInput, type DateInputProps }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

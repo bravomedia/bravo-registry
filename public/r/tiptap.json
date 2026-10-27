@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tiptap",
+  "title": "Tiptap Typography",
+  "description": "Typography class names and wrapper for Tiptap editor content.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/typography"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/tiptap.tsx",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"radix-ui\";\n\nimport { cn } from \"@/registry/bravo/lib/utils\";\nimport { typographyVariantClassNames } from \"@/registry/bravo/ui/typography\";\n\ntype TiptapHtmlAttributes = Record<string, unknown> & {\n  class?: string;\n};\n\ntype TiptapHeadingLevel = keyof typeof tiptapTypographyClassNames.heading;\n\nconst tiptapTypographyClassNames = {\n  editor: \"tiptap text-foreground\",\n  paragraph: typographyVariantClassNames.p,\n  heading: {\n    1: typographyVariantClassNames.h1,\n    2: typographyVariantClassNames.h2,\n    3: typographyVariantClassNames.h3,\n    4: typographyVariantClassNames.h4,\n    5: typographyVariantClassNames.h5,\n    6: typographyVariantClassNames.h6,\n  },\n  blockquote: typographyVariantClassNames.blockquote,\n  code: typographyVariantClassNames.code,\n  kbd: typographyVariantClassNames.kbd,\n  link: \"font-medium text-primary underline underline-offset-4\",\n  list: {\n    ordered: \"my-6 ml-6 list-decimal [&>li]:mt-2\",\n    unordered: \"my-6 ml-6 list-disc [&>li]:mt-2\",\n    item: \"pl-1\",\n  },\n  mark: {\n    bold: \"font-semibold\",\n    italic: \"italic\",\n    underline: \"underline underline-offset-4\",\n    strike: \"line-through\",\n  },\n  textAlign: {\n    left: \"text-left\",\n    center: \"text-center\",\n    right: \"text-right\",\n  },\n  table: {\n    wrapper: \"my-6 w-full overflow-y-auto\",\n    table: \"w-full caption-bottom text-sm\",\n    header: \"border-b\",\n    body: \"[&_tr:last-child]:border-0\",\n    row: \"border-b transition-colors hover:bg-muted/50\",\n    head: \"h-10 px-2 text-left align-middle font-medium text-muted-foreground\",\n    cell: \"p-2 align-middle\",\n  },\n} as const;\n\nfunction withTiptapTypographyClass(\n  htmlAttributes: TiptapHtmlAttributes,\n  className: string,\n) {\n  return {\n    ...htmlAttributes,\n    class: cn(className, htmlAttributes.class),\n  };\n}\n\ntype TiptapTypographyProps = React.ComponentPropsWithoutRef<\"div\"> & {\n  asChild?: boolean;\n};\n\nfunction TiptapTypography({\n  asChild = false,\n  className,\n  ...props\n}: TiptapTypographyProps) {\n  const Comp = asChild ? Slot.Root : \"div\";\n\n  return (\n    <Comp\n      data-slot=\"tiptap-typography\"\n      className={cn(tiptapTypographyClassNames.editor, className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  TiptapTypography,\n  tiptapTypographyClassNames,\n  withTiptapTypographyClass,\n};\nexport type {\n  TiptapHeadingLevel,\n  TiptapHtmlAttributes,\n  TiptapTypographyProps,\n};\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
