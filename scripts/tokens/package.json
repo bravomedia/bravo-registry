@@ -1,0 +1,16 @@
+{
+  "name": "@bravomedia/tokens",
+  "version": "0.1.0",
+  "description": "Builds Bravo Tailwind theme CSS from Figma variable exports.",
+  "type": "module",
+  "bin": {
+    "bravo-tokens": "./build-theme.mjs"
+  },
+  "files": [
+    "*.mjs",
+    "figma/"
+  ],
+  "engines": {
+    "node": ">=18.3"
+  }
+}

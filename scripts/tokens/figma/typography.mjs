@@ -1,4 +1,4 @@
-import { toTokenName } from "../shared.mjs"
+import { isMetadataKey, toTokenName } from "../shared.mjs"
 
 const FONT_WEIGHTS = {
   Regular: 400,
@@ -24,4 +24,26 @@ export function convertTypography(exported) {
   })
 
   return Object.fromEntries([...families, ...weights])
+}
+
+// Mirrors Figma variable names: text-xs/font-size -> text-xs-font-size. Pixel values become rem.
+export function convertTypeScale(exported) {
+  return Object.fromEntries(
+    Object.entries(exported)
+      .filter(([key]) => !isMetadataKey(key))
+      .flatMap(([key, step]) => {
+        const name = toTokenName(key)
+        // Figma export currently spells it "line-heigt".
+        const lineHeight = step["line-height"] ?? step["line-heigt"]
+
+        return [
+          [`${name}-font-size`, { $type: "fontSize", $value: toRem(step["font-size"].$value) }],
+          [`${name}-line-height`, { $type: "lineHeight", $value: toRem(lineHeight.$value) }],
+        ]
+      })
+  )
+}
+
+function toRem(px) {
+  return `${px / 16}rem`
 }

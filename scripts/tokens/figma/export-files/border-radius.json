@@ -1,0 +1,111 @@
+{
+  "rounded-xs": {
+    "$type": "number",
+    "$value": 2,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:2106:487",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:e944e8b19b4bcb818c4724f72d1e91b3b38a8096/-1:-1",
+        "targetVariableName": "0․5",
+        "targetVariableSetId": "VariableCollectionId:614737292a9ee5aac5135184e505447e6837ef7b/-1:-1",
+        "targetVariableSetName": "Primitive base scale"
+      }
+    }
+  },
+  "rounded-sm": {
+    "$type": "number",
+    "$value": 4,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:2106:488",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:ca30412f778cfccb14c041b990d0e9afd82d1c99/-1:-1",
+        "targetVariableName": "1",
+        "targetVariableSetId": "VariableCollectionId:614737292a9ee5aac5135184e505447e6837ef7b/-1:-1",
+        "targetVariableSetName": "Primitive base scale"
+      }
+    }
+  },
+  "rounded-lg": {
+    "$type": "number",
+    "$value": 8,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:2106:489",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:0cca513ec0ba3138874be23e5b1af9faccf3a57f/-1:-1",
+        "targetVariableName": "2",
+        "targetVariableSetId": "VariableCollectionId:614737292a9ee5aac5135184e505447e6837ef7b/-1:-1",
+        "targetVariableSetName": "Primitive base scale"
+      }
+    }
+  },
+  "rounded-xl": {
+    "$type": "number",
+    "$value": 12,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:2106:490",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:227999b3e883cb5902ed817904e78b1254d9c98d/-1:-1",
+        "targetVariableName": "3",
+        "targetVariableSetId": "VariableCollectionId:614737292a9ee5aac5135184e505447e6837ef7b/-1:-1",
+        "targetVariableSetName": "Primitive base scale"
+      }
+    }
+  },
+  "rounded-2xl": {
+    "$type": "number",
+    "$value": 16,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:2106:491",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:e01e44194c89ddda65a420bdebff3826c0fea112/-1:-1",
+        "targetVariableName": "4",
+        "targetVariableSetId": "VariableCollectionId:614737292a9ee5aac5135184e505447e6837ef7b/-1:-1",
+        "targetVariableSetName": "Primitive base scale"
+      }
+    }
+  },
+  "rounded-3xl": {
+    "$type": "number",
+    "$value": 24,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:2106:492",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ],
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:52efd26bfae004f897b9e60367cde89c19a519ca/-1:-1",
+        "targetVariableName": "6",
+        "targetVariableSetId": "VariableCollectionId:614737292a9ee5aac5135184e505447e6837ef7b/-1:-1",
+        "targetVariableSetName": "Primitive base scale"
+      }
+    }
+  },
+  "rounded-full": {
+    "$type": "number",
+    "$value": 9999,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:2106:493",
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

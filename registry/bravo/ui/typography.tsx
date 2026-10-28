@@ -4,21 +4,41 @@ import { Slot } from "radix-ui";
 
 import { cn } from "@/registry/bravo/lib/utils";
 
+const heading = "scroll-m-20 font-heading font-semibold text-text-primary text-balance";
+const body = "font-body text-text-primary";
+const link =
+  "underline decoration-from-font [text-underline-position:from-font]";
+
+// Keys mirror the Figma text styles; legacy keys below map onto them.
+const scale = {
+  "heading-xl": `${heading} text-5xl`,
+  "heading-lg": `${heading} text-4xl`,
+  "heading-md": `${heading} text-2xl`,
+  "heading-sm": `${heading} text-xl`,
+  "pre-heading": `${body} text-xl font-semibold`,
+  "body-lg": `${body} text-xl font-normal`,
+  "body-lg-bold": `${body} text-xl font-semibold`,
+  "body-lg-link": `${body} text-xl font-normal ${link}`,
+  body: `${body} text-base font-normal`,
+  "body-bold": `${body} text-base font-semibold`,
+  "body-link": `${body} text-base font-normal ${link}`,
+} as const;
+
 const typographyVariantClassNames = {
-  display:
-    "scroll-m-20 text-5xl font-extrabold tracking-tight text-balance lg:text-6xl",
-  h1: "scroll-m-20 text-4xl font-extrabold tracking-tight text-balance lg:text-5xl",
-  h2: "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight text-balance first:mt-0",
-  h3: "scroll-m-20 text-2xl font-semibold tracking-tight text-balance",
-  h4: "scroll-m-20 text-xl font-semibold tracking-tight text-balance",
-  h5: "scroll-m-20 text-lg font-semibold tracking-tight text-balance",
-  h6: "scroll-m-20 text-base font-semibold tracking-tight text-balance",
-  body: "leading-7 [&:not(:first-child)]:mt-6",
-  p: "leading-7 [&:not(:first-child)]:mt-6",
-  lead: "text-xl text-muted-foreground",
-  large: "text-lg font-semibold",
-  small: "text-sm leading-none font-medium",
-  muted: "text-sm text-muted-foreground",
+  ...scale,
+  display: scale["heading-xl"],
+  h1: scale["heading-xl"],
+  h2: scale["heading-lg"],
+  h3: scale["heading-md"],
+  h4: scale["heading-sm"],
+  h5: scale["heading-sm"],
+  h6: scale["heading-sm"],
+  p: `${scale.body} [&:not(:first-child)]:mt-6`,
+  lead: scale["body-lg"],
+  large: scale["body-lg-bold"],
+  small: "font-body text-sm font-medium",
+  muted: "font-body text-sm font-medium text-text-muted",
+  link,
   blockquote: "mt-6 border-l-2 pl-6 italic",
   code: "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm",
   kbd: "rounded border bg-muted px-1.5 py-0.5 font-mono text-xs font-medium text-muted-foreground shadow-xs",
@@ -62,8 +82,19 @@ function Typography<T extends React.ElementType = "p">({
   );
 }
 
-type HeadingProps = Omit<TypographyProps<React.ElementType>, "variant">;
-type TextProps = Omit<TypographyProps<React.ElementType>, "variant">;
+type HeadingSize = "xl" | "lg" | "md" | "sm";
+type TextSize = "default" | "lg";
+
+type HeadingLevelProps = Omit<TypographyProps<React.ElementType>, "variant">;
+type HeadingProps = HeadingLevelProps & { size?: HeadingSize };
+type PreHeadingProps = Omit<TypographyProps<React.ElementType>, "variant">;
+type TextProps = Omit<TypographyProps<React.ElementType>, "variant"> & {
+  size?: TextSize;
+  weight?: "regular" | "bold";
+};
+type TextLinkProps = Omit<TypographyProps<React.ElementType>, "variant"> & {
+  size?: TextSize;
+};
 type LargeProps = Omit<TypographyProps<React.ElementType>, "variant">;
 type SmallProps = Omit<TypographyProps<React.ElementType>, "variant">;
 type LeadProps = Omit<TypographyProps<React.ElementType>, "variant">;
@@ -72,36 +103,64 @@ type BlockquoteProps = Omit<TypographyProps<React.ElementType>, "variant">;
 type CodeProps = Omit<TypographyProps<React.ElementType>, "variant">;
 type KbdProps = Omit<TypographyProps<React.ElementType>, "variant">;
 
-function Display(props: HeadingProps) {
+/** Visual size is independent of the heading level (`as`). */
+function Heading({ as = "h2", size = "lg", ...props }: HeadingProps) {
+  return <Typography as={as} variant={`heading-${size}`} {...props} />;
+}
+
+function PreHeading(props: PreHeadingProps) {
+  return <Typography as="p" variant="pre-heading" {...props} />;
+}
+
+function Display(props: HeadingLevelProps) {
   return <Typography as="h1" variant="display" {...props} />;
 }
 
-function H1(props: HeadingProps) {
+function H1(props: HeadingLevelProps) {
   return <Typography as="h1" variant="h1" {...props} />;
 }
 
-function H2(props: HeadingProps) {
+function H2(props: HeadingLevelProps) {
   return <Typography as="h2" variant="h2" {...props} />;
 }
 
-function H3(props: HeadingProps) {
+function H3(props: HeadingLevelProps) {
   return <Typography as="h3" variant="h3" {...props} />;
 }
 
-function H4(props: HeadingProps) {
+function H4(props: HeadingLevelProps) {
   return <Typography as="h4" variant="h4" {...props} />;
 }
 
-function H5(props: HeadingProps) {
+function H5(props: HeadingLevelProps) {
   return <Typography as="h5" variant="h5" {...props} />;
 }
 
-function H6(props: HeadingProps) {
+function H6(props: HeadingLevelProps) {
   return <Typography as="h6" variant="h6" {...props} />;
 }
 
-function Text(props: TextProps) {
-  return <Typography as="p" variant="p" {...props} />;
+function Text({ size = "default", weight = "regular", ...props }: TextProps) {
+  const variant = size === "lg" ? "body-lg" : "body";
+
+  return (
+    <Typography
+      as="p"
+      variant={weight === "bold" ? `${variant}-bold` : variant}
+      {...props}
+    />
+  );
+}
+
+/** Pass `asChild` to style a router link, e.g. Inertia's `<Link>`. */
+function TextLink({ size = "default", ...props }: TextLinkProps) {
+  return (
+    <Typography
+      as="a"
+      variant={size === "lg" ? "body-lg-link" : "body-link"}
+      {...props}
+    />
+  );
 }
 
 function Large(props: LargeProps) {
@@ -142,12 +201,15 @@ export {
   H4,
   H5,
   H6,
+  Heading,
   Kbd,
   Large,
   Lead,
   Muted,
+  PreHeading,
   Small,
   Text,
+  TextLink,
   Typography,
   typographyVariantClassNames,
   typographyVariants,
@@ -155,13 +217,18 @@ export {
 export type {
   BlockquoteProps,
   CodeProps,
+  HeadingLevelProps,
   HeadingProps,
+  HeadingSize,
   KbdProps,
   LargeProps,
   LeadProps,
   MutedProps,
+  PreHeadingProps,
   SmallProps,
+  TextLinkProps,
   TextProps,
+  TextSize,
   TypographyProps,
   TypographyVariant,
 };

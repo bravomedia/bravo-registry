@@ -1,6 +1,13 @@
 import { Info } from "lucide-react";
 
-import { H1, H2, H3, Lead, Muted } from "@/registry/bravo/ui/typography";
+import {
+  H1,
+  Heading,
+  Lead,
+  PreHeading,
+  Text,
+  TextLink,
+} from "@/registry/bravo/ui/typography";
 import { Button } from "@/registry/bravo/ui/button";
 import { ButtonLink } from "@/registry/bravo/ui/button-link";
 import {
@@ -45,10 +52,18 @@ export default function Home() {
           <CardHeader>
             <CardTitle>Typography</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-2">
-            <H2>Heading 2</H2>
-            <H3>Heading 3</H3>
-            <Muted>Muted text</Muted>
+          <CardContent className="flex flex-col gap-3">
+            <PreHeading>Pre-heading</PreHeading>
+            <Heading as="h2" size="xl">Heading xl</Heading>
+            <Heading as="h2" size="lg">Heading lg</Heading>
+            <Heading as="h3" size="md">Heading md</Heading>
+            <Heading as="h4" size="sm">Heading sm</Heading>
+            <Text size="lg">Large</Text>
+            <Text size="lg" weight="bold">Large Bold</Text>
+            <TextLink size="lg" href="#typography">Large Link</TextLink>
+            <Text>Default</Text>
+            <Text weight="bold">Default Bold</Text>
+            <TextLink href="#typography">Default Link</TextLink>
           </CardContent>
         </Card>
 

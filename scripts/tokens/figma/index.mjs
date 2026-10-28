@@ -1,28 +1,37 @@
+import { join } from "node:path"
+import { fileURLToPath } from "node:url"
+
 import { readJson } from "../shared.mjs"
+import { convertBorderRadius } from "./border-radius.mjs"
+import { convertBreakpoints } from "./breakpoints.mjs"
 import { convertPalette, convertSemanticColors } from "./colors.mjs"
 import { convertSectionMargin } from "./section-margin.mjs"
-import { convertTypography } from "./typography.mjs"
+import { convertTypeScale, convertTypography } from "./typography.mjs"
 
-export const EXPORT_FILES = {
-  palette: "scripts/tokens/figma/export-files/color-palette.json",
-  colors: "scripts/tokens/figma/export-files/color-tokens.json",
-  sectionMargin: "scripts/tokens/figma/export-files/section-margin.json",
-  typography: "scripts/tokens/figma/export-files/type-properties.json",
-}
+export const BASE_EXPORT_DIR = fileURLToPath(new URL("./export-files/", import.meta.url))
 
-export async function readFigmaTokens(files = EXPORT_FILES) {
-  const [palette, colors, sectionMargin, typography] = await Promise.all([
-    readJson(files.palette),
-    readJson(files.colors),
-    readJson(files.sectionMargin),
-    readJson(files.typography),
-  ])
+export async function readFigmaTokens(dir = BASE_EXPORT_DIR) {
+  const [palette, colors, sectionMargin, typography, typeScale, borderRadius, breakpoints] =
+    await Promise.all(
+      [
+        "color-palette.json",
+        "color-tokens.json",
+        "section-margin.json",
+        "type-properties.json",
+        "type-scale.json",
+        "border-radius.json",
+        "breakpoints.json",
+      ].map((file) => readJson(join(dir, file)))
+    )
 
   return merge(
     convertPalette(palette),
     convertSemanticColors(colors),
     convertSectionMargin(sectionMargin),
-    convertTypography(typography)
+    convertTypography(typography),
+    convertTypeScale(typeScale),
+    convertBorderRadius(borderRadius),
+    convertBreakpoints(breakpoints)
   )
 }
 

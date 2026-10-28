@@ -26,6 +26,10 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@bravomedia/content-platform": "file:../content-platform/resources/types",
+    "@bravomedia/content-platform-section-media-text": "file:../content-platform-section-media-text/resources/types",
+    "@bravomedia/content-platform-section-spotlight": "file:../content-platform-section-spotlight/resources/types",
+    "@bravomedia/laravel-media-library": "^1.0.0",
     "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "^20.19.9",

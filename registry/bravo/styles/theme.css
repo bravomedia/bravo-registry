@@ -1,4 +1,4 @@
-/* Generated from Figma exports by scripts/tokens/build-theme.mjs. Do not edit directly. */
+/* Generated from Figma exports by build-theme.mjs. Do not edit directly. */
 
 :root {
   --white: #FFFFFF;
@@ -137,23 +137,62 @@
   --weight-bold: 600;
   --weight-medium: 500;
   --weight-regular: 400;
+  --text-xs-font-size: 0.75rem;
+  --text-xs-line-height: 1rem;
+  --text-sm-font-size: 0.875rem;
+  --text-sm-line-height: 1.25rem;
+  --text-base-font-size: 1rem;
+  --text-base-line-height: 1.5rem;
+  --text-lg-font-size: 1.125rem;
+  --text-lg-line-height: 1.75rem;
+  --text-xl-font-size: 1.25rem;
+  --text-xl-line-height: 1.75rem;
+  --text-2xl-font-size: 1.5rem;
+  --text-2xl-line-height: 2rem;
+  --text-3xl-font-size: 1.875rem;
+  --text-3xl-line-height: 2.25rem;
+  --text-4xl-font-size: 2.25rem;
+  --text-4xl-line-height: 2.5rem;
+  --text-5xl-font-size: 3rem;
+  --text-5xl-line-height: 3rem;
+  --text-6xl-font-size: 3.75rem;
+  --text-6xl-line-height: 3.75rem;
+  --text-7xl-font-size: 4.5rem;
+  --text-7xl-line-height: 4.5rem;
+  --text-8xl-font-size: 6rem;
+  --text-8xl-line-height: 6rem;
+  --text-9xl-font-size: 8rem;
+  --text-9xl-line-height: 8rem;
+  --rounded-xs: 2px;
+  --rounded-sm: 4px;
+  --rounded-lg: 8px;
+  --rounded-xl: 12px;
+  --rounded-2xl: 16px;
+  --rounded-3xl: 24px;
+  --rounded-full: 9999px;
   --section-margin: var(--section-margin-mobile);
 }
 
-@media (min-width: 1024px) {
-  :root {
+:root {
+  @variant lg {
     --section-margin: var(--section-margin-laptop);
   }
-}
-
-@media (min-width: 1440px) {
-  :root {
+  @variant min-[1440px] {
     --section-margin: var(--section-margin-large-desktop);
   }
 }
 
-@theme inline {
+@theme {
   --breakpoint-base: 430px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+}
+
+@theme inline {
   --spacing-section: var(--section-margin);
   --color-white: var(--white);
   --color-black: var(--black);
@@ -287,6 +326,38 @@
   --font-weight-bold: var(--weight-bold);
   --font-weight-medium: var(--weight-medium);
   --font-weight-regular: var(--weight-regular);
+  --text-xs: var(--text-xs-font-size);
+  --text-xs--line-height: var(--text-xs-line-height);
+  --text-sm: var(--text-sm-font-size);
+  --text-sm--line-height: var(--text-sm-line-height);
+  --text-base: var(--text-base-font-size);
+  --text-base--line-height: var(--text-base-line-height);
+  --text-lg: var(--text-lg-font-size);
+  --text-lg--line-height: var(--text-lg-line-height);
+  --text-xl: var(--text-xl-font-size);
+  --text-xl--line-height: var(--text-xl-line-height);
+  --text-2xl: var(--text-2xl-font-size);
+  --text-2xl--line-height: var(--text-2xl-line-height);
+  --text-3xl: var(--text-3xl-font-size);
+  --text-3xl--line-height: var(--text-3xl-line-height);
+  --text-4xl: var(--text-4xl-font-size);
+  --text-4xl--line-height: var(--text-4xl-line-height);
+  --text-5xl: var(--text-5xl-font-size);
+  --text-5xl--line-height: var(--text-5xl-line-height);
+  --text-6xl: var(--text-6xl-font-size);
+  --text-6xl--line-height: var(--text-6xl-line-height);
+  --text-7xl: var(--text-7xl-font-size);
+  --text-7xl--line-height: var(--text-7xl-line-height);
+  --text-8xl: var(--text-8xl-font-size);
+  --text-8xl--line-height: var(--text-8xl-line-height);
+  --text-9xl: var(--text-9xl-font-size);
+  --text-9xl--line-height: var(--text-9xl-line-height);
+  --radius-xs: var(--rounded-xs);
+  --radius-sm: var(--rounded-sm);
+  --radius-lg: var(--rounded-lg);
+  --radius-xl: var(--rounded-xl);
+  --radius-2xl: var(--rounded-2xl);
+  --radius-3xl: var(--rounded-3xl);
 }
 
 @layer base {

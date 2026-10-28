@@ -22,3 +22,14 @@ export function toTokenName(name) {
 export function toReference(name) {
   return `{${toTokenName(name)}}`
 }
+
+export function convertPixelTokens(exported, $type, prefix = "") {
+  return Object.fromEntries(
+    Object.entries(exported)
+      .filter(([key]) => !isMetadataKey(key))
+      .map(([key, token]) => [
+        `${prefix}${toTokenName(key)}`,
+        { $type, $value: `${token.$value}px` },
+      ])
+  )
+}
