@@ -29,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/bravo/ui/select";
+import { ShortcutCard } from "@/registry/bravo/ui/shortcut-card";
 import { Textarea } from "@/registry/bravo/ui/textarea";
 
 const buttonRows = [
@@ -44,7 +45,9 @@ export default function Home() {
     <div className="mx-auto flex min-h-svh max-w-3xl flex-col gap-8 px-4 py-8">
       <header className="flex flex-col gap-1">
         <H1>Bravo Registry</H1>
-        <Lead>Components for Bravo sites, installable with the shadcn CLI.</Lead>
+        <Lead>
+          Components for Bravo sites, installable with the shadcn CLI.
+        </Lead>
       </header>
 
       <main className="flex flex-col gap-8">
@@ -54,13 +57,25 @@ export default function Home() {
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
             <PreHeading>Pre-heading</PreHeading>
-            <Heading as="h2" size="xl">Heading xl</Heading>
-            <Heading as="h2" size="lg">Heading lg</Heading>
-            <Heading as="h3" size="md">Heading md</Heading>
-            <Heading as="h4" size="sm">Heading sm</Heading>
+            <Heading as="h2" size="xl">
+              Heading xl
+            </Heading>
+            <Heading as="h2" size="lg">
+              Heading lg
+            </Heading>
+            <Heading as="h3" size="md">
+              Heading md
+            </Heading>
+            <Heading as="h4" size="sm">
+              Heading sm
+            </Heading>
             <Text size="lg">Large</Text>
-            <Text size="lg" weight="bold">Large Bold</Text>
-            <TextLink size="lg" href="#typography">Large Link</TextLink>
+            <Text size="lg" weight="bold">
+              Large Bold
+            </Text>
+            <TextLink size="lg" href="#typography">
+              Large Link
+            </TextLink>
             <Text>Default</Text>
             <Text weight="bold">Default Bold</Text>
             <TextLink href="#typography">Default Link</TextLink>
@@ -118,7 +133,7 @@ export default function Home() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card id="form-fields">
           <CardHeader>
             <CardTitle>Form fields</CardTitle>
           </CardHeader>
@@ -202,6 +217,17 @@ export default function Home() {
             <Field label="Textarea (error)" error={["Error message"]}>
               <Textarea name="textarea_error" defaultValue="Text" />
             </Field>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Shortcut card</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ShortcutCard href="#form-fields" className="w-70.5">
+              Form fields
+            </ShortcutCard>
           </CardContent>
         </Card>
 

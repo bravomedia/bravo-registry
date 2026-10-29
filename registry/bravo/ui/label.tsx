@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as LabelPrimitive from "@radix-ui/react-label"
+import * as React from "react";
+import * as LabelPrimitive from "@radix-ui/react-label";
 
-import { cn } from "@/registry/bravo/lib/utils"
+import { cn } from "@/registry/bravo/lib/utils";
 
 function Label({
   className,
@@ -14,11 +14,11 @@ function Label({
       data-slot="label"
       className={cn(
         "flex items-center gap-1 font-body text-sm leading-5 font-medium text-text-primary select-none",
-        className
+        className,
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Label }
+export { Label };

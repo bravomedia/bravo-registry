@@ -1,8 +1,8 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-import { Slot } from "radix-ui"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { Slot } from "radix-ui";
 
-import { cn } from "@/registry/bravo/lib/utils"
+import { cn } from "@/registry/bravo/lib/utils";
 
 const buttonVariants = cva(
   "inline-flex shrink-0 items-center justify-center gap-2 rounded-lg text-base font-semibold leading-6 whitespace-nowrap transition-[background-color,box-shadow,color] outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
@@ -31,7 +31,8 @@ const buttonVariants = cva(
         sm: "min-h-10 gap-1.5 px-4 py-2 text-sm leading-5",
         lg: "min-h-14 px-7 py-4 text-lg leading-6",
         icon: "size-12 p-3",
-        "icon-xs": "size-8 rounded-md p-1.5 [&_svg:not([class*='size-'])]:size-3",
+        "icon-xs":
+          "size-8 rounded-md p-1.5 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-10 p-2",
         "icon-lg": "size-14 p-4",
       },
@@ -40,8 +41,8 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
-)
+  },
+);
 
 function Button({
   className,
@@ -51,9 +52,9 @@ function Button({
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
+    asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot.Root : "button"
+  const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp
@@ -63,7 +64,7 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
-  )
+  );
 }
 
-export { Button, buttonVariants }
+export { Button, buttonVariants };
