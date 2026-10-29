@@ -48,6 +48,7 @@ import {
   SelectValue,
 } from "@/registry/bravo/ui/select";
 import { ShortcutCard } from "@/registry/bravo/ui/shortcut-card";
+import { Spotlight } from "@/registry/bravo/ui/spotlight";
 import { Textarea } from "@/registry/bravo/ui/textarea";
 
 const buttonRows = [
@@ -60,248 +61,299 @@ const buttonRows = [
 
 export default function Home() {
   return (
-    <div className="mx-auto flex min-h-svh max-w-3xl flex-col gap-8 px-4 py-8">
-      <header className="flex flex-col gap-1">
-        <H1>Bravo Registry</H1>
-        <Lead>
-          Components for Bravo sites, installable with the shadcn CLI.
-        </Lead>
-      </header>
+    <>
+      <div className="mx-auto flex min-h-svh max-w-3xl flex-col gap-8 px-4 py-8">
+        <header className="flex flex-col gap-1">
+          <H1>Bravo Registry</H1>
+          <Lead>
+            Components for Bravo sites, installable with the shadcn CLI.
+          </Lead>
+        </header>
 
-      <main className="flex flex-col gap-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Typography</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-3">
-            <PreHeading>Pre-heading</PreHeading>
-            <Heading as="h2" size="xl">
-              Heading xl
-            </Heading>
-            <Heading as="h2" size="lg">
-              Heading lg
-            </Heading>
-            <Heading as="h3" size="md">
-              Heading md
-            </Heading>
-            <Heading as="h4" size="sm">
-              Heading sm
-            </Heading>
-            <Text size="lg">Large</Text>
-            <Text size="lg" weight="bold">
-              Large Bold
-            </Text>
-            <TextLink size="lg" href="#typography">
-              Large Link
-            </TextLink>
-            <Text>Default</Text>
-            <Text weight="bold">Default Bold</Text>
-            <TextLink href="#typography">Default Link</TextLink>
-          </CardContent>
-        </Card>
+        <main className="flex flex-col gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle>Typography</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-3">
+              <PreHeading>Pre-heading</PreHeading>
+              <Heading as="h2" size="xl">
+                Heading xl
+              </Heading>
+              <Heading as="h2" size="lg">
+                Heading lg
+              </Heading>
+              <Heading as="h3" size="md">
+                Heading md
+              </Heading>
+              <Heading as="h4" size="sm">
+                Heading sm
+              </Heading>
+              <Text size="lg">Large</Text>
+              <Text size="lg" weight="bold">
+                Large Bold
+              </Text>
+              <TextLink size="lg" href="#typography">
+                Large Link
+              </TextLink>
+              <Text>Default</Text>
+              <Text weight="bold">Default Bold</Text>
+              <TextLink href="#typography">Default Link</TextLink>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Button</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            {buttonRows.map(({ label, variant, ...row }) => (
-              <div
-                key={variant}
-                className={
-                  "inverse" in row
-                    ? "flex flex-col gap-3 rounded-lg bg-bg-section-strong p-4 text-text-primary-inverse"
-                    : "flex flex-col gap-3 p-4"
-                }
-              >
-                <span className="text-sm font-semibold">{label}</span>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button variant={variant}>Btn text</Button>
-                  <Button variant={variant} disabled>
-                    Btn text
-                  </Button>
-                  <Button variant={variant}>
-                    <Info />
-                    Btn text
-                    <Info />
-                  </Button>
-                  <Button variant={variant} disabled>
-                    <Info />
-                    Btn text
-                    <Info />
-                  </Button>
-                  {variant !== "destructive" && (
-                    <>
-                      <Button variant={variant} size="icon" aria-label="Info">
-                        <Info />
-                      </Button>
-                      <Button
-                        variant={variant}
-                        size="icon"
-                        aria-label="Info"
-                        disabled
-                      >
-                        <Info />
-                      </Button>
-                    </>
-                  )}
+          <Card>
+            <CardHeader>
+              <CardTitle>Button</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
+              {buttonRows.map(({ label, variant, ...row }) => (
+                <div
+                  key={variant}
+                  className={
+                    "inverse" in row
+                      ? "flex flex-col gap-3 rounded-lg bg-bg-section-strong p-4 text-text-primary-inverse"
+                      : "flex flex-col gap-3 p-4"
+                  }
+                >
+                  <span className="text-sm font-semibold">{label}</span>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button variant={variant}>Btn text</Button>
+                    <Button variant={variant} disabled>
+                      Btn text
+                    </Button>
+                    <Button variant={variant}>
+                      <Info />
+                      Btn text
+                      <Info />
+                    </Button>
+                    <Button variant={variant} disabled>
+                      <Info />
+                      Btn text
+                      <Info />
+                    </Button>
+                    {variant !== "destructive" && (
+                      <>
+                        <Button variant={variant} size="icon" aria-label="Info">
+                          <Info />
+                        </Button>
+                        <Button
+                          variant={variant}
+                          size="icon"
+                          aria-label="Info"
+                          disabled
+                        >
+                          <Info />
+                        </Button>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+              ))}
+            </CardContent>
+          </Card>
 
-        <Card id="form-fields">
-          <CardHeader>
-            <CardTitle>Form fields</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-6">
-            <Field
-              label="Text"
-              tooltip="Hjälptext för fältet"
-              description="Description"
-            >
-              <Input name="text" placeholder="Placeholder" />
-            </Field>
-            <Field label="Text (error)" error="Error message">
-              <Input name="text_error" defaultValue="Text" />
-            </Field>
-            <Field label="Text (disabled)" description="Description" disabled>
-              <Input name="text_disabled" placeholder="Placeholder" />
-            </Field>
-            <Field label="Native select" description="Description">
-              <NativeSelect name="native_select" placeholder="Välj alternativ">
-                <NativeSelectOption value="a">Option</NativeSelectOption>
-                <NativeSelectOption value="b">Option 2</NativeSelectOption>
-              </NativeSelect>
-            </Field>
-            <Field label="Native select (error)" error="Error message">
-              <NativeSelect name="native_select_error" defaultValue="a">
-                <NativeSelectOption value="a">Option</NativeSelectOption>
-              </NativeSelect>
-            </Field>
-            <Field label="Select" description="Description">
-              <Select name="select">
-                <SelectTrigger>
-                  <SelectValue placeholder="Välj alternativ" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="a">Option</SelectItem>
-                  <SelectItem value="b">Option 2</SelectItem>
-                </SelectContent>
-              </Select>
-            </Field>
-            <Field label="Select (error)" error="Error message">
-              <Select name="select_error" defaultValue="a">
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="a">Option</SelectItem>
-                </SelectContent>
-              </Select>
-            </Field>
-            <Field label="Select (disabled)" disabled>
-              <Select name="select_disabled" defaultValue="a">
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="a">Option</SelectItem>
-                </SelectContent>
-              </Select>
-            </Field>
-            <Field label="Number" description="Description">
-              <NumberInput name="number" unit="mm" placeholder="0" />
-            </Field>
-            <Field label="Number (error)" error="Error message">
-              <NumberInput name="number_error" unit="mm" defaultValue={0} />
-            </Field>
-            <Field label="Password" description="Description">
-              <PasswordInput name="password" />
-            </Field>
-            <Field label="Password (error)" error="Error message">
-              <PasswordInput name="password_error" defaultValue="secret" />
-            </Field>
-            <Field label="Datepicker" description="Description">
-              <DateInput name="date" />
-            </Field>
-            <Field label="Datepicker (disabled)" disabled>
-              <DateInput name="date_disabled" />
-            </Field>
-            <Field label="Textarea" description="Description">
-              <Textarea name="textarea" placeholder="Placeholder" />
-            </Field>
-            <Field label="Textarea (error)" error={["Error message"]}>
-              <Textarea name="textarea_error" defaultValue="Text" />
-            </Field>
-            <Field label="Input group" description="Description">
-              <InputGroup>
-                <InputGroupAddon>
-                  <Search />
-                </InputGroupAddon>
-                <InputGroupInput name="search" placeholder="Sök" />
-              </InputGroup>
-            </Field>
-          </CardContent>
-        </Card>
+          <Card id="form-fields">
+            <CardHeader>
+              <CardTitle>Form fields</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-6">
+              <Field
+                label="Text"
+                tooltip="Hjälptext för fältet"
+                description="Description"
+              >
+                <Input name="text" placeholder="Placeholder" />
+              </Field>
+              <Field label="Text (error)" error="Error message">
+                <Input name="text_error" defaultValue="Text" />
+              </Field>
+              <Field label="Text (disabled)" description="Description" disabled>
+                <Input name="text_disabled" placeholder="Placeholder" />
+              </Field>
+              <Field label="Native select" description="Description">
+                <NativeSelect
+                  name="native_select"
+                  placeholder="Välj alternativ"
+                >
+                  <NativeSelectOption value="a">Option</NativeSelectOption>
+                  <NativeSelectOption value="b">Option 2</NativeSelectOption>
+                </NativeSelect>
+              </Field>
+              <Field label="Native select (error)" error="Error message">
+                <NativeSelect name="native_select_error" defaultValue="a">
+                  <NativeSelectOption value="a">Option</NativeSelectOption>
+                </NativeSelect>
+              </Field>
+              <Field label="Select" description="Description">
+                <Select name="select">
+                  <SelectTrigger>
+                    <SelectValue placeholder="Välj alternativ" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="a">Option</SelectItem>
+                    <SelectItem value="b">Option 2</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+              <Field label="Select (error)" error="Error message">
+                <Select name="select_error" defaultValue="a">
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="a">Option</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+              <Field label="Select (disabled)" disabled>
+                <Select name="select_disabled" defaultValue="a">
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="a">Option</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+              <Field label="Number" description="Description">
+                <NumberInput name="number" unit="mm" placeholder="0" />
+              </Field>
+              <Field label="Number (error)" error="Error message">
+                <NumberInput name="number_error" unit="mm" defaultValue={0} />
+              </Field>
+              <Field label="Password" description="Description">
+                <PasswordInput name="password" />
+              </Field>
+              <Field label="Password (error)" error="Error message">
+                <PasswordInput name="password_error" defaultValue="secret" />
+              </Field>
+              <Field label="Datepicker" description="Description">
+                <DateInput name="date" />
+              </Field>
+              <Field label="Datepicker (disabled)" disabled>
+                <DateInput name="date_disabled" />
+              </Field>
+              <Field label="Textarea" description="Description">
+                <Textarea name="textarea" placeholder="Placeholder" />
+              </Field>
+              <Field label="Textarea (error)" error={["Error message"]}>
+                <Textarea name="textarea_error" defaultValue="Text" />
+              </Field>
+              <Field label="Input group" description="Description">
+                <InputGroup>
+                  <InputGroupAddon>
+                    <Search />
+                  </InputGroupAddon>
+                  <InputGroupInput name="search" placeholder="Sök" />
+                </InputGroup>
+              </Field>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Field (composed)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <FieldSet>
-              <FieldLegend>Adress</FieldLegend>
-              <FieldDescription>Vart ska vi skicka beställningen?</FieldDescription>
-              <FieldGroup>
-                <Field>
-                  <FieldLabel>Gatuadress</FieldLabel>
-                  <Input name="street" />
-                </Field>
-                <FieldSeparator>eller</FieldSeparator>
-                <Field data-invalid>
-                  <FieldLabel>Postnummer</FieldLabel>
-                  <Input name="zip" aria-invalid defaultValue="123" />
-                  <FieldError errors={["Ogiltigt postnummer"]} />
-                </Field>
-              </FieldGroup>
-            </FieldSet>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Field (composed)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <FieldSet>
+                <FieldLegend>Adress</FieldLegend>
+                <FieldDescription>
+                  Vart ska vi skicka beställningen?
+                </FieldDescription>
+                <FieldGroup>
+                  <Field>
+                    <FieldLabel>Gatuadress</FieldLabel>
+                    <Input name="street" />
+                  </Field>
+                  <FieldSeparator>eller</FieldSeparator>
+                  <Field data-invalid>
+                    <FieldLabel>Postnummer</FieldLabel>
+                    <Input name="zip" aria-invalid defaultValue="123" />
+                    <FieldError errors={["Ogiltigt postnummer"]} />
+                  </Field>
+                </FieldGroup>
+              </FieldSet>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Shortcut card</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-4">
-            <ShortcutCard href="#form-fields" className="w-70.5">
-              Form fields
-            </ShortcutCard>
-            <ShortcutCard asChild className="w-70.5">
-              <Link href="#form-fields">Router link</Link>
-            </ShortcutCard>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Shortcut card</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-4">
+              <ShortcutCard href="#form-fields" className="w-70.5">
+                Form fields
+              </ShortcutCard>
+              <ShortcutCard asChild className="w-70.5">
+                <Link href="#form-fields">Router link</Link>
+              </ShortcutCard>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Button link</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap items-center gap-8">
-            <ButtonLink href="#button-link">
-              <Info />
-              Btn text
-              <Info />
-            </ButtonLink>
-            <ButtonLink href="#button-link" disabled>
-              <Info />
-              Btn text
-              <Info />
-            </ButtonLink>
-          </CardContent>
-        </Card>
-      </main>
-    </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Button link</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap items-center gap-8">
+              <ButtonLink href="#button-link">
+                <Info />
+                Btn text
+                <Info />
+              </ButtonLink>
+              <ButtonLink href="#button-link" disabled>
+                <Info />
+                Btn text
+                <Info />
+              </ButtonLink>
+            </CardContent>
+          </Card>
+        </main>
+      </div>
+
+      <Spotlight
+        media={{
+          url: "/spotlight-example.png",
+          type: "image",
+          driver: "filesystem",
+          title: "Exempelbild",
+        }}
+        headline="Exempelrubrik"
+        body={{
+          type: "doc",
+          content: [
+            {
+              type: "paragraph",
+              content: [
+                {
+                  type: "text",
+                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices tempus est nec pulvinar. Mauris non malesuada mi, eu viverra mi. Pellentesque habitant.",
+                },
+              ],
+            },
+          ],
+        }}
+        links={[
+          {
+            type: "route",
+            url: "#spotlight",
+            label: "Läs mer",
+            newTab: false,
+            nofollow: false,
+            sponsored: false,
+          },
+          {
+            type: "url",
+            url: "https://example.com",
+            label: "Extern länk",
+            newTab: true,
+            nofollow: false,
+            sponsored: false,
+          },
+        ]}
+        linkAs={Link}
+        id="spotlight"
+      />
+    </>
   );
 }

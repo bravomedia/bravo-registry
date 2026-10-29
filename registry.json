@@ -355,12 +355,31 @@
       "name": "tiptap",
       "type": "registry:ui",
       "title": "Tiptap Typography",
-      "description": "Typography class names and wrapper for Tiptap editor content.",
+      "description": "Typography class names, wrapper and a static renderer for Tiptap content.",
       "dependencies": ["radix-ui"],
       "registryDependencies": ["@bravo/utils", "@bravo/typography"],
       "files": [
         {
           "path": "registry/bravo/ui/tiptap.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spotlight",
+      "type": "registry:ui",
+      "title": "Spotlight",
+      "description": "Content platform spotlight section: a card over a background image. Takes SpotlightSection data from @bravomedia/content-platform-section-spotlight. Pass `linkAs` with Inertia's <Link>.",
+      "registryDependencies": [
+        "@bravo/utils",
+        "@bravo/bravo-theme",
+        "@bravo/button",
+        "@bravo/tiptap",
+        "@bravo/typography"
+      ],
+      "files": [
+        {
+          "path": "registry/bravo/ui/spotlight.tsx",
           "type": "registry:ui"
         }
       ]
