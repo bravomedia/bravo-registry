@@ -1,18 +1,21 @@
 "use client"
 
 import * as React from "react"
-import { ChevronDown } from "lucide-react"
+import { ChevronDownIcon } from "lucide-react"
 
+import { cn } from "@/registry/bravo/lib/utils"
 import { useFieldControl } from "@/registry/bravo/ui/field"
-import { InputGroup } from "@/registry/bravo/ui/input"
+import { inputVariants } from "@/registry/bravo/ui/input"
 
-type NativeSelectProps = React.ComponentProps<"select"> & {
+type NativeSelectProps = Omit<React.ComponentProps<"select">, "size"> & {
+  size?: "sm" | "default"
   /** Rendered as an empty-value first option. */
   placeholder?: string
 }
 
 function NativeSelect({
   className,
+  size = "default",
   placeholder,
   children,
   ...props
@@ -20,25 +23,63 @@ function NativeSelect({
   const field = useFieldControl(props)
 
   return (
-    <InputGroup
-      invalid={field.invalid}
-      disabled={field.disabled}
-      className={className}
+    <div
+      data-slot="native-select-wrapper"
+      className="group/native-select relative w-full"
     >
       <select
         data-slot="native-select"
-        className="w-full min-w-0 cursor-pointer appearance-none bg-transparent py-4 pr-12 pl-4 outline-none disabled:cursor-not-allowed has-[option[value='']:checked]:text-text-muted [&_option]:bg-bg-content-base [&_option]:text-text-primary"
+        data-size={size}
+        className={cn(
+          inputVariants,
+          "cursor-pointer appearance-none pr-12 data-[size=sm]:py-2 has-[option[value='']:checked]:text-text-muted [&_option]:bg-bg-content-base [&_option]:text-text-primary",
+          className
+        )}
         {...field.props}
       >
-        {placeholder !== undefined && <option value="">{placeholder}</option>}
+        {placeholder !== undefined && (
+          <NativeSelectOption value="">{placeholder}</NativeSelectOption>
+        )}
         {children}
       </select>
-      <ChevronDown
-        aria-hidden
-        className="pointer-events-none absolute right-4 size-6 text-text-primary group-data-disabled/input:text-text-muted group-data-invalid/input:text-text-error"
+      <ChevronDownIcon
+        aria-hidden="true"
+        data-slot="native-select-icon"
+        className="pointer-events-none absolute top-1/2 right-4 size-6 -translate-y-1/2 text-text-primary select-none group-has-[select:disabled]/native-select:text-text-muted group-has-[select[aria-invalid=true]]/native-select:text-text-error"
       />
-    </InputGroup>
+    </div>
   )
 }
 
-export { NativeSelect, type NativeSelectProps }
+function NativeSelectOption({
+  className,
+  ...props
+}: React.ComponentProps<"option">) {
+  return (
+    <option
+      data-slot="native-select-option"
+      className={cn("bg-bg-content-base text-text-primary", className)}
+      {...props}
+    />
+  )
+}
+
+function NativeSelectOptGroup({
+  className,
+  ...props
+}: React.ComponentProps<"optgroup">) {
+  return (
+    <optgroup
+      data-slot="native-select-optgroup"
+      className={cn("bg-bg-content-base text-text-primary", className)}
+      {...props}
+    />
+  )
+}
+
+export {
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+  type NativeSelectProps,
+}

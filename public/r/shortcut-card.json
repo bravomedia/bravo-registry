@@ -2,9 +2,10 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "shortcut-card",
   "title": "Shortcut Card",
-  "description": "A navigation card with an icon and label.",
+  "description": "A navigation card with an icon and label. Use `asChild` with Inertia's <Link>.",
   "dependencies": [
-    "lucide-react"
+    "lucide-react",
+    "radix-ui"
   ],
   "registryDependencies": [
     "@bravo/utils",
@@ -13,7 +14,7 @@
   "files": [
     {
       "path": "registry/bravo/ui/shortcut-card.tsx",
-      "content": "import * as React from \"react\"\nimport { ArrowRight } from \"lucide-react\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\n\ntype ShortcutCardProps = React.ComponentProps<\"a\"> & {\n  icon?: React.ReactNode\n}\n\nfunction ShortcutCard({ className, children, icon, ...props }: ShortcutCardProps) {\n  return (\n    <a\n      data-slot=\"shortcut-card\"\n      className={cn(\n        \"flex min-w-70.5 items-center gap-3 rounded-xl bg-bg-content-base px-8 py-6 font-body text-xl font-semibold leading-7 text-text-primary inset-ring-1 inset-ring-border-light transition-colors hover:bg-bg-content-base-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-subtle-focus\",\n        className\n      )}\n      {...props}\n    >\n      <span className=\"flex size-10 shrink-0 items-center justify-center\" aria-hidden=\"true\">\n        {icon ?? <ArrowRight className=\"size-10\" />}\n      </span>\n      <span className=\"min-w-0 flex-1 wrap-break-word\">{children}</span>\n    </a>\n  )\n}\n\nexport { ShortcutCard, type ShortcutCardProps }",
+      "content": "import * as React from \"react\"\nimport { ArrowRight } from \"lucide-react\"\nimport { Slot } from \"radix-ui\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\n\ntype ShortcutCardProps = React.ComponentProps<\"a\"> & {\n  asChild?: boolean\n  icon?: React.ReactNode\n}\n\nfunction ShortcutCard({\n  className,\n  asChild = false,\n  icon,\n  children,\n  ...props\n}: ShortcutCardProps) {\n  const Comp = asChild ? Slot.Root : \"a\"\n\n  return (\n    <Comp\n      data-slot=\"shortcut-card\"\n      className={cn(\n        \"flex min-w-70.5 items-center gap-3 rounded-xl bg-bg-content-base px-8 py-6 font-body text-xl font-semibold leading-7 wrap-break-word text-text-primary inset-ring-1 inset-ring-border-light transition-colors outline-none hover:bg-bg-content-base-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-subtle-focus\",\n        className\n      )}\n      {...props}\n    >\n      <span\n        data-slot=\"shortcut-card-icon\"\n        aria-hidden=\"true\"\n        className=\"flex size-10 shrink-0 items-center justify-center [&_svg:not([class*='size-'])]:size-10\"\n      >\n        {icon ?? <ArrowRight />}\n      </span>\n      <Slot.Slottable>{children}</Slot.Slottable>\n    </Comp>\n  )\n}\n\nexport { ShortcutCard, type ShortcutCardProps }",
       "type": "registry:ui"
     }
   ],

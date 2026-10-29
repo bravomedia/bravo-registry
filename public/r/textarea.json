@@ -2,6 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "textarea",
   "title": "Textarea",
+  "description": "A textarea wired to Field.",
   "registryDependencies": [
     "@bravo/utils",
     "@bravo/field",
@@ -10,7 +11,7 @@
   "files": [
     {
       "path": "registry/bravo/ui/textarea.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { useFieldControl } from \"@/registry/bravo/ui/field\"\nimport { inputVariants } from \"@/registry/bravo/ui/input\"\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  const field = useFieldControl(props)\n\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(inputVariants, \"min-h-28 resize-y\", className)}\n      {...field.props}\n    />\n  )\n}\n\nexport { Textarea }\n",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport { cn } from \"@/registry/bravo/lib/utils\";\nimport { useFieldControl } from \"@/registry/bravo/ui/field\";\nimport { inputVariants } from \"@/registry/bravo/ui/input\";\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  const field = useFieldControl(props);\n\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(inputVariants, \"min-h-28 resize-y\", className)}\n      {...field.props}\n    />\n  );\n}\n\nexport { Textarea };\n",
       "type": "registry:ui"
     }
   ],

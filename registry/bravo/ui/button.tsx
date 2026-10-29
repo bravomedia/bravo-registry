@@ -5,7 +5,7 @@ import { Slot } from "radix-ui";
 import { cn } from "@/registry/bravo/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-lg text-base font-semibold leading-6 whitespace-nowrap transition-[background-color,box-shadow,color] outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-lg text-base font-semibold leading-6 whitespace-nowrap transition-[background-color,box-shadow,color] outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none aria-invalid:inset-ring-2 aria-invalid:inset-ring-border-error [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
   {
     variants: {
       variant: {

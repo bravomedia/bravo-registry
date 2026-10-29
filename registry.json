@@ -103,34 +103,10 @@
       ]
     },
     {
-      "name": "colors",
-      "type": "registry:lib",
-      "title": "Semantic Colors",
-      "description": "Semantic text color classes.",
-      "files": [
-        {
-          "path": "registry/bravo/lib/colors.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "tailwind",
-      "type": "registry:lib",
-      "title": "Tailwind Helpers",
-      "description": "Reusable class name helpers for focus, disabled and input styles.",
-      "registryDependencies": ["@bravo/utils"],
-      "files": [
-        {
-          "path": "registry/bravo/lib/tailwind.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
+      "description": "shadcn Button styled to the Bravo design. Use `asChild` with Inertia's <Link>.",
       "dependencies": ["class-variance-authority", "radix-ui"],
       "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
       "files": [
@@ -144,7 +120,8 @@
       "name": "button-link",
       "type": "registry:ui",
       "title": "Button Link",
-      "description": "An inline link action with optional icons and Figma-aligned interaction states.",
+      "description": "An inline link action with optional icons and Figma-aligned interaction states. Use `asChild` with Inertia's <Link>.",
+      "dependencies": ["radix-ui"],
       "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
       "files": [
         {
@@ -157,6 +134,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
+      "description": "shadcn Card.",
       "registryDependencies": ["@bravo/utils"],
       "files": [
         {
@@ -169,8 +147,8 @@
       "name": "shortcut-card",
       "type": "registry:ui",
       "title": "Shortcut Card",
-      "description": "A navigation card with an icon and label.",
-      "dependencies": ["lucide-react"],
+      "description": "A navigation card with an icon and label. Use `asChild` with Inertia's <Link>.",
+      "dependencies": ["lucide-react", "radix-ui"],
       "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
       "files": [
         {
@@ -180,15 +158,30 @@
       ]
     },
     {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "shadcn Separator.",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": ["@bravo/utils"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "field",
       "type": "registry:ui",
       "title": "Field",
-      "description": "Form field wrapper with label, tooltip, description and error message. Accepts Inertia errors directly.",
-      "dependencies": ["lucide-react", "radix-ui"],
+      "description": "shadcn Field with an added label/description/error API. Accepts Inertia errors directly.",
+      "dependencies": ["class-variance-authority", "lucide-react", "radix-ui"],
       "registryDependencies": [
         "@bravo/utils",
         "@bravo/bravo-theme",
-        "@bravo/label"
+        "@bravo/label",
+        "@bravo/separator"
       ],
       "files": [
         {
@@ -201,6 +194,7 @@
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
+      "description": "A text input wired to Field.",
       "registryDependencies": [
         "@bravo/utils",
         "@bravo/bravo-theme",
@@ -214,10 +208,31 @@
       ]
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "shadcn Input Group: an input or textarea with addons, text and buttons.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [
+        "@bravo/utils",
+        "@bravo/bravo-theme",
+        "@bravo/button",
+        "@bravo/input",
+        "@bravo/textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/bravo/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "label",
       "type": "registry:ui",
       "title": "Label",
-      "dependencies": ["@radix-ui/react-label"],
+      "description": "shadcn Label.",
+      "dependencies": ["radix-ui"],
       "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
       "files": [
         {
@@ -230,6 +245,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
+      "description": "A textarea wired to Field.",
       "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
       "files": [
         {
@@ -244,7 +260,7 @@
       "title": "Native Select",
       "description": "A styled native select: native picker on mobile, submits with Inertia's <Form>. Default choice for plain options.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["@bravo/field", "@bravo/input"],
+      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
       "files": [
         {
           "path": "registry/bravo/ui/native-select.tsx",
@@ -272,7 +288,7 @@
       "title": "Password Input",
       "description": "A password input with a visibility toggle.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
+      "registryDependencies": ["@bravo/field", "@bravo/input-group"],
       "files": [
         {
           "path": "registry/bravo/ui/password-input.tsx",
@@ -285,7 +301,7 @@
       "type": "registry:ui",
       "title": "Number Input",
       "description": "A number input with an optional unit suffix.",
-      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
+      "registryDependencies": ["@bravo/input-group"],
       "files": [
         {
           "path": "registry/bravo/ui/number-input.tsx",
@@ -299,7 +315,7 @@
       "title": "Date Input",
       "description": "A native date input with a calendar button.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["@bravo/utils", "@bravo/field", "@bravo/input"],
+      "registryDependencies": ["@bravo/field", "@bravo/input-group"],
       "files": [
         {
           "path": "registry/bravo/ui/date-input.tsx",

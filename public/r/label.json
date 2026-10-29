@@ -2,8 +2,9 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "label",
   "title": "Label",
+  "description": "shadcn Label.",
   "dependencies": [
-    "@radix-ui/react-label"
+    "radix-ui"
   ],
   "registryDependencies": [
     "@bravo/utils",
@@ -12,7 +13,7 @@
   "files": [
     {
       "path": "registry/bravo/ui/label.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as LabelPrimitive from \"@radix-ui/react-label\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\n\nfunction Label({\n  className,\n  ...props\n}: React.ComponentProps<typeof LabelPrimitive.Root>) {\n  return (\n    <LabelPrimitive.Root\n      data-slot=\"label\"\n      className={cn(\n        \"flex items-center gap-1 font-body text-sm leading-5 font-medium text-text-primary select-none\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Label }\n",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Label as LabelPrimitive } from \"radix-ui\";\n\nimport { cn } from \"@/registry/bravo/lib/utils\";\n\nfunction Label({\n  className,\n  ...props\n}: React.ComponentProps<typeof LabelPrimitive.Root>) {\n  return (\n    <LabelPrimitive.Root\n      data-slot=\"label\"\n      className={cn(\n        \"flex items-center gap-1 font-body text-sm leading-5 font-medium text-text-primary select-none group-data-[disabled=true]:pointer-events-none peer-disabled:cursor-not-allowed\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Label };\n",
       "type": "registry:ui"
     }
   ],

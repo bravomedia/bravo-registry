@@ -2,46 +2,41 @@
 
 import * as React from "react"
 
-import { cn } from "@/registry/bravo/lib/utils"
-import { useFieldControl } from "@/registry/bravo/ui/field"
-import { InputGroup, inputGroupControl } from "@/registry/bravo/ui/input"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
+} from "@/registry/bravo/ui/input-group"
 
 type NumberInputProps = Omit<React.ComponentProps<"input">, "type"> & {
   unit?: React.ReactNode
 }
 
-function NumberInput({ className, unit, ...props }: NumberInputProps) {
-  const field = useFieldControl(props)
+function NumberInput({
+  className,
+  unit,
+  "aria-describedby": ariaDescribedBy,
+  ...props
+}: NumberInputProps) {
   const unitId = React.useId()
-  const describedBy =
-    [field.props["aria-describedby"], unit ? unitId : undefined]
-      .filter(Boolean)
-      .join(" ") || undefined
 
   return (
-    <InputGroup
-      invalid={field.invalid}
-      disabled={field.disabled}
-      className={className}
-    >
-      <input
+    <InputGroup data-slot="number-input" className={className}>
+      <InputGroupInput
         type="number"
-        data-slot="number-input"
-        className={cn(
-          inputGroupControl,
-          "[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none",
-          !unit && "pr-4"
-        )}
-        {...field.props}
-        aria-describedby={describedBy}
+        className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        aria-describedby={
+          [ariaDescribedBy, unit ? unitId : undefined]
+            .filter(Boolean)
+            .join(" ") || undefined
+        }
+        {...props}
       />
       {unit && (
-        <span
-          id={unitId}
-          className="shrink-0 pr-4 pl-2 text-text-muted group-data-invalid/input:text-text-error"
-        >
-          {unit}
-        </span>
+        <InputGroupAddon align="inline-end">
+          <InputGroupText id={unitId}>{unit}</InputGroupText>
+        </InputGroupAddon>
       )}
     </InputGroup>
   )

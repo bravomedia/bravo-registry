@@ -4,14 +4,12 @@
   "title": "Number Input",
   "description": "A number input with an optional unit suffix.",
   "registryDependencies": [
-    "@bravo/utils",
-    "@bravo/field",
-    "@bravo/input"
+    "@bravo/input-group"
   ],
   "files": [
     {
       "path": "registry/bravo/ui/number-input.tsx",
-      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { useFieldControl } from \"@/registry/bravo/ui/field\"\nimport { InputGroup, inputGroupControl } from \"@/registry/bravo/ui/input\"\n\ntype NumberInputProps = Omit<React.ComponentProps<\"input\">, \"type\"> & {\n  unit?: React.ReactNode\n}\n\nfunction NumberInput({ className, unit, ...props }: NumberInputProps) {\n  const field = useFieldControl(props)\n  const unitId = React.useId()\n  const describedBy =\n    [field.props[\"aria-describedby\"], unit ? unitId : undefined]\n      .filter(Boolean)\n      .join(\" \") || undefined\n\n  return (\n    <InputGroup\n      invalid={field.invalid}\n      disabled={field.disabled}\n      className={className}\n    >\n      <input\n        type=\"number\"\n        data-slot=\"number-input\"\n        className={cn(\n          inputGroupControl,\n          \"[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none\",\n          !unit && \"pr-4\"\n        )}\n        {...field.props}\n        aria-describedby={describedBy}\n      />\n      {unit && (\n        <span\n          id={unitId}\n          className=\"shrink-0 pr-4 pl-2 text-text-muted group-data-invalid/input:text-text-error\"\n        >\n          {unit}\n        </span>\n      )}\n    </InputGroup>\n  )\n}\n\nexport { NumberInput, type NumberInputProps }\n",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/bravo/ui/input-group\"\n\ntype NumberInputProps = Omit<React.ComponentProps<\"input\">, \"type\"> & {\n  unit?: React.ReactNode\n}\n\nfunction NumberInput({\n  className,\n  unit,\n  \"aria-describedby\": ariaDescribedBy,\n  ...props\n}: NumberInputProps) {\n  const unitId = React.useId()\n\n  return (\n    <InputGroup data-slot=\"number-input\" className={className}>\n      <InputGroupInput\n        type=\"number\"\n        className=\"[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none\"\n        aria-describedby={\n          [ariaDescribedBy, unit ? unitId : undefined]\n            .filter(Boolean)\n            .join(\" \") || undefined\n        }\n        {...props}\n      />\n      {unit && (\n        <InputGroupAddon align=\"inline-end\">\n          <InputGroupText id={unitId}>{unit}</InputGroupText>\n        </InputGroupAddon>\n      )}\n    </InputGroup>\n  )\n}\n\nexport { NumberInput, type NumberInputProps }\n",
       "type": "registry:ui"
     }
   ],

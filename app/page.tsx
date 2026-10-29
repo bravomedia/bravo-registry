@@ -1,4 +1,5 @@
-import { Info } from "lucide-react";
+import Link from "next/link";
+import { Info, Search } from "lucide-react";
 
 import {
   H1,
@@ -17,9 +18,26 @@ import {
   CardTitle,
 } from "@/registry/bravo/ui/card";
 import { DateInput } from "@/registry/bravo/ui/date-input";
-import { Field } from "@/registry/bravo/ui/field";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+} from "@/registry/bravo/ui/field";
 import { Input } from "@/registry/bravo/ui/input";
-import { NativeSelect } from "@/registry/bravo/ui/native-select";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/registry/bravo/ui/input-group";
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@/registry/bravo/ui/native-select";
 import { NumberInput } from "@/registry/bravo/ui/number-input";
 import { PasswordInput } from "@/registry/bravo/ui/password-input";
 import {
@@ -153,13 +171,13 @@ export default function Home() {
             </Field>
             <Field label="Native select" description="Description">
               <NativeSelect name="native_select" placeholder="Välj alternativ">
-                <option value="a">Option</option>
-                <option value="b">Option 2</option>
+                <NativeSelectOption value="a">Option</NativeSelectOption>
+                <NativeSelectOption value="b">Option 2</NativeSelectOption>
               </NativeSelect>
             </Field>
             <Field label="Native select (error)" error="Error message">
               <NativeSelect name="native_select_error" defaultValue="a">
-                <option value="a">Option</option>
+                <NativeSelectOption value="a">Option</NativeSelectOption>
               </NativeSelect>
             </Field>
             <Field label="Select" description="Description">
@@ -217,6 +235,38 @@ export default function Home() {
             <Field label="Textarea (error)" error={["Error message"]}>
               <Textarea name="textarea_error" defaultValue="Text" />
             </Field>
+            <Field label="Input group" description="Description">
+              <InputGroup>
+                <InputGroupAddon>
+                  <Search />
+                </InputGroupAddon>
+                <InputGroupInput name="search" placeholder="Sök" />
+              </InputGroup>
+            </Field>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Field (composed)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <FieldSet>
+              <FieldLegend>Adress</FieldLegend>
+              <FieldDescription>Vart ska vi skicka beställningen?</FieldDescription>
+              <FieldGroup>
+                <Field>
+                  <FieldLabel>Gatuadress</FieldLabel>
+                  <Input name="street" />
+                </Field>
+                <FieldSeparator>eller</FieldSeparator>
+                <Field data-invalid>
+                  <FieldLabel>Postnummer</FieldLabel>
+                  <Input name="zip" aria-invalid defaultValue="123" />
+                  <FieldError errors={["Ogiltigt postnummer"]} />
+                </Field>
+              </FieldGroup>
+            </FieldSet>
           </CardContent>
         </Card>
 
@@ -224,9 +274,12 @@ export default function Home() {
           <CardHeader>
             <CardTitle>Shortcut card</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex flex-wrap gap-4">
             <ShortcutCard href="#form-fields" className="w-70.5">
               Form fields
+            </ShortcutCard>
+            <ShortcutCard asChild className="w-70.5">
+              <Link href="#form-fields">Router link</Link>
             </ShortcutCard>
           </CardContent>
         </Card>
