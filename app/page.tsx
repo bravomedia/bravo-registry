@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Info, Search } from "lucide-react";
+import type { Section } from "@bravomedia/content-platform";
+import type { MediaTextSection } from "@bravomedia/content-platform-section-media-text";
 
 import {
   H1,
@@ -47,8 +49,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/registry/bravo/ui/select";
+import { SectionsPageTemplate } from "@/registry/bravo/ui/sections-page-template";
 import { ShortcutCard } from "@/registry/bravo/ui/shortcut-card";
-import { Spotlight } from "@/registry/bravo/ui/spotlight";
 import { Textarea } from "@/registry/bravo/ui/textarea";
 
 const buttonRows = [
@@ -58,6 +60,81 @@ const buttonRows = [
   { label: "Outlined (inverse)", variant: "outline-inverse", inverse: true },
   { label: "Destructive", variant: "destructive" },
 ] as const;
+
+const mediaTextExample: MediaTextSection = {
+  mediaPosition: "left",
+  media: {
+    url: "/spotlight-example.png",
+    type: "image",
+    driver: "filesystem",
+    title: "Exempelbild",
+  },
+  label: "En minirubrik",
+  headline: "Detta är en exempelrubrik",
+  body: {
+    type: "doc",
+    content: [
+      {
+        type: "paragraph",
+        content: [
+          {
+            type: "text",
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices tempus est nec pulvinar. Mauris non malesuada mi, eu viverra mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+          },
+        ],
+      },
+    ],
+  },
+  links: [
+    {
+      type: "route",
+      url: "#sections",
+      label: "Läs mer",
+      newTab: false,
+      nofollow: false,
+      sponsored: false,
+    },
+    {
+      type: "url",
+      url: "https://example.com",
+      label: "Extern länk",
+      newTab: true,
+      nofollow: false,
+      sponsored: false,
+    },
+  ],
+};
+
+const sections: Section[] = [
+  {
+    type: "spotlight",
+    data: {
+      media: mediaTextExample.media,
+      headline: "Exempelrubrik",
+      body: {
+        type: "doc",
+        content: [
+          {
+            type: "paragraph",
+            content: [
+              {
+                type: "text",
+                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices tempus est nec pulvinar. Mauris non malesuada mi, eu viverra mi. Pellentesque habitant.",
+              },
+            ],
+          },
+        ],
+      },
+      links: mediaTextExample.links,
+    },
+  },
+  { type: "mediaText", data: mediaTextExample },
+  {
+    type: "mediaText",
+    data: { ...mediaTextExample, variant: "subtle", mediaPosition: "right" },
+  },
+  { type: "mediaText", data: { ...mediaTextExample, variant: "strong" } },
+];
 
 export default function Home() {
   return (
@@ -311,48 +388,10 @@ export default function Home() {
         </main>
       </div>
 
-      <Spotlight
-        media={{
-          url: "/spotlight-example.png",
-          type: "image",
-          driver: "filesystem",
-          title: "Exempelbild",
-        }}
-        headline="Exempelrubrik"
-        body={{
-          type: "doc",
-          content: [
-            {
-              type: "paragraph",
-              content: [
-                {
-                  type: "text",
-                  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices tempus est nec pulvinar. Mauris non malesuada mi, eu viverra mi. Pellentesque habitant.",
-                },
-              ],
-            },
-          ],
-        }}
-        links={[
-          {
-            type: "route",
-            url: "#spotlight",
-            label: "Läs mer",
-            newTab: false,
-            nofollow: false,
-            sponsored: false,
-          },
-          {
-            type: "url",
-            url: "https://example.com",
-            label: "Extern länk",
-            newTab: true,
-            nofollow: false,
-            sponsored: false,
-          },
-        ]}
+      <SectionsPageTemplate
+        content={{ sections }}
         linkAs={Link}
-        id="spotlight"
+        id="sections"
       />
     </>
   );

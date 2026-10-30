@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sections-page-template",
+  "title": "Sections Page Template",
+  "description": "Renders a content platform SectionsTemplate by mapping each section type to its section component. Pass `linkAs` with Inertia's <Link>.",
+  "registryDependencies": [
+    "@bravo/media-text-section",
+    "@bravo/spotlight-section"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/sections-page-template.tsx",
+      "content": "import * as React from \"react\";\nimport type { Section, SectionsTemplate } from \"@bravomedia/content-platform\";\n\nimport { MediaTextSection } from \"@/registry/bravo/ui/media-text-section\";\nimport { SpotlightSection } from \"@/registry/bravo/ui/spotlight-section\";\n\ntype SectionsPageTemplateProps = Omit<\n  React.ComponentProps<\"div\">,\n  \"children\" | \"content\"\n> & {\n  content: SectionsTemplate;\n  /** Renders internal (`route`) links, e.g. Inertia's `<Link>`. */\n  linkAs?: React.ElementType;\n};\n\nfunction renderSection(\n  section: Section,\n  key: React.Key,\n  linkAs?: React.ElementType,\n) {\n  switch (section.type) {\n    case \"mediaText\":\n      return <MediaTextSection key={key} {...section.data} linkAs={linkAs} />;\n    case \"spotlight\":\n      return <SpotlightSection key={key} {...section.data} linkAs={linkAs} />;\n    default:\n      return null;\n  }\n}\n\nfunction SectionsPageTemplate({\n  content,\n  linkAs,\n  ...props\n}: SectionsPageTemplateProps) {\n  return (\n    <div data-slot=\"sections-page-template\" {...props}>\n      {content.sections.map((section, index) =>\n        renderSection(section, index, linkAs),\n      )}\n    </div>\n  );\n}\n\nexport { SectionsPageTemplate, type SectionsPageTemplateProps };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
