@@ -1,10 +1,15 @@
 import { isMetadataKey, toTokenName } from "../shared.mjs"
 
-const FONT_WEIGHTS = {
-  Regular: 400,
-  Medium: 500,
-  SemiBold: 600,
-  Bold: 700,
+const FONT_STYLE_WEIGHTS = {
+  thin: 100,
+  extralight: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+  black: 900,
 }
 
 // Mirrors Figma variable names: family/heading -> family-heading, weight/bold -> weight-bold.
@@ -14,16 +19,26 @@ export function convertTypography(exported) {
     { $type: "fontFamily", $value: token.$value },
   ])
 
-  const weights = Object.entries(exported.weight).map(([key, token]) => {
-    const weight = FONT_WEIGHTS[token.$value]
-    if (!weight) {
-      throw new Error(`Unsupported Figma font style: ${token.$value}`)
-    }
-
-    return [`weight-${toTokenName(key)}`, { $type: "fontWeight", $value: weight }]
-  })
+  const weights = Object.entries(exported.weight).map(([key, token]) => [
+    `weight-${toTokenName(key)}`,
+    { $type: "fontWeight", $value: toFontWeight(token.$value) },
+  ])
 
   return Object.fromEntries([...families, ...weights])
+}
+
+// Figma weights are either numbers ("700") or font style names ("Semi Bold").
+function toFontWeight(value) {
+  const numeric = Number(value)
+  const weight = Number.isInteger(numeric)
+    ? numeric
+    : FONT_STYLE_WEIGHTS[String(value).toLowerCase().replace(/[\s_-]/g, "")]
+
+  if (!(weight >= 1 && weight <= 1000)) {
+    throw new Error(`Unsupported Figma font weight: ${value}`)
+  }
+
+  return weight
 }
 
 // Mirrors Figma variable names: text-xs/font-size -> text-xs-font-size. Pixel values become rem.

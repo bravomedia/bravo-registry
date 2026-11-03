@@ -10,9 +10,9 @@ import { Heading, PreHeading } from "@/registry/bravo/ui/typography";
 const mediaTextSectionVariants = cva("", {
   variants: {
     variant: {
-      base: "bg-bg-section-base",
-      subtle: "bg-bg-section-subtle",
-      strong: "bg-bg-section-strong",
+      base: "bg-background-base",
+      subtle: "bg-background-subtle",
+      strong: "bg-background-strong",
     },
   },
   defaultVariants: { variant: "base" },
@@ -93,7 +93,7 @@ function MediaTextSection({
                   <PreHeading
                     className={cn(
                       colorVariant === "strong"
-                        ? "text-neutral-200"
+                        ? "text-text-muted-inverse"
                         : colorVariant === "subtle"
                           ? "text-text-brand"
                           : "text-text-muted",

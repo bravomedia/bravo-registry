@@ -28,7 +28,7 @@ A shadcn registry of React components for Bravo sites (Laravel + Inertia). This 
 ## Rules
 
 - Base components on the original shadcn component when one exists, and modify only what the design requires (see `.github/instructions/components.instructions.md`).
-- Style anything the design specifies with theme token utilities from `theme.css` (`bg-bg-content-base`, `text-text-primary`, `inset-ring-border-dark`, `font-body`). No hex values.
+- Style anything the design specifies with theme token utilities from `theme.css` (`bg-surface-base`, `text-text-primary`, `inset-ring-border-strong`, `font-body`). No hex values.
 - Icons: use `lucide-react` only, even when Figma uses another icon set.
 - Everything must work in Laravel + Inertia.js (React). See "Inertia" in `.github/instructions/components.instructions.md`. In short:
   - Links: anything rendering `<a>` supports `asChild` so Inertia's `<Link>` can be used.

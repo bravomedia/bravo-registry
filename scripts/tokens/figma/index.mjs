@@ -10,29 +10,29 @@ import { convertTypeScale, convertTypography } from "./typography.mjs"
 
 export const BASE_EXPORT_DIR = fileURLToPath(new URL("./export-files/", import.meta.url))
 
-export async function readFigmaTokens(dir = BASE_EXPORT_DIR) {
-  const [palette, colors, sectionMargin, typography, typeScale, borderRadius, breakpoints] =
-    await Promise.all(
-      [
-        "color-palette.json",
-        "color-tokens.json",
-        "section-margin.json",
-        "type-properties.json",
-        "type-scale.json",
-        "border-radius.json",
-        "breakpoints.json",
-      ].map((file) => readJson(join(dir, file)))
-    )
+// One export file per Figma collection.
+const COLLECTIONS = {
+  "color-palette.json": convertPalette,
+  "color-tokens.json": convertSemanticColors,
+  "section-margin.json": convertSectionMargin,
+  "type-properties.json": convertTypography,
+  "type-scale.json": convertTypeScale,
+  "border-radius.json": convertBorderRadius,
+  "breakpoints.json": convertBreakpoints,
+}
 
-  return merge(
-    convertPalette(palette),
-    convertSemanticColors(colors),
-    convertSectionMargin(sectionMargin),
-    convertTypography(typography),
-    convertTypeScale(typeScale),
-    convertBorderRadius(borderRadius),
-    convertBreakpoints(breakpoints)
+export async function readFigmaTokens(dir = BASE_EXPORT_DIR) {
+  const collections = await Promise.all(
+    Object.entries(COLLECTIONS).map(async ([file, convert]) => {
+      try {
+        return convert(await readJson(join(dir, file)))
+      } catch (error) {
+        throw new Error(`${file}: ${error.message}`, { cause: error })
+      }
+    })
   )
+
+  return merge(...collections)
 }
 
 function merge(...collections) {

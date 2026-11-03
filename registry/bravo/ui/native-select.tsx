@@ -32,7 +32,7 @@ function NativeSelect({
         data-size={size}
         className={cn(
           inputVariants,
-          "cursor-pointer appearance-none pr-12 data-[size=sm]:py-2 has-[option[value='']:checked]:text-text-muted [&_option]:bg-bg-content-base [&_option]:text-text-primary",
+          "cursor-pointer appearance-none pr-12 data-[size=sm]:py-2 has-[option[value='']:checked]:text-text-muted [&_option]:bg-surface-base [&_option]:text-text-primary",
           className
         )}
         {...field.props}
@@ -58,7 +58,7 @@ function NativeSelectOption({
   return (
     <option
       data-slot="native-select-option"
-      className={cn("bg-bg-content-base text-text-primary", className)}
+      className={cn("bg-surface-base text-text-primary", className)}
       {...props}
     />
   )
@@ -71,7 +71,7 @@ function NativeSelectOptGroup({
   return (
     <optgroup
       data-slot="native-select-optgroup"
-      className={cn("bg-bg-content-base text-text-primary", className)}
+      className={cn("bg-surface-base text-text-primary", className)}
       {...props}
     />
   )

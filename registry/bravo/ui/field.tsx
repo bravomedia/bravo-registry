@@ -342,7 +342,7 @@ function FieldTooltip({
           <button
             type="button"
             aria-label={label}
-            className="inline-flex shrink-0 rounded-full text-text-primary outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-subtle-focus"
+            className="inline-flex shrink-0 rounded-full text-text-primary outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus"
           >
             <CircleHelp aria-hidden className="size-4" />
           </button>
@@ -350,7 +350,7 @@ function FieldTooltip({
         <Tooltip.Portal>
           <Tooltip.Content
             sideOffset={4}
-            className="z-50 max-w-xs rounded-[4px] bg-bg-content-strong px-3 py-2 font-body text-sm leading-5 text-text-primary-inverse"
+            className="z-50 max-w-xs rounded-[4px] bg-surface-strong px-3 py-2 font-body text-sm leading-5 text-text-primary-inverse"
           >
             {children}
           </Tooltip.Content>

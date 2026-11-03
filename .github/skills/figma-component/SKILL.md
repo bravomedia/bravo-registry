@@ -28,10 +28,10 @@ argument-hint: 'Figma URL with node-id'
 
 | Figma variable | Tailwind |
 |---|---|
-| `--background/content/base/bg-content-base` | `bg-bg-content-base` |
+| `--surface/base/surface-base` | `bg-surface-base` |
 | `--text-&-icon/text-primary` | `text-text-primary` |
-| `--border/border-light` (stroke) | `inset-ring-1 inset-ring-border-light` |
-| `--border/focus/border-subtle-focus` | `outline-border-subtle-focus` |
+| `--border/border-subtle` (stroke) | `inset-ring-1 inset-ring-border-subtle` |
+| `--border/focus/border-focus` | `outline-border-focus` |
 | `--space-N` | `p-N` / `gap-N` (4px scale: `--space-8` = 32px = `px-8`) |
 | `--rounded-xl` | `rounded-xl` |
 | `--family/body`, `--family/heading` | `font-body`, `font-heading` |

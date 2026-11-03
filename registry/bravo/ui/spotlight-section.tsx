@@ -76,7 +76,7 @@ function SpotlightSection({
       >
         <div
           data-slot="spotlight-section-card"
-          className="flex min-w-0 flex-col gap-8 rounded-xl bg-bg-section-base p-8 md:p-10"
+          className="flex min-w-0 flex-col gap-8 rounded-xl bg-background-base p-8 md:p-10"
         >
           <div data-slot="spotlight-section-content" className="flex flex-col gap-4">
             {(label || headline) && (

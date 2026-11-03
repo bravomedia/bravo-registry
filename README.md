@@ -41,7 +41,7 @@ Then import the theme in the main stylesheet (`resources/css/app.css`), directly
 @import "./theme.css"; /* use the path the CLI printed */
 ```
 
-The theme provides the Bravo colors, fonts, text sizes, breakpoints and section spacing as Tailwind utilities (`bg-bg-content-brand`, `text-text-secondary`, `py-section`, ...).
+The theme provides the Bravo colors, fonts, text sizes, breakpoints and section spacing as Tailwind utilities (`bg-surface-brand`, `text-text-secondary`, `py-section`, ...).
 
 ### 4. Add the components you need
 
@@ -146,10 +146,10 @@ Merge the changes by hand if the site has local edits, or overwrite with `--over
 
 ### Updating the theme from Figma
 
-Export the Figma `Color palette`, `Color tokens`, `Section margin`, and `Type properties` collections into `scripts/tokens/figma/export-files/` (as `color-palette.json`, `color-tokens.json`, `section-margin.json`, and `type-properties.json`), then run:
+Export these Figma collections into `scripts/tokens/figma/export-files/`, one JSON file each: `color-palette.json`, `color-tokens.json`, `section-margin.json`, `type-properties.json`, `type-scale.json`, `border-radius.json`, and `breakpoints.json`. Then run:
 
 ```sh
 npm run tokens:build
 ```
 
-This converts the Figma exports and writes `registry/bravo/styles/theme.css`. Each Figma collection has its own converter in `scripts/tokens/figma/`.
+This converts the Figma exports and writes `registry/bravo/styles/theme.css`. Each Figma collection has its own converter in `scripts/tokens/figma/`. The build warns about variables that disappeared from `theme.css`, usually Figma renames. Update the component classes that use them.

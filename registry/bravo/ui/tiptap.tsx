@@ -40,7 +40,7 @@ const tiptapTypographyClassNames = {
     item: "pl-1",
   },
   mark: {
-    bold: "font-semibold",
+    bold: "font-bold",
     italic: "italic",
     underline: "underline underline-offset-4",
     strike: "line-through",

@@ -27,9 +27,10 @@ applyTo: "registry/bravo/ui/**"
 
 ## Styling
 
-- Style what the design specifies with Bravo token utilities. Look up names in `registry/bravo/styles/theme.css` (`--color-*`, `--font-*`). Some token names keep Figma typos, e.g. `border-desctructive-focus`.
+- Style what the design specifies with Bravo token utilities. Look up names in `registry/bravo/styles/theme.css` (`--color-*`, `--font-*`). Some token names keep Figma typos, e.g. `surface-desctructive-disabled`.
+- Font weights: `font-bold`, `font-medium`, `font-regular`, which follow the Figma `weight/*` variables. Not `font-semibold` or `font-normal`, which are fixed Tailwind values.
 - Draw borders with `inset-ring` / `inset-ring-2`, not `border`. This matches Figma strokes, which don't add size, and lets state changes from 1px to 2px happen without layout shift.
-- Focus: `outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-subtle-focus`. Use `border-brand-focus` for brand elements and `*-inverse` on dark backgrounds.
+- Focus: `outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus`. Use `border-focus-brand` for brand elements and `*-inverse` on dark backgrounds.
 - Express hover, focus, and disabled as CSS states (`hover:`, `focus-visible:`, `disabled:`, `aria-invalid:`, `aria-disabled:`), never as a `state` prop.
 - Icons: `lucide-react`, mark them `aria-hidden` when decorative, and size them with `[&_svg:not([class*='size-'])]:size-6` or an explicit `size-*`.
 
@@ -77,7 +78,7 @@ function ShortcutCard({
     <Comp
       data-slot="shortcut-card"
       className={cn(
-        "flex items-center gap-3 rounded-xl bg-bg-content-base px-8 py-6 inset-ring-1 inset-ring-border-light hover:bg-bg-content-base-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-subtle-focus",
+        "flex items-center gap-3 rounded-xl bg-surface-base px-8 py-6 inset-ring-1 inset-ring-border-subtle hover:bg-surface-base-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus",
         className
       )}
       {...props}

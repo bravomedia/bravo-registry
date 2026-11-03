@@ -22,8 +22,8 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
         "has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3",
         "has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3",
         "has-[[data-slot=input-group-control]:focus]:inset-ring-2",
-        "has-[[data-slot=input-group-control][aria-invalid=true]]:bg-bg-content-error has-[[data-slot=input-group-control][aria-invalid=true]]:inset-ring-border-error",
-        "has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-bg-content-base-disabled has-[[data-slot=input-group-control]:disabled]:text-text-muted",
+        "has-[[data-slot=input-group-control][aria-invalid=true]]:bg-surface-error has-[[data-slot=input-group-control][aria-invalid=true]]:inset-ring-border-error",
+        "has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-surface-base-disabled has-[[data-slot=input-group-control]:disabled]:text-text-muted",
         className
       )}
       {...props}

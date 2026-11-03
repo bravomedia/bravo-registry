@@ -3,6 +3,7 @@ import type { Section, SectionsTemplate } from "@bravomedia/content-platform";
 
 import { MediaTextSection } from "@/registry/bravo/ui/media-text-section";
 import { SpotlightSection } from "@/registry/bravo/ui/spotlight-section";
+import { TextSection } from "@/registry/bravo/ui/text-section";
 
 type SectionsPageTemplateProps = Omit<
   React.ComponentProps<"div">,
@@ -23,6 +24,8 @@ function renderSection(
       return <MediaTextSection key={key} {...section.data} linkAs={linkAs} />;
     case "spotlight":
       return <SpotlightSection key={key} {...section.data} linkAs={linkAs} />;
+    case "text":
+      return <TextSection key={key} {...section.data} linkAs={linkAs} />;
     default:
       return null;
   }

@@ -4,7 +4,7 @@ import { Slot } from "radix-ui";
 
 import { cn } from "@/registry/bravo/lib/utils";
 
-const heading = "scroll-m-20 font-heading font-semibold text-text-primary text-balance";
+const heading = "scroll-m-20 font-heading font-bold text-text-primary text-balance";
 const body = "font-body text-text-primary";
 const link =
   "underline decoration-from-font [text-underline-position:from-font]";
@@ -15,13 +15,13 @@ const scale = {
   "heading-lg": `${heading} text-4xl`,
   "heading-md": `${heading} text-2xl`,
   "heading-sm": `${heading} text-xl`,
-  "pre-heading": `${body} text-xl font-semibold`,
-  "body-lg": `${body} text-xl font-normal`,
-  "body-lg-bold": `${body} text-xl font-semibold`,
-  "body-lg-link": `${body} text-xl font-normal ${link}`,
-  body: `${body} text-base font-normal`,
-  "body-bold": `${body} text-base font-semibold`,
-  "body-link": `${body} text-base font-normal ${link}`,
+  "pre-heading": `${body} text-xl font-bold`,
+  "body-lg": `${body} text-xl font-regular`,
+  "body-lg-bold": `${body} text-xl font-bold`,
+  "body-lg-link": `${body} text-xl font-regular ${link}`,
+  body: `${body} text-base font-regular`,
+  "body-bold": `${body} text-base font-bold`,
+  "body-link": `${body} text-base font-regular ${link}`,
 } as const;
 
 const typographyVariantClassNames = {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Info, Search } from "lucide-react";
 import type { Section } from "@bravomedia/content-platform";
 import type { MediaTextSection } from "@bravomedia/content-platform-section-media-text";
+import type { TextSection as TextSectionData } from "@bravomedia/content-platform-section-text";
 
 import {
   H1,
@@ -105,6 +106,13 @@ const mediaTextExample: MediaTextSection = {
   ],
 };
 
+const textExample: TextSectionData = {
+  label: "En minirubrik",
+  headline: "Detta är en exempelrubrik",
+  body: mediaTextExample.body,
+  links: mediaTextExample.links,
+};
+
 const sections: Section[] = [
   {
     type: "spotlight",
@@ -134,6 +142,9 @@ const sections: Section[] = [
     data: { ...mediaTextExample, variant: "subtle", mediaPosition: "right" },
   },
   { type: "mediaText", data: { ...mediaTextExample, variant: "strong" } },
+  { type: "text", data: textExample },
+  { type: "text", data: { ...textExample, variant: "subtle" } },
+  { type: "text", data: { ...textExample, variant: "strong" } },
 ];
 
 export default function Home() {
@@ -189,7 +200,7 @@ export default function Home() {
                   key={variant}
                   className={
                     "inverse" in row
-                      ? "flex flex-col gap-3 rounded-lg bg-bg-section-strong p-4 text-text-primary-inverse"
+                      ? "flex flex-col gap-3 rounded-lg bg-background-strong p-4 text-text-primary-inverse"
                       : "flex flex-col gap-3 p-4"
                   }
                 >

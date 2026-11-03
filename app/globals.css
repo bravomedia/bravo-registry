@@ -32,24 +32,24 @@
 }
 
 :root {
-  --background: var(--bg-section-base);
+  --background: var(--background-base);
   --foreground: var(--text-primary);
-  --card: var(--bg-content-base);
+  --card: var(--surface-base);
   --card-foreground: var(--text-primary);
-  --popover: var(--bg-content-base);
+  --popover: var(--surface-base);
   --popover-foreground: var(--text-primary);
-  --primary: var(--bg-content-brand);
-  --primary-foreground: var(--text-primary-inverse);
-  --secondary: var(--bg-content-subtle);
+  --primary: var(--surface-brand);
+  --primary-foreground: var(--text-on-brand);
+  --secondary: var(--surface-subtle);
   --secondary-foreground: var(--text-primary);
-  --muted: var(--bg-content-subtle);
+  --muted: var(--surface-subtle);
   --muted-foreground: var(--text-muted);
-  --accent: var(--bg-content-subtle);
+  --accent: var(--surface-subtle);
   --accent-foreground: var(--text-primary);
-  --destructive: var(--bg-content-destructive);
-  --border: var(--border-light);
-  --input: var(--border-dark);
-  --ring: var(--border-brand-focus);
+  --destructive: var(--surface-destructive);
+  --border: var(--border-subtle);
+  --input: var(--border-strong);
+  --ring: var(--border-focus-brand);
 }
 
 @layer base {

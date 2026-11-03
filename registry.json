@@ -405,13 +405,34 @@
       ]
     },
     {
+      "name": "text-section",
+      "type": "registry:ui",
+      "title": "Text Section",
+      "description": "Responsive content platform text section. Takes TextSection data from @bravomedia/content-platform-section-text. Pass `linkAs` with Inertia's <Link>.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [
+        "@bravo/utils",
+        "@bravo/bravo-theme",
+        "@bravo/button",
+        "@bravo/tiptap",
+        "@bravo/typography"
+      ],
+      "files": [
+        {
+          "path": "registry/bravo/ui/text-section.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "sections-page-template",
       "type": "registry:ui",
       "title": "Sections Page Template",
       "description": "Renders a content platform SectionsTemplate by mapping each section type to its section component. Pass `linkAs` with Inertia's <Link>.",
       "registryDependencies": [
         "@bravo/media-text-section",
-        "@bravo/spotlight-section"
+        "@bravo/spotlight-section",
+        "@bravo/text-section"
       ],
       "files": [
         {

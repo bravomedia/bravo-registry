@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { readFile } from "node:fs/promises"
 import { resolve } from "node:path"
 import { parseArgs } from "node:util"
 
@@ -20,8 +21,9 @@ const THEME_VARIABLE = {
   fontWeight: (name) => `--font-weight-${name.replace(/^weight-/, "")}`,
   fontSize: (name) => `--${name.replace(/-font-size$/, "")}`,
   lineHeight: (name) => `--${name.replace(/-line-height$/, "")}--line-height`,
-  // rounded-full is a built-in Tailwind utility and must not become a theme key.
-  radius: (name) => (name === "rounded-full" ? null : `--radius-${name.replace(/^rounded-/, "")}`),
+  // rounded-full and rounded-none are built-in Tailwind utilities and must not become theme keys.
+  radius: (name) =>
+    /^rounded-(full|none)$/.test(name) ? null : `--radius-${name.replace(/^(rounded|radius)-/, "")}`,
 }
 
 const { values: args } = parseArgs({
@@ -52,8 +54,24 @@ const css = valuesOnly
       baseStyles(),
     ]
 
-await writeOutput(args.out, `${css.join("\n\n")}\n`)
+const output = `${css.join("\n\n")}\n`
+await warnAboutRemovedVariables(args.out, output)
+await writeOutput(args.out, output)
 console.log(`Wrote ${args.out}`)
+
+// Renamed Figma variables silently break the Tailwind classes that used the old names.
+async function warnAboutRemovedVariables(path, css) {
+  const previous = await readFile(path, "utf8").catch(() => "")
+  const variables = (text) => new Set(text.match(/--[\w-]+(?=:)/g))
+  const current = variables(css)
+  const removed = [...variables(previous)].filter((name) => !current.has(name))
+
+  if (removed.length) {
+    console.warn(
+      `Warning: removed from ${path}, update classes that use them:\n  ${removed.join("\n  ")}`
+    )
+  }
+}
 
 // Values-only output relies on the base theme for anything missing, but cannot add Tailwind utilities.
 async function checkAgainstBase(tokens) {
@@ -120,15 +138,24 @@ function breakpointVariables(tokens) {
 }
 
 function themeVariables(tokens) {
-  const declarations = [
-    "--spacing-section: var(--section-margin);",
-    ...Object.entries(tokens)
-      .map(([name, token]) => [name, THEME_VARIABLE[token.$type]?.(name)])
-      .filter(([, variable]) => variable)
-      .map(([name, variable]) => `${variable}: var(--${name});`),
-  ]
+  const inline = ["--spacing-section: var(--section-margin);"]
+  const sameName = []
 
-  return block("@theme inline", declarations)
+  for (const [name, token] of Object.entries(tokens)) {
+    const variable = THEME_VARIABLE[token.$type]?.(name)
+    if (!variable) continue
+
+    // In @theme inline, a theme key with the token's own name would reference itself.
+    if (variable === `--${name}`) {
+      sameName.push(`${variable}: ${toCssValue(token)};`)
+    } else {
+      inline.push(`${variable}: var(--${name});`)
+    }
+  }
+
+  return [block("@theme inline", inline), sameName.length && block("@theme", sameName)]
+    .filter(Boolean)
+    .join("\n\n")
 }
 
 function baseStyles() {

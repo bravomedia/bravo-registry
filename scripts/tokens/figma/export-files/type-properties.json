@@ -26,7 +26,7 @@
   "weight": {
     "bold": {
       "$type": "string",
-      "$value": "SemiBold",
+      "$value": "Bold",
       "$extensions": {
         "com.figma.variableId": "VariableID:4119:41",
         "com.figma.scopes": [
