@@ -437,9 +437,9 @@
       ]
     },
     {
-      "name": "spotlight-section",
+      "name": "section-spotlight",
       "type": "registry:ui",
-      "title": "Spotlight Section",
+      "title": "Section: Spotlight",
       "description": "Content platform spotlight section: a card over a background image. Takes SpotlightSection data from @bravomedia/content-platform-section-spotlight. Pass `linkAs` with Inertia's <Link>.",
       "registryDependencies": [
         "@bravo/utils",
@@ -450,15 +450,15 @@
       ],
       "files": [
         {
-          "path": "registry/bravo/ui/spotlight-section.tsx",
+          "path": "registry/bravo/ui/sections/section-spotlight.tsx",
           "type": "registry:ui"
         }
       ]
     },
     {
-      "name": "media-text-section",
+      "name": "section-media-text",
       "type": "registry:ui",
-      "title": "Media Text Section",
+      "title": "Section: Media Text",
       "description": "Responsive content platform media and text section. Takes MediaTextSection data from @bravomedia/content-platform-section-media-text. Pass `linkAs` with Inertia's <Link>.",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": [
@@ -470,15 +470,15 @@
       ],
       "files": [
         {
-          "path": "registry/bravo/ui/media-text-section.tsx",
+          "path": "registry/bravo/ui/sections/section-media-text.tsx",
           "type": "registry:ui"
         }
       ]
     },
     {
-      "name": "text-section",
+      "name": "section-text",
       "type": "registry:ui",
-      "title": "Text Section",
+      "title": "Section: Text",
       "description": "Responsive content platform text section. Takes TextSection data from @bravomedia/content-platform-section-text. Pass `linkAs` with Inertia's <Link>.",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": [
@@ -490,7 +490,7 @@
       ],
       "files": [
         {
-          "path": "registry/bravo/ui/text-section.tsx",
+          "path": "registry/bravo/ui/sections/section-text.tsx",
           "type": "registry:ui"
         }
       ]
@@ -501,9 +501,9 @@
       "title": "Sections Page Template",
       "description": "Renders a content platform SectionsTemplate by mapping each section type to its section component. Pass `linkAs` with Inertia's <Link>.",
       "registryDependencies": [
-        "@bravo/media-text-section",
-        "@bravo/spotlight-section",
-        "@bravo/text-section"
+        "@bravo/section-media-text",
+        "@bravo/section-spotlight",
+        "@bravo/section-text"
       ],
       "files": [
         {

@@ -118,7 +118,7 @@ Individual sections can also be used on their own, e.g. `<MediaTextSection {...s
 | `field`, `label`, `input`, `textarea`, `native-select`, `select`, `number-input`, `password-input`, `date-input`, `input-group` | Form controls with label, description and error handling |
 | `card`, `shortcut-card`, `separator` | Layout and navigation cards |
 | `typography`, `prose`, `tiptap` | Headings, text styles and rich text (Tiptap JSON) rendering |
-| `spotlight-section`, `media-text-section` | Content platform sections |
+| `section-spotlight`, `section-media-text`, `section-text` | Content platform sections |
 | `sections-page-template` | Renders all sections of a content platform page |
 | `format`, `string` | Date/number and string helpers |
 

@@ -1,9 +1,9 @@
 import * as React from "react";
 import type { Section, SectionsTemplate } from "@bravomedia/content-platform";
 
-import { MediaTextSection } from "@/registry/bravo/ui/media-text-section";
-import { SpotlightSection } from "@/registry/bravo/ui/spotlight-section";
-import { TextSection } from "@/registry/bravo/ui/text-section";
+import { MediaTextSection } from "@/registry/bravo/ui/sections/section-media-text";
+import { SpotlightSection } from "@/registry/bravo/ui/sections/section-spotlight";
+import { TextSection } from "@/registry/bravo/ui/sections/section-text";
 
 type SectionsPageTemplateProps = Omit<
   React.ComponentProps<"div">,
