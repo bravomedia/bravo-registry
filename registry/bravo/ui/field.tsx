@@ -3,11 +3,11 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { CircleAlert, CircleHelp } from "lucide-react"
-import { Tooltip } from "radix-ui"
 
 import { cn } from "@/registry/bravo/lib/utils"
 import { Label } from "@/registry/bravo/ui/label"
 import { Separator } from "@/registry/bravo/ui/separator"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/registry/bravo/ui/tooltip"
 
 type FieldContextValue = {
   id: string
@@ -64,15 +64,15 @@ type FieldProps = Omit<React.ComponentProps<"div">, "id"> &
 const fieldVariants = cva("group/field flex w-full gap-1", {
   variants: {
     orientation: {
-      vertical: ["flex-col [&>*]:w-full [&>.sr-only]:w-auto"],
+      vertical: ["flex-col *:w-full [&>.sr-only]:w-auto"],
       horizontal: [
         "flex-row items-center gap-3",
-        "[&>[data-slot=field-label]]:flex-auto",
+        "*:data-[slot=field-label]:flex-auto",
         "has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
       ],
       responsive: [
-        "flex-col @md/field-group:flex-row @md/field-group:items-center @md/field-group:gap-3 [&>*]:w-full @md/field-group:[&>*]:w-auto [&>.sr-only]:w-auto",
-        "@md/field-group:[&>[data-slot=field-label]]:flex-auto",
+        "flex-col @md/field-group:flex-row @md/field-group:items-center @md/field-group:gap-3 *:w-full @md/field-group:*:w-auto [&>.sr-only]:w-auto",
+        "@md/field-group:*:data-[slot=field-label]:flex-auto",
         "@md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
       ],
     },
@@ -336,27 +336,20 @@ function FieldTooltip({
   children: React.ReactNode
 }) {
   return (
-    <Tooltip.Provider delayDuration={200}>
-      <Tooltip.Root>
-        <Tooltip.Trigger asChild>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
           <button
             type="button"
             aria-label={label}
-            className="inline-flex shrink-0 rounded-full text-text-primary outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus"
+            className="inline-flex shrink-0 rounded-full text-text-primary outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus"
           >
             <CircleHelp aria-hidden className="size-4" />
           </button>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content
-            sideOffset={4}
-            className="z-50 max-w-xs rounded-[4px] bg-surface-strong px-3 py-2 font-body text-sm leading-5 text-text-primary-inverse"
-          >
-            {children}
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
+        </TooltipTrigger>
+        <TooltipContent>{children}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
 }
 

@@ -186,6 +186,7 @@
   --radius-default: var(--rounded-xl);
   --radius-inner: var(--rounded-lg);
   --radius-button: var(--rounded-lg);
+  --radius-button-focus: var(--rounded-xl);
   --radius-input: var(--rounded-sm);
   --radius-badge: var(--rounded-full);
   --section-margin: var(--section-margin-mobile);
@@ -394,6 +395,7 @@
   --radius-default: var(--rounded-xl);
   --radius-inner: var(--rounded-lg);
   --radius-button: var(--rounded-lg);
+  --radius-button-focus: var(--rounded-xl);
   --radius-input: var(--rounded-sm);
   --radius-badge: var(--rounded-full);
 }

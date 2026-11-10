@@ -19,6 +19,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "shadcn": "^3.0.0",
+    "sonner": "^2.0.8",
     "tailwind-merge": "^3.3.1",
     "tw-animate-css": "^1.3.6",
     "zod": "^3.25.76"
@@ -26,8 +27,8 @@
   "devDependencies": {
     "@bravomedia/content-platform": "file:../content-platform/resources/types",
     "@bravomedia/content-platform-section-media-text": "file:../content-platform-section-media-text/resources/types",
-    "@bravomedia/content-platform-section-text": "file:../content-platform-section-text/resources/types",
     "@bravomedia/content-platform-section-spotlight": "file:../content-platform-section-spotlight/resources/types",
+    "@bravomedia/content-platform-section-text": "file:../content-platform-section-text/resources/types",
     "@bravomedia/laravel-media-library": "file:../laravel-media-library/resources/types",
     "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.11",

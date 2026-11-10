@@ -72,9 +72,9 @@ function SelectContent({
       <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(
-          "relative z-50 max-h-(--radix-select-content-available-height) min-w-[8rem] origin-(--radix-select-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-[4px] bg-surface-base font-body text-base leading-6 text-text-primary shadow-md inset-ring inset-ring-border-strong data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+          "relative z-50 max-h-(--radix-select-content-available-height) min-w-32 overflow-x-hidden overflow-y-auto rounded-input bg-surface-base font-body text-sm leading-5 text-text-primary shadow-md inset-ring inset-ring-border-subtle data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0",
           position === "popper" &&
-            "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+            "w-(--radix-select-trigger-width) max-w-(--radix-select-content-available-width)",
           className
         )}
         position={position}
@@ -85,8 +85,7 @@ function SelectContent({
         <SelectPrimitive.Viewport
           className={cn(
             "p-1",
-            position === "popper" &&
-              "h-(--radix-select-trigger-height) w-full min-w-(--radix-select-trigger-width) scroll-my-1"
+            position === "popper" && "w-full scroll-my-1"
           )}
         >
           {children}
@@ -122,7 +121,7 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex w-full cursor-default items-center gap-2 rounded-[2px] py-2 pr-10 pl-3 outline-hidden select-none focus:bg-surface-subtle data-[disabled]:pointer-events-none data-[disabled]:text-text-disabled [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-5",
+        "relative flex w-full cursor-default items-center gap-2 rounded-xs py-4 pr-10 pl-3 outline-hidden select-none focus:bg-surface-base-hover data-disabled:pointer-events-none data-disabled:text-text-disabled [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-5",
         className
       )}
       {...props}

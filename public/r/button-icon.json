@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-icon",
+  "title": "Button Icon",
+  "description": "An icon-only button. Provide an accessible label and use `asChild` with Inertia's <Link>.",
+  "dependencies": [
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/button"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/button-icon.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { Slot } from \"radix-ui\";\n\nimport { cn } from \"@/registry/bravo/lib/utils\";\nimport { buttonVariants } from \"@/registry/bravo/ui/button\";\n\nconst buttonIconVariants = cva(\"\", {\n  variants: {\n    size: {\n      default: \"size-12 p-3\",\n      lg: \"size-12 p-3\",\n      md: \"size-10 p-2\",\n      sm: \"size-8 p-2 [&_svg:not([class*='size-'])]:size-4\",\n    },\n  },\n  defaultVariants: {\n    size: \"default\",\n  },\n});\n\nfunction ButtonIcon({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"button\"> &\n  Pick<VariantProps<typeof buttonVariants>, \"variant\"> &\n  VariantProps<typeof buttonIconVariants> & {\n    asChild?: boolean;\n  }) {\n  const Comp = asChild ? Slot.Root : \"button\";\n\n  return (\n    <Comp\n      data-slot=\"button-icon\"\n      data-variant={variant}\n      data-size={size}\n      className={cn(buttonVariants({ variant, size: null }), buttonIconVariants({ size }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { ButtonIcon, buttonIconVariants };",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

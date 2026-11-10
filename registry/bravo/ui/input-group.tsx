@@ -22,8 +22,8 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
         "has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-start]]:[&>input]:pb-3",
         "has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3",
         "has-[[data-slot=input-group-control]:focus]:inset-ring-2",
-        "has-[[data-slot=input-group-control][aria-invalid=true]]:bg-surface-error has-[[data-slot=input-group-control][aria-invalid=true]]:inset-ring-border-error",
-        "has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-surface-base-disabled has-[[data-slot=input-group-control]:disabled]:text-text-muted",
+        "has-[[data-slot=input-group-control][aria-invalid=true]]:bg-surface-error has-[[data-slot=input-group-control][aria-invalid=true]]:inset-ring-2 has-[[data-slot=input-group-control][aria-invalid=true]]:inset-ring-border-error",
+        "has-[[data-slot=input-group-control]:disabled]:cursor-not-allowed has-[[data-slot=input-group-control]:disabled]:bg-surface-base-disabled has-[[data-slot=input-group-control]:disabled]:text-text-muted has-[[data-slot=input-group-control]:disabled]:inset-ring-border-disabled",
         className
       )}
       {...props}
@@ -131,7 +131,7 @@ function InputGroupInput({
     <Input
       data-slot="input-group-control"
       className={cn(
-        "flex-1 self-stretch rounded-none bg-transparent inset-ring-0 focus:inset-ring-0 aria-invalid:bg-transparent disabled:bg-transparent",
+        "flex-1 self-stretch rounded-none bg-transparent inset-ring-0 focus:inset-ring-0 aria-invalid:bg-transparent aria-invalid:inset-ring-0 disabled:bg-transparent",
         className
       )}
       {...props}
@@ -147,7 +147,7 @@ function InputGroupTextarea({
     <Textarea
       data-slot="input-group-control"
       className={cn(
-        "flex-1 resize-none rounded-none bg-transparent py-3 inset-ring-0 focus:inset-ring-0 aria-invalid:bg-transparent disabled:bg-transparent",
+        "flex-1 resize-none rounded-none bg-transparent py-3 inset-ring-0 focus:inset-ring-0 aria-invalid:bg-transparent aria-invalid:inset-ring-0 disabled:bg-transparent",
         className
       )}
       {...props}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Info, Search } from "lucide-react";
+import { Info, LayoutGrid, List, LoaderCircle, Search } from "lucide-react";
 import type { Section } from "@bravomedia/content-platform";
 import type { MediaTextSection } from "@bravomedia/content-platform-section-media-text";
 import type { TextSection as TextSectionData } from "@bravomedia/content-platform-section-text";
@@ -22,6 +22,16 @@ import {
 } from "@/registry/bravo/ui/card";
 import { DateInput } from "@/registry/bravo/ui/date-input";
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/registry/bravo/ui/dialog-box";
+import {
   Field,
   FieldDescription,
   FieldError,
@@ -32,6 +42,7 @@ import {
   FieldSet,
 } from "@/registry/bravo/ui/field";
 import { Input } from "@/registry/bravo/ui/input";
+import { ButtonIcon } from "@/registry/bravo/ui/button-icon";
 import {
   InputGroup,
   InputGroupAddon,
@@ -53,12 +64,28 @@ import {
 import { SectionsPageTemplate } from "@/registry/bravo/ui/sections-page-template";
 import { ShortcutCard } from "@/registry/bravo/ui/shortcut-card";
 import { Textarea } from "@/registry/bravo/ui/textarea";
+import { ToastExample } from "@/app/toast-example";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/registry/bravo/ui/tooltip";
+import {
+  ViewSwitcher,
+  ViewSwitcherContent,
+  ViewSwitcherList,
+  ViewSwitcherTrigger,
+} from "@/registry/bravo/ui/view-switcher";
 
 const buttonRows = [
   { label: "Solid", variant: "default" },
   { label: "Solid (inverse)", variant: "inverse", inverse: true },
+  { label: "Secondary", variant: "secondary" },
   { label: "Outlined", variant: "outline" },
   { label: "Outlined (inverse)", variant: "outline-inverse", inverse: true },
+  { label: "Ghost", variant: "ghost" },
+  { label: "Ghost (inverse)", variant: "ghost-inverse", inverse: true },
   { label: "Destructive", variant: "destructive" },
 ] as const;
 
@@ -220,21 +247,141 @@ export default function Home() {
                       Btn text
                       <Info />
                     </Button>
-                    {variant !== "destructive" && (
-                      <>
-                        <Button variant={variant} size="icon" aria-label="Info">
-                          <Info />
-                        </Button>
-                        <Button
-                          variant={variant}
-                          size="icon"
-                          aria-label="Info"
-                          disabled
-                        >
-                          <Info />
-                        </Button>
-                      </>
-                    )}
+                    <Button variant={variant} size="md">Btn text</Button>
+                    <Button variant={variant} aria-label="Laddar" aria-busy="true" className="relative" disabled>
+                      <span className="invisible">Btn text</span>
+                      <LoaderCircle aria-hidden className="absolute animate-spin" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Dialog box</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-3">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="secondary">Öppna dialog</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Rubrik</DialogTitle>
+                    <DialogDescription>Detta är en exempeltext</DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="secondary" size="md" className="font-medium">Avbryt</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button size="md" className="font-medium">Bekräfta</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="destructive">Öppna destruktiv dialog</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Ta bort</DialogTitle>
+                    <DialogDescription>Är du säker på att du vill ta bort detta?</DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="secondary" size="md" className="font-medium">Avbryt</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button variant="destructive" size="md" className="font-medium">Ta bort</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Toast</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ToastExample />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Tooltip</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="secondary">Mer information</Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Detta är en hjälptext.</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>View switcher</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ViewSwitcher defaultValue="list">
+                <ViewSwitcherList aria-label="Välj vy">
+                  <ViewSwitcherTrigger value="list"><List aria-hidden />Lista</ViewSwitcherTrigger>
+                  <ViewSwitcherTrigger value="grid"><LayoutGrid aria-hidden />Rutnät</ViewSwitcherTrigger>
+                </ViewSwitcherList>
+                <ViewSwitcherContent value="list">
+                  <ul className="font-body text-text-primary">
+                    <li>Första objektet</li>
+                    <li>Andra objektet</li>
+                  </ul>
+                </ViewSwitcherContent>
+                <ViewSwitcherContent value="grid">
+                  <ul className="grid grid-cols-2 gap-3 font-body text-text-primary">
+                    <li className="rounded-inner bg-surface-subtle p-3">Första objektet</li>
+                    <li className="rounded-inner bg-surface-subtle p-3">Andra objektet</li>
+                  </ul>
+                </ViewSwitcherContent>
+              </ViewSwitcher>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Button icon</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
+              {buttonRows.map(({ label, variant, ...row }) => (
+                <div
+                  key={variant}
+                  className={
+                    "inverse" in row
+                      ? "flex flex-col gap-3 rounded-lg bg-background-strong p-4 text-text-primary-inverse"
+                      : "flex flex-col gap-3 p-4"
+                  }
+                >
+                  <span className="text-sm font-semibold">{label}</span>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {(["lg", "md", "sm"] as const).map((size) => (
+                      <ButtonIcon key={size} variant={variant} size={size} aria-label="Information">
+                        <Info aria-hidden />
+                      </ButtonIcon>
+                    ))}
+                    <ButtonIcon variant={variant} aria-label="Information" disabled>
+                      <Info aria-hidden />
+                    </ButtonIcon>
+                    <ButtonIcon variant={variant} aria-label="Laddar" aria-busy="true" disabled>
+                      <LoaderCircle aria-hidden className="animate-spin" />
+                    </ButtonIcon>
                   </div>
                 </div>
               ))}
@@ -383,17 +530,25 @@ export default function Home() {
             <CardHeader>
               <CardTitle>Button link</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-wrap items-center gap-8">
-              <ButtonLink href="#button-link">
-                <Info />
-                Btn text
-                <Info />
-              </ButtonLink>
-              <ButtonLink href="#button-link" disabled>
-                <Info />
-                Btn text
-                <Info />
-              </ButtonLink>
+            <CardContent className="flex flex-col gap-4">
+              {(["default", "secondary", "inverse"] as const).map((variant) => (
+                <div
+                  key={variant}
+                  className={variant === "inverse" ? "flex flex-wrap items-center gap-8 rounded-lg bg-background-strong p-4" : "flex flex-wrap items-center gap-8 p-4"}
+                >
+                  <ButtonLink href="#form-fields" variant={variant}>
+                    <Info aria-hidden />
+                    Btn text
+                    <Info aria-hidden />
+                  </ButtonLink>
+                  <ButtonLink href="#form-fields" variant={variant} disabled>
+                    <Info aria-hidden />
+                    Btn text
+                    <Info aria-hidden />
+                  </ButtonLink>
+                </div>
+              ))}
+              <ButtonLink asChild><Link href="#form-fields">Form fields</Link></ButtonLink>
             </CardContent>
           </Card>
         </main>
