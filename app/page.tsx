@@ -8,9 +8,11 @@ import {
   H1,
   Heading,
   Lead,
+  Meta,
   PreHeading,
   Text,
   TextLink,
+  Typography,
 } from "@/registry/bravo/ui/typography";
 import { Button } from "@/registry/bravo/ui/button";
 import { Breadcrumbs } from "@/registry/bravo/ui/breadcrumbs";
@@ -34,6 +36,14 @@ import {
   DialogTrigger,
 } from "@/registry/bravo/ui/dialog-box";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/registry/bravo/ui/dropdown-menu";
+import {
   Field,
   FieldDescription,
   FieldError,
@@ -56,6 +66,8 @@ import {
   NativeSelectOption,
 } from "@/registry/bravo/ui/native-select";
 import { NumberInput } from "@/registry/bravo/ui/number-input";
+import { PaginationNavigation } from "@/registry/bravo/ui/pagination";
+import { PaginationProgressiveExample } from "@/app/pagination-progressive-example";
 import { PasswordInput } from "@/registry/bravo/ui/password-input";
 import { RadioGroup, RadioGroupItem } from "@/registry/bravo/ui/radio-group";
 import { SearchBar } from "@/registry/bravo/ui/search-bar";
@@ -181,7 +193,10 @@ const sections: Section[] = [
   { type: "text", data: { ...textExample, variant: "strong" } },
 ];
 
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
+  const requestedPage = Number((await searchParams).page);
+  const currentPage = Number.isInteger(requestedPage) && requestedPage >= 1 && requestedPage <= 50 ? requestedPage : 25;
+
   return (
     <>
       <div className="mx-auto flex min-h-svh max-w-3xl flex-col gap-8 px-4 py-8">
@@ -211,6 +226,9 @@ export default function Home() {
               <Heading as="h4" size="sm">
                 Heading sm
               </Heading>
+              <Heading as="h5" size="xs">
+                Heading xs
+              </Heading>
               <Text size="lg">Large</Text>
               <Text size="lg" weight="bold">
                 Large Bold
@@ -219,8 +237,16 @@ export default function Home() {
                 Large Link
               </TextLink>
               <Text>Default</Text>
+              <Text weight="medium">Default Medium</Text>
               <Text weight="bold">Default Bold</Text>
               <TextLink href="#typography">Default Link</TextLink>
+              <Meta>Meta lg</Meta>
+              <Meta weight="bold">Meta lg bold</Meta>
+              <Meta size="sm">Meta sm</Meta>
+              <Meta size="sm" weight="bold">Meta sm bold</Meta>
+              <Typography variant="input-value">Input value</Typography>
+              <Typography variant="input-helper">Input helper</Typography>
+              <Typography variant="input-label">Input label</Typography>
             </CardContent>
           </Card>
 
@@ -262,6 +288,30 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+
+          <Card id="dropdown-menu">
+            <CardHeader>
+              <CardTitle>Dropdown menu</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="secondary">Öppna meny</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem asChild><Link href="#typography"><Info aria-hidden />Text</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="#form-fields"><Info aria-hidden />Text</Link></DropdownMenuItem>
+                    <DropdownMenuItem disabled><Info aria-hidden />Text</DropdownMenuItem>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem asChild><Link href="#pagination"><Info aria-hidden />text</Link></DropdownMenuItem>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </CardContent>
           </Card>
 
@@ -532,6 +582,28 @@ export default function Home() {
                   { title: "Handlingar", href: "/tjanster/bygga-och-bo/bygglov/ansokan/handlingar" },
                 ]}
               />
+            </CardContent>
+          </Card>
+
+          <Card id="pagination">
+            <CardHeader>
+              <CardTitle>Pagination</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <PaginationNavigation
+                currentPage={currentPage}
+                totalPages={50}
+                getPageHref={(page) => `?page=${page}#pagination`}
+              />
+            </CardContent>
+          </Card>
+
+          <Card id="pagination-progressive">
+            <CardHeader>
+              <CardTitle>Pagination progressive</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <PaginationProgressiveExample />
             </CardContent>
           </Card>
 

@@ -15,13 +15,23 @@ const scale = {
   "heading-lg": `${heading} text-4xl`,
   "heading-md": `${heading} text-2xl`,
   "heading-sm": `${heading} text-xl`,
-  "pre-heading": `${body} text-xl font-bold`,
+  "heading-xs": `${body} scroll-m-20 text-base font-bold text-balance`,
+  "pre-heading": `${body} text-base leading-(--text-lg-line-height) font-medium`,
   "body-lg": `${body} text-xl font-regular`,
+  "body-lg-medium": `${body} text-xl font-medium`,
   "body-lg-bold": `${body} text-xl font-bold`,
   "body-lg-link": `${body} text-xl font-regular ${link}`,
   body: `${body} text-base font-regular`,
+  "body-medium": `${body} text-base font-medium`,
   "body-bold": `${body} text-base font-bold`,
   "body-link": `${body} text-base font-regular ${link}`,
+  "meta-lg": `${body} text-sm font-regular`,
+  "meta-lg-bold": `${body} text-sm font-bold`,
+  "meta-sm": `${body} text-xs font-medium`,
+  "meta-sm-bold": `${body} text-xs font-bold`,
+  "input-value": `${body} text-base font-regular`,
+  "input-helper": `${body} text-sm font-medium`,
+  "input-label": `${body} text-sm font-medium`,
 } as const;
 
 const typographyVariantClassNames = {
@@ -82,7 +92,7 @@ function Typography<T extends React.ElementType = "p">({
   );
 }
 
-type HeadingSize = "xl" | "lg" | "md" | "sm";
+type HeadingSize = "xl" | "lg" | "md" | "sm" | "xs";
 type TextSize = "default" | "lg";
 
 type HeadingLevelProps = Omit<TypographyProps<React.ElementType>, "variant">;
@@ -90,10 +100,14 @@ type HeadingProps = HeadingLevelProps & { size?: HeadingSize };
 type PreHeadingProps = Omit<TypographyProps<React.ElementType>, "variant">;
 type TextProps = Omit<TypographyProps<React.ElementType>, "variant"> & {
   size?: TextSize;
-  weight?: "regular" | "bold";
+  weight?: "regular" | "medium" | "bold";
 };
 type TextLinkProps = Omit<TypographyProps<React.ElementType>, "variant"> & {
   size?: TextSize;
+};
+type MetaProps = Omit<TypographyProps<React.ElementType>, "variant"> & {
+  size?: "lg" | "sm";
+  weight?: "default" | "bold";
 };
 type LargeProps = Omit<TypographyProps<React.ElementType>, "variant">;
 type SmallProps = Omit<TypographyProps<React.ElementType>, "variant">;
@@ -142,6 +156,18 @@ function H6(props: HeadingLevelProps) {
 
 function Text({ size = "default", weight = "regular", ...props }: TextProps) {
   const variant = size === "lg" ? "body-lg" : "body";
+
+  return (
+    <Typography
+      as="p"
+      variant={weight === "regular" ? variant : `${variant}-${weight}`}
+      {...props}
+    />
+  );
+}
+
+function Meta({ size = "lg", weight = "default", ...props }: MetaProps) {
+  const variant = `meta-${size}` as const;
 
   return (
     <Typography
@@ -205,6 +231,7 @@ export {
   Kbd,
   Large,
   Lead,
+  Meta,
   Muted,
   PreHeading,
   Small,
@@ -223,6 +250,7 @@ export type {
   KbdProps,
   LargeProps,
   LeadProps,
+  MetaProps,
   MutedProps,
   PreHeadingProps,
   SmallProps,

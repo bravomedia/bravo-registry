@@ -2,9 +2,10 @@
 
 import * as React from "react"
 import { ChevronRight, Home, MoreHorizontal } from "lucide-react"
-import { DropdownMenu, Slot } from "radix-ui"
+import { Slot } from "radix-ui"
 
 import { cn } from "@/registry/bravo/lib/utils"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/registry/bravo/ui/dropdown-menu"
 
 type BreadcrumbHref = string | { url: string; method: string }
 type BreadcrumbEntry = { title: string; href: BreadcrumbHref }
@@ -99,20 +100,20 @@ function Breadcrumbs({
         {hidden.length > 0 && (
           <>
             <BreadcrumbItem>
-              <DropdownMenu.Root>
-                <DropdownMenu.Trigger aria-label="Visa tidigare sidor" className="rounded-xs text-text-muted outline-none hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus">
+              <DropdownMenu>
+                <DropdownMenuTrigger aria-label="Visa tidigare sidor" className="rounded-xs text-text-muted outline-none hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus">
                   <BreadcrumbEllipsis />
-                </DropdownMenu.Trigger>
-                <DropdownMenu.Portal>
-                  <DropdownMenu.Content align="start" sideOffset={4} className="z-50 min-w-40 rounded-sm bg-surface-base py-1 font-body text-sm leading-5 text-text-primary shadow-md inset-ring-1 inset-ring-border-subtle">
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                  <DropdownMenuGroup>
                     {hidden.map((entry, index) => (
-                      <DropdownMenu.Item key={index} asChild>
-                        <Link href={hrefFor(entry.href)} className="block px-3 py-2 outline-none data-[highlighted]:bg-surface-base-hover">{entry.title}</Link>
-                      </DropdownMenu.Item>
+                      <DropdownMenuItem key={index} asChild>
+                        <Link href={hrefFor(entry.href)}>{entry.title}</Link>
+                      </DropdownMenuItem>
                     ))}
-                  </DropdownMenu.Content>
-                </DropdownMenu.Portal>
-              </DropdownMenu.Root>
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
           </>
