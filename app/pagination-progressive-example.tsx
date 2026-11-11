@@ -2,6 +2,7 @@
 
 import * as React from "react"
 
+import { BravoI18nProvider } from "@/registry/bravo/lib/i18n"
 import { PaginationProgressive } from "@/registry/bravo/ui/pagination-progressive"
 
 function PaginationProgressiveExample() {
@@ -20,6 +21,9 @@ function PaginationProgressiveExample() {
         totalCount={totalCount}
         buttonProps={{ onClick: () => setVisibleCount((count) => Math.min(count + 8, totalCount)) }}
       />
+      <BravoI18nProvider locale="sv">
+        <PaginationProgressive visibleCount={visibleCount} totalCount={totalCount} />
+      </BravoI18nProvider>
     </div>
   )
 }

@@ -1,12 +1,17 @@
+"use client"
+
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Slot } from "radix-ui"
 
+import { interpolate, useBravoStrings, type BravoStrings } from "@/registry/bravo/lib/i18n"
 import { cn } from "@/registry/bravo/lib/utils"
 import { ButtonIcon } from "@/registry/bravo/ui/button-icon"
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
-  return <nav aria-label="Sidnumrering" data-slot="pagination" className={cn("mx-auto flex w-full justify-center", className)} {...props} />
+  const t = useBravoStrings("pagination")
+
+  return <nav aria-label={t.label} data-slot="pagination" className={cn("mx-auto flex w-full justify-center", className)} {...props} />
 }
 
 function PaginationContent({ className, ...props }: React.ComponentProps<"ul">) {
@@ -49,8 +54,10 @@ function PaginationLink({ className, isActive, asChild = false, size = "icon", .
 }
 
 function PaginationPrevious({ className, asChild = false, children, ...props }: PaginationLinkProps) {
+  const t = useBravoStrings("pagination")
+
   return (
-    <PaginationLink aria-label="Föregående sida" asChild={asChild} className={cn("[&_svg]:size-6", className)} {...props}>
+    <PaginationLink aria-label={t.previous} asChild={asChild} className={cn("[&_svg]:size-6", className)} {...props}>
       <ChevronLeft aria-hidden />
       <Slot.Slottable>{children}</Slot.Slottable>
     </PaginationLink>
@@ -58,8 +65,10 @@ function PaginationPrevious({ className, asChild = false, children, ...props }: 
 }
 
 function PaginationNext({ className, asChild = false, children, ...props }: PaginationLinkProps) {
+  const t = useBravoStrings("pagination")
+
   return (
-    <PaginationLink aria-label="Nästa sida" asChild={asChild} className={cn("[&_svg]:size-6", className)} {...props}>
+    <PaginationLink aria-label={t.next} asChild={asChild} className={cn("[&_svg]:size-6", className)} {...props}>
       <Slot.Slottable>{children}</Slot.Slottable>
       <ChevronRight aria-hidden />
     </PaginationLink>
@@ -82,9 +91,12 @@ type PaginationNavigationProps = Omit<React.ComponentProps<"nav">, "children"> &
   totalPages: number
   getPageHref: (page: number) => string
   linkAs?: React.ElementType
+  labels?: Partial<BravoStrings["pagination"]>
 }
 
-function PaginationNavigation({ currentPage, totalPages, getPageHref, linkAs, className, ...props }: PaginationNavigationProps) {
+function PaginationNavigation({ currentPage, totalPages, getPageHref, linkAs, labels, className, ...props }: PaginationNavigationProps) {
+  const t = useBravoStrings("pagination", labels)
+
   if (!Number.isInteger(totalPages) || totalPages < 1 || !Number.isInteger(currentPage) || currentPage < 1 || currentPage > totalPages) return null
 
   const Link = linkAs ?? "a"
@@ -92,19 +104,19 @@ function PaginationNavigation({ currentPage, totalPages, getPageHref, linkAs, cl
   const next = currentPage < totalPages
 
   return (
-    <Pagination className={cn(totalPages === 1 && "hidden md:flex", className)} {...props}>
+    <Pagination aria-label={t.label} className={cn(totalPages === 1 && "hidden md:flex", className)} {...props}>
       <PaginationContent className="w-56 justify-between md:w-auto md:justify-start">
         <PaginationItem>
-          {previous ? <PaginationPrevious asChild><Link href={getPageHref(currentPage - 1)} /></PaginationPrevious> : <ButtonIcon variant="ghost" size="md" disabled aria-label="Föregående sida"><ChevronLeft aria-hidden /></ButtonIcon>}
+          {previous ? <PaginationPrevious asChild aria-label={t.previous}><Link href={getPageHref(currentPage - 1)} /></PaginationPrevious> : <ButtonIcon variant="ghost" size="md" disabled aria-label={t.previous}><ChevronLeft aria-hidden /></ButtonIcon>}
         </PaginationItem>
-        <PaginationItem className="flex-1 text-center font-body text-base leading-6 text-text-primary md:hidden">Sida {currentPage} av {totalPages}</PaginationItem>
+        <PaginationItem className="flex-1 text-center font-body text-base leading-6 text-text-primary md:hidden">{interpolate(t.pageOf, { page: currentPage, total: totalPages })}</PaginationItem>
         {pageTokens(currentPage, totalPages).map((page, index) => (
           <PaginationItem key={page === "ellipsis" ? `ellipsis-${index}` : page} className="hidden md:block">
-            {page === "ellipsis" ? <PaginationEllipsis /> : <PaginationLink asChild isActive={page === currentPage}><Link href={getPageHref(page)} aria-label={`Sida ${page}`}>{page}</Link></PaginationLink>}
+            {page === "ellipsis" ? <PaginationEllipsis /> : <PaginationLink asChild isActive={page === currentPage}><Link href={getPageHref(page)} aria-label={interpolate(t.page, { page })}>{page}</Link></PaginationLink>}
           </PaginationItem>
         ))}
         <PaginationItem>
-          {next ? <PaginationNext asChild><Link href={getPageHref(currentPage + 1)} /></PaginationNext> : <ButtonIcon variant="ghost" size="md" disabled aria-label="Nästa sida"><ChevronRight aria-hidden /></ButtonIcon>}
+          {next ? <PaginationNext asChild aria-label={t.next}><Link href={getPageHref(currentPage + 1)} /></PaginationNext> : <ButtonIcon variant="ghost" size="md" disabled aria-label={t.next}><ChevronRight aria-hidden /></ButtonIcon>}
         </PaginationItem>
       </PaginationContent>
     </Pagination>

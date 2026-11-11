@@ -80,6 +80,29 @@ import { Input } from "@/components/ui/input";
 </Form>;
 ```
 
+### 6. Translations (optional)
+
+Components default to English and have Swedish built in. Their texts (aria labels, "Load more", "Page :page of :total", ...) live in `@bravo/i18n`, which is installed with the components that use it. Wrap the app in `BravoI18nProvider` to set the language: `locale="sv"` (or `sv-SE`, `sv_SE`) selects Swedish. For other languages or custom wording, pass translations from Laravel:
+
+```php
+// app/Http/Middleware/HandleInertiaRequests.php
+'locale' => app()->getLocale(),
+'bravo' => trans('bravo'), // optional: lang/{locale}/bravo.php, same keys as bravoStrings.en in i18n.tsx
+```
+
+```tsx
+import { usePage } from "@inertiajs/react";
+import { BravoI18nProvider, type BravoStringsInput } from "@/lib/i18n";
+
+function Layout({ children }: { children: React.ReactNode }) {
+  const { locale, bravo } = usePage<{ locale: string; bravo: BravoStringsInput }>().props;
+
+  return <BravoI18nProvider locale={locale} strings={bravo}>{children}</BravoI18nProvider>;
+}
+```
+
+Missing keys fall back to the built-in strings for the locale (Swedish for `sv`, otherwise English). Placeholders use Laravel's `:name` syntax. A single instance can override its texts with `labels` (e.g. `<PaginationProgressive labels={{ loadMore: "Visa fler produkter" }} />`) or the component's own props (`placeholder`, `showLabel`, `closeLabel`, ...).
+
 ## Content platform pages (sections)
 
 Pages built in the Bravo content platform can be rendered with one component.
@@ -121,6 +144,7 @@ Individual sections can also be used on their own, e.g. `<MediaTextSection {...s
 | `section-spotlight`, `section-media-text`, `section-text` | Content platform sections |
 | `sections-page-template` | Renders all sections of a content platform page |
 | `format`, `string` | Date/number and string helpers |
+| `i18n` | Built-in UI texts (English default, Swedish) and `BravoI18nProvider` |
 
 See every component in action by running this repo (`npm run dev`) and opening http://localhost:3000.
 

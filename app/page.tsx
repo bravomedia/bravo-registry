@@ -66,7 +66,7 @@ import {
   NativeSelectOption,
 } from "@/registry/bravo/ui/native-select";
 import { NumberInput } from "@/registry/bravo/ui/number-input";
-import { PaginationNavigation } from "@/registry/bravo/ui/pagination";
+import { PaginationExample } from "@/app/pagination-example";
 import { PaginationProgressiveExample } from "@/app/pagination-progressive-example";
 import { PasswordInput } from "@/registry/bravo/ui/password-input";
 import { RadioGroup, RadioGroupItem } from "@/registry/bravo/ui/radio-group";
@@ -590,11 +590,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
               <CardTitle>Pagination</CardTitle>
             </CardHeader>
             <CardContent>
-              <PaginationNavigation
-                currentPage={currentPage}
-                totalPages={50}
-                getPageHref={(page) => `?page=${page}#pagination`}
-              />
+              <PaginationExample currentPage={currentPage} />
             </CardContent>
           </Card>
 

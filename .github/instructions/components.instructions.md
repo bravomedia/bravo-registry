@@ -50,6 +50,13 @@ Consumers are Laravel + Inertia.js (React) apps, often with SSR. The Next.js app
 - Errors come as `errors.field` (string, or string[] with `withAllErrors`). `Field`'s `error` and `FieldError`'s `errors` accept them directly.
 - SSR: don't touch `window`/`document` during render, only in effects and event handlers.
 
+## Texts
+
+- Never hard-code user-facing or `aria-*`/`sr-only` text. Add it to both `en` and `sv` in `registry/bravo/lib/i18n.tsx` under a camelCase key named after the component, and read it with `useBravoStrings("namespace", overrides)`.
+- English is the default; Swedish is selected by `BravoI18nProvider locale="sv"`. Placeholders use Laravel's `:name` syntax; fill them with `interpolate()`.
+- Composite components accept `labels?: Partial<BravoStrings["namespace"]>`; a single text may instead be a named prop (`placeholder`, `closeLabel`). Pass these as `overrides`.
+- Add `@bravo/i18n` to the item's `registryDependencies` and `"use client"` to the file.
+
 ## Form controls
 
 - Wrap controls in `Field` (`field.tsx`). The props API (`label`, `description`, `error`, `tooltip`) is the default. The shadcn parts (`FieldSet`, `FieldLegend`, `FieldGroup`, `FieldLabel`, `FieldError`, ...) are for composed layouts.

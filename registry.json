@@ -91,6 +91,18 @@
       ]
     },
     {
+      "name": "i18n",
+      "type": "registry:lib",
+      "title": "i18n",
+      "description": "Built-in UI strings (English default, Swedish), a provider for locale and overrides, and :placeholder interpolation.",
+      "files": [
+        {
+          "path": "registry/bravo/lib/i18n.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "string",
       "type": "registry:lib",
       "title": "String",
@@ -108,7 +120,7 @@
       "title": "Breadcrumbs",
       "description": "Responsive breadcrumb navigation with an overflow menu and router-agnostic links.",
       "dependencies": ["lucide-react", "radix-ui"],
-      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/dropdown-menu"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/i18n", "@bravo/dropdown-menu"],
       "files": [
         {
           "path": "registry/bravo/ui/breadcrumbs.tsx",
@@ -136,7 +148,7 @@
       "title": "Pagination",
       "description": "Responsive pagination with router-agnostic links and composable parts.",
       "dependencies": ["lucide-react", "radix-ui"],
-      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/button-icon"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/i18n", "@bravo/button-icon"],
       "files": [
         {
           "path": "registry/bravo/ui/pagination.tsx",
@@ -149,7 +161,7 @@
       "type": "registry:ui",
       "title": "Pagination Progressive",
       "description": "A load-more control with item count and viewing progress.",
-      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/button"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/i18n", "@bravo/button"],
       "files": [
         {
           "path": "registry/bravo/ui/pagination-progressive.tsx",
@@ -232,7 +244,7 @@
       "title": "Dialog Box",
       "description": "A modal dialog with accessible title, description and actions.",
       "dependencies": ["lucide-react", "radix-ui"],
-      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/button"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/i18n", "@bravo/button"],
       "files": [
         {
           "path": "registry/bravo/ui/dialog-box.tsx",
@@ -246,7 +258,7 @@
       "title": "Toast",
       "description": "Sonner notifications styled to the Bravo design.",
       "dependencies": ["lucide-react", "sonner"],
-      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/i18n"],
       "files": [
         {
           "path": "registry/bravo/ui/toast.tsx",
@@ -319,6 +331,7 @@
       "registryDependencies": [
         "@bravo/utils",
         "@bravo/bravo-theme",
+        "@bravo/i18n",
         "@bravo/label",
         "@bravo/separator",
         "@bravo/tooltip"
@@ -428,7 +441,7 @@
       "title": "Password Input",
       "description": "A password input with a visibility toggle.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["@bravo/field", "@bravo/input-group"],
+      "registryDependencies": ["@bravo/i18n", "@bravo/field", "@bravo/input-group"],
       "files": [
         {
           "path": "registry/bravo/ui/password-input.tsx",
@@ -469,7 +482,7 @@
       "title": "Search Bar",
       "description": "A search input with a clear button, wired to Field.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["@bravo/utils", "@bravo/input-group"],
+      "registryDependencies": ["@bravo/utils", "@bravo/i18n", "@bravo/input-group"],
       "files": [
         {
           "path": "registry/bravo/ui/search-bar.tsx",

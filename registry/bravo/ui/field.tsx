@@ -4,6 +4,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { CircleAlert, CircleHelp } from "lucide-react"
 
+import { useBravoStrings } from "@/registry/bravo/lib/i18n"
 import { cn } from "@/registry/bravo/lib/utils"
 import { Label } from "@/registry/bravo/ui/label"
 import { Separator } from "@/registry/bravo/ui/separator"
@@ -88,7 +89,7 @@ function Field({
   id,
   label,
   tooltip,
-  tooltipLabel = "Mer information",
+  tooltipLabel,
   description,
   error,
   disabled,
@@ -97,6 +98,7 @@ function Field({
   children,
   ...props
 }: FieldProps) {
+  const t = useBravoStrings("field", { moreInfo: tooltipLabel })
   const generatedId = React.useId()
   const controlId = id ?? generatedId
   const descriptionId = `${controlId}-description`
@@ -138,7 +140,7 @@ function Field({
           <div className="flex items-center gap-1">
             {label && <Label id={`${controlId}-label`} htmlFor={controlId}>{label}</Label>}
             {tooltip && (
-              <FieldTooltip label={tooltipLabel}>{tooltip}</FieldTooltip>
+              <FieldTooltip label={t.moreInfo}>{tooltip}</FieldTooltip>
             )}
           </div>
         )}

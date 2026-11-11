@@ -4,9 +4,12 @@ import * as React from "react";
 import { CircleCheck, CircleX, Info, LoaderCircle, TriangleAlert, X } from "lucide-react";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
+import { useBravoStrings } from "@/registry/bravo/lib/i18n";
 import { cn } from "@/registry/bravo/lib/utils";
 
 function Toaster({ className, toastOptions, icons, style, ...props }: ToasterProps) {
+  const t = useBravoStrings("toast");
+
   return (
     <Sonner
       className={cn("toaster", className)}
@@ -24,7 +27,7 @@ function Toaster({ className, toastOptions, icons, style, ...props }: ToasterPro
       toastOptions={{
         ...toastOptions,
         unstyled: toastOptions?.unstyled ?? true,
-        closeButtonAriaLabel: toastOptions?.closeButtonAriaLabel ?? "Stäng",
+        closeButtonAriaLabel: toastOptions?.closeButtonAriaLabel ?? t.close,
         classNames: {
           ...toastOptions?.classNames,
           toast: cn("group grid w-full grid-cols-[20px_minmax(0,1fr)_32px] items-center gap-x-2 gap-y-1 rounded-default bg-surface-base p-3 font-body text-base leading-6 text-text-primary shadow-md", toastOptions?.classNames?.toast),

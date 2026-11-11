@@ -35,6 +35,6 @@ A shadcn registry of React components for Bravo sites (Laravel + Inertia). This 
   - Forms: controls render native, `name`d elements so Inertia's `<Form>` can submit them. Errors (`errors.field`) go to `Field`'s `error`.
   - No Next.js APIs (`next/link`, `next/image`, `next/navigation`) in `registry/`; Next.js is only the showcase.
 - Prefer semantic native elements: `<a>` for navigation, `<button>` for actions, `<select>` for `NativeSelect`.
-- UI text and examples are in Swedish where user-facing (e.g. "Välj alternativ").
+- Examples are in Swedish where user-facing (e.g. "Välj alternativ"). Built-in component texts go in `registry/bravo/lib/i18n.tsx` in English (default) and Swedish, never inline (see "Texts" in the component instructions).
 - Designs come from Figma. For design-to-code work, follow the `figma-component` skill.
 - These rules take precedence over generic skills (`shadcn`, `tailwind-design-system`). In particular, never define new `@theme` tokens or color values; use only what `theme.css` provides.

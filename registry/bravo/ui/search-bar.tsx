@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Search, X } from "lucide-react"
 
+import { useBravoStrings } from "@/registry/bravo/lib/i18n"
 import { cn } from "@/registry/bravo/lib/utils"
 import {
   InputGroup,
@@ -17,10 +18,12 @@ type SearchBarProps = Omit<React.ComponentProps<"input">, "type"> & {
 
 function SearchBar({
   className,
-  clearLabel = "Rensa sökning",
-  placeholder = "Sök...",
+  clearLabel,
+  placeholder,
   ...props
 }: SearchBarProps) {
+  const t = useBravoStrings("searchBar", { clear: clearLabel, placeholder })
+
   return (
     <InputGroup
       data-slot="search-bar"
@@ -31,7 +34,7 @@ function SearchBar({
     >
       <InputGroupInput
         type="search"
-        placeholder={placeholder || " "}
+        placeholder={t.placeholder || " "}
         className="peer h-full py-3 text-sm leading-5 [&::-webkit-search-cancel-button]:hidden"
         {...props}
       />
@@ -45,8 +48,8 @@ function SearchBar({
         <InputGroupButton
           size="icon-sm"
           className="text-text-muted"
-          aria-label={clearLabel}
-          title={clearLabel}
+          aria-label={t.clear}
+          title={t.clear}
           onClick={(event) => {
             const input = event.currentTarget.closest('[data-slot="search-bar"]')?.querySelector("input")
             if (!input) return

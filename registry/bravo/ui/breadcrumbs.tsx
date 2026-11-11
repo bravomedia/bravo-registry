@@ -4,6 +4,7 @@ import * as React from "react"
 import { ChevronRight, Home, MoreHorizontal } from "lucide-react"
 import { Slot } from "radix-ui"
 
+import { useBravoStrings, type BravoStrings } from "@/registry/bravo/lib/i18n"
 import { cn } from "@/registry/bravo/lib/utils"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "@/registry/bravo/ui/dropdown-menu"
 
@@ -11,7 +12,9 @@ type BreadcrumbHref = string | { url: string; method: string }
 type BreadcrumbEntry = { title: string; href: BreadcrumbHref }
 
 function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
-  return <nav aria-label="Brödsmulor" data-slot="breadcrumb" {...props} />
+  const t = useBravoStrings("breadcrumbs")
+
+  return <nav aria-label={t.label} data-slot="breadcrumb" {...props} />
 }
 
 function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
@@ -53,10 +56,12 @@ function BreadcrumbSeparator({ children, className, ...props }: React.ComponentP
 }
 
 function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<"span">) {
+  const t = useBravoStrings("breadcrumbs")
+
   return (
     <span data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" className={cn("flex size-5 items-center justify-center", className)} {...props}>
       <MoreHorizontal className="size-5" />
-      <span className="sr-only">Fler</span>
+      <span className="sr-only">{t.more}</span>
     </span>
   )
 }
@@ -65,17 +70,22 @@ type BreadcrumbsProps = Omit<React.ComponentProps<"nav">, "children"> & {
   breadcrumbs: BreadcrumbEntry[]
   home?: BreadcrumbEntry | false
   linkAs?: React.ElementType
+  labels?: Partial<BravoStrings["breadcrumbs"]>
 }
 
 function Breadcrumbs({
   breadcrumbs,
-  home = { title: "Startsida", href: "/" },
+  home: homeProp,
   linkAs,
+  labels,
   className,
   ...props
 }: BreadcrumbsProps) {
+  const t = useBravoStrings("breadcrumbs", labels)
+
   if (breadcrumbs.length === 0) return null
 
+  const home = homeProp ?? { title: t.home, href: "/" }
   const Link = linkAs ?? "a"
   const hrefFor = (href: BreadcrumbHref) => linkAs || typeof href === "string" ? href : href.url
 
@@ -101,7 +111,7 @@ function Breadcrumbs({
           <>
             <BreadcrumbItem>
               <DropdownMenu>
-                <DropdownMenuTrigger aria-label="Visa tidigare sidor" className="rounded-xs text-text-muted outline-none hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus">
+                <DropdownMenuTrigger aria-label={t.showHidden} className="rounded-xs text-text-muted outline-none hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus">
                   <BreadcrumbEllipsis />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
@@ -134,7 +144,7 @@ function Breadcrumbs({
     )
   }
 
-  return <Breadcrumb data-slot="breadcrumbs" className={className} {...props}>{renderList(true)}{renderList(false)}</Breadcrumb>
+  return <Breadcrumb data-slot="breadcrumbs" aria-label={t.label} className={className} {...props}>{renderList(true)}{renderList(false)}</Breadcrumb>
 }
 
 export {
