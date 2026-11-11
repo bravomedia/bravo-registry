@@ -103,6 +103,20 @@
       ]
     },
     {
+      "name": "breadcrumbs",
+      "type": "registry:ui",
+      "title": "Breadcrumbs",
+      "description": "Responsive breadcrumb navigation with an overflow menu and router-agnostic links.",
+      "dependencies": ["lucide-react", "radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/breadcrumbs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -140,6 +154,20 @@
       "files": [
         {
           "path": "registry/bravo/ui/button-link.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A checkbox with checked, indeterminate and disabled states, wired to Field.",
+      "dependencies": ["lucide-react", "radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/field"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/checkbox.tsx",
           "type": "registry:ui"
         }
       ]
@@ -231,9 +259,9 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "shadcn Separator.",
+      "description": "shadcn Separator styled as the Bravo divider. Also exported as `Divider`.",
       "dependencies": ["radix-ui"],
-      "registryDependencies": ["@bravo/utils"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
       "files": [
         {
           "path": "registry/bravo/ui/separator.tsx",
@@ -376,6 +404,34 @@
       "files": [
         {
           "path": "registry/bravo/ui/number-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A radio group with accessible option labels and Field integration.",
+      "dependencies": ["lucide-react", "radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/field"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "search-bar",
+      "type": "registry:ui",
+      "title": "Search Bar",
+      "description": "A search input with a clear button, wired to Field.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@bravo/utils", "@bravo/input-group"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/search-bar.tsx",
           "type": "registry:ui"
         }
       ]

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio",
+  "title": "Radio Group",
+  "description": "A radio group with accessible option labels and Field integration.",
+  "dependencies": [
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme",
+    "@bravo/field"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/radio-group.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { CircleIcon } from \"lucide-react\"\nimport { RadioGroup as RadioGroupPrimitive } from \"radix-ui\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { useFieldControl } from \"@/registry/bravo/ui/field\"\n\nfunction RadioGroup({\n  className,\n  ...props\n}: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {\n  const field = useFieldControl(props)\n\n  return (\n    <RadioGroupPrimitive.Root\n      data-slot=\"radio-group\"\n      className={cn(\"group/radio-group grid gap-2\", className)}\n      {...field.props}\n      aria-labelledby={\n        props[\"aria-labelledby\"] ?? (props[\"aria-label\"] ? undefined : field.labelId)\n      }\n    />\n  )\n}\n\nfunction RadioGroupItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      data-slot=\"radio-group-item\"\n      className={cn(\n        \"peer relative inline-flex size-6 shrink-0 items-center justify-center rounded-full text-text-primary outline-none\",\n        \"before:absolute before:inset-0.5 before:rounded-full before:inset-ring-2 before:inset-ring-text-primary\",\n        \"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus\",\n        \"aria-invalid:before:inset-ring-border-error group-aria-invalid/radio-group:before:inset-ring-border-error disabled:cursor-not-allowed disabled:text-text-disabled disabled:before:inset-ring-border-disabled\",\n        className\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator\n        data-slot=\"radio-group-indicator\"\n        className=\"relative flex items-center justify-center\"\n      >\n        <CircleIcon aria-hidden className=\"size-2.5 fill-current\" />\n      </RadioGroupPrimitive.Indicator>\n    </RadioGroupPrimitive.Item>\n  )\n}\n\nexport { RadioGroup, RadioGroupItem }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -80,6 +80,7 @@
   --information-800: #0C4580;
   --information-900: #103B6A;
   --information-950: #0A2547;
+  --surface-overlay: #000000;
   --background-base: var(--white);
   --background-subtle: var(--gray-100);
   --background-strong: var(--gray-800);
@@ -117,7 +118,7 @@
   --text-disabled: var(--gray-400);
   --text-primary-inverse: var(--white);
   --text-secondary-inverse: var(--gray-50);
-  --text-muted-inverse: var(--gray-200);
+  --text-muted-inverse: var(--gray-300);
   --text-disabled-inverse: var(--gray-400);
   --text-brand: var(--brand-600);
   --text-brand-hover: var(--brand-500);
@@ -128,7 +129,7 @@
   --text-warning: var(--warning-700);
   --text-success: var(--success-700);
   --text-information: var(--information-700);
-  --border-subtle: var(--gray-400);
+  --border-subtle: var(--gray-300);
   --border-strong: var(--gray-600);
   --border-brand: var(--brand-600);
   --border-inverse: var(--white);
@@ -292,6 +293,7 @@
   --color-information-800: var(--information-800);
   --color-information-900: var(--information-900);
   --color-information-950: var(--information-950);
+  --color-surface-overlay: var(--surface-overlay);
   --color-background-base: var(--background-base);
   --color-background-subtle: var(--background-subtle);
   --color-background-strong: var(--background-strong);

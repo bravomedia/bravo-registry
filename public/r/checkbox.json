@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "A checkbox with checked, indeterminate and disabled states, wired to Field.",
+  "dependencies": [
+    "lucide-react",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme",
+    "@bravo/field"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/checkbox.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Check, Minus } from \"lucide-react\"\nimport { Checkbox as CheckboxPrimitive } from \"radix-ui\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { useFieldControl } from \"@/registry/bravo/ui/field\"\n\nfunction Checkbox({\n  className,\n  ...props\n}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {\n  const field = useFieldControl(props)\n\n  return (\n    <CheckboxPrimitive.Root\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer relative inline-flex size-6 shrink-0 items-center justify-center text-text-primary-inverse outline-none\",\n        \"before:absolute before:inset-0.75 before:inset-ring-2 before:inset-ring-text-primary\",\n        \"data-[state=checked]:before:rounded-xs data-[state=checked]:before:bg-text-primary data-[state=indeterminate]:before:rounded-xs data-[state=indeterminate]:before:bg-text-primary\",\n        \"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus\",\n        \"aria-invalid:before:inset-ring-border-error disabled:cursor-not-allowed disabled:before:inset-ring-border-disabled disabled:data-[state=checked]:before:bg-text-disabled disabled:data-[state=indeterminate]:before:bg-text-disabled\",\n        className\n      )}\n      {...field.props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"relative grid place-content-center text-current data-[state=checked]:[&_.checkbox-minus]:hidden data-[state=indeterminate]:[&_.checkbox-check]:hidden\"\n      >\n        <Check aria-hidden className=\"checkbox-check size-4\" />\n        <Minus aria-hidden className=\"checkbox-minus size-4\" />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  )\n}\n\nexport { Checkbox }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

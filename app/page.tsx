@@ -13,6 +13,7 @@ import {
   TextLink,
 } from "@/registry/bravo/ui/typography";
 import { Button } from "@/registry/bravo/ui/button";
+import { Breadcrumbs } from "@/registry/bravo/ui/breadcrumbs";
 import { ButtonLink } from "@/registry/bravo/ui/button-link";
 import {
   Card,
@@ -20,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/registry/bravo/ui/card";
+import { Checkbox } from "@/registry/bravo/ui/checkbox";
 import { DateInput } from "@/registry/bravo/ui/date-input";
 import {
   Dialog,
@@ -42,6 +44,7 @@ import {
   FieldSet,
 } from "@/registry/bravo/ui/field";
 import { Input } from "@/registry/bravo/ui/input";
+import { Label } from "@/registry/bravo/ui/label";
 import { ButtonIcon } from "@/registry/bravo/ui/button-icon";
 import {
   InputGroup,
@@ -54,6 +57,8 @@ import {
 } from "@/registry/bravo/ui/native-select";
 import { NumberInput } from "@/registry/bravo/ui/number-input";
 import { PasswordInput } from "@/registry/bravo/ui/password-input";
+import { RadioGroup, RadioGroupItem } from "@/registry/bravo/ui/radio-group";
+import { SearchBar } from "@/registry/bravo/ui/search-bar";
 import {
   Select,
   SelectContent,
@@ -62,8 +67,10 @@ import {
   SelectValue,
 } from "@/registry/bravo/ui/select";
 import { SectionsPageTemplate } from "@/registry/bravo/ui/sections-page-template";
+import { Divider } from "@/registry/bravo/ui/separator";
 import { ShortcutCard } from "@/registry/bravo/ui/shortcut-card";
 import { Textarea } from "@/registry/bravo/ui/textarea";
+import { SearchBarExample } from "@/app/search-bar-example";
 import { ToastExample } from "@/app/toast-example";
 import {
   Tooltip,
@@ -315,6 +322,22 @@ export default function Home() {
 
           <Card>
             <CardHeader>
+              <CardTitle>Divider</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
+              <Text>Innehåll ovanför</Text>
+              <Divider />
+              <Text>Innehåll nedanför</Text>
+              <div className="flex h-6 items-center gap-4">
+                <Text>Vänster</Text>
+                <Divider orientation="vertical" />
+                <Text>Höger</Text>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
               <CardTitle>Tooltip</CardTitle>
             </CardHeader>
             <CardContent>
@@ -385,6 +408,130 @@ export default function Home() {
                   </div>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Checkbox</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form className="grid gap-6 sm:grid-cols-2">
+                <Field label="Val" className="gap-2">
+                  <div className="flex items-center gap-2">
+                    <Checkbox name="checkbox_checked" defaultChecked />
+                    <FieldLabel className="text-base leading-6 font-regular">Valt alternativ</FieldLabel>
+                  </div>
+                </Field>
+                <Field label="Val" className="gap-2">
+                  <div className="flex items-center gap-2">
+                    <Checkbox name="checkbox_unchecked" />
+                    <FieldLabel className="text-base leading-6 font-regular">Ej valt alternativ</FieldLabel>
+                  </div>
+                </Field>
+                <Field label="Val" className="gap-2" disabled>
+                  <div className="flex items-center gap-2">
+                    <Checkbox name="checkbox_disabled_checked" defaultChecked />
+                    <FieldLabel className="text-base leading-6 font-regular group-data-[disabled=true]/field:text-text-disabled group-data-[disabled=true]/field:opacity-100">Valt alternativ</FieldLabel>
+                  </div>
+                </Field>
+                <Field label="Val" className="gap-2" disabled>
+                  <div className="flex items-center gap-2">
+                    <Checkbox name="checkbox_disabled_unchecked" />
+                    <FieldLabel className="text-base leading-6 font-regular group-data-[disabled=true]/field:text-text-disabled group-data-[disabled=true]/field:opacity-100">Ej valt alternativ</FieldLabel>
+                  </div>
+                </Field>
+                <Field className="gap-2" error="Du måste göra ett val">
+                  <div className="flex items-center gap-2">
+                    <Checkbox name="checkbox_error" />
+                    <FieldLabel className="text-base leading-6 font-regular">Bekräfta ditt val</FieldLabel>
+                  </div>
+                </Field>
+                <Field className="gap-2">
+                  <div className="flex items-center gap-2">
+                    <Checkbox name="checkbox_indeterminate" defaultChecked="indeterminate" />
+                    <FieldLabel className="text-base leading-6 font-regular">Delvis valt</FieldLabel>
+                  </div>
+                </Field>
+              </form>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Radio Group</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form className="grid gap-6 sm:grid-cols-2">
+                <Field label="Välj alternativ" className="gap-2">
+                  <RadioGroup name="radio_choice" defaultValue="one">
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="one" id="radio-one" />
+                      <Label htmlFor="radio-one" className="font-regular">Alternativ ett</Label>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="two" id="radio-two" />
+                      <Label htmlFor="radio-two" className="font-regular">Alternativ två</Label>
+                    </div>
+                  </RadioGroup>
+                </Field>
+                <Field label="Inaktiverat val" className="gap-2" disabled>
+                  <RadioGroup name="radio_disabled" defaultValue="one">
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="one" id="radio-disabled-one" />
+                      <Label htmlFor="radio-disabled-one" className="font-regular peer-disabled:text-text-disabled">Alternativ ett</Label>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="two" id="radio-disabled-two" />
+                      <Label htmlFor="radio-disabled-two" className="font-regular peer-disabled:text-text-disabled">Alternativ två</Label>
+                    </div>
+                  </RadioGroup>
+                </Field>
+                <Field label="Bekräfta val" className="gap-2" error="Välj ett alternativ">
+                  <RadioGroup name="radio_error">
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="yes" id="radio-error-yes" />
+                      <Label htmlFor="radio-error-yes" className="font-regular">Ja</Label>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <RadioGroupItem value="no" id="radio-error-no" />
+                      <Label htmlFor="radio-error-no" className="font-regular">Nej</Label>
+                    </div>
+                  </RadioGroup>
+                </Field>
+              </form>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Breadcrumbs</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-6">
+              <Breadcrumbs
+                linkAs={Link}
+                breadcrumbs={[
+                  { title: "Tjänster", href: "/tjanster" },
+                  { title: "Bygga och bo", href: "/tjanster/bygga-och-bo" },
+                ]}
+              />
+              <Breadcrumbs
+                breadcrumbs={[
+                  { title: "Tjänster", href: { url: "/tjanster", method: "get" } },
+                  { title: "Bygga och bo", href: "/tjanster/bygga-och-bo" },
+                  { title: "Bygglov", href: "/tjanster/bygga-och-bo/bygglov" },
+                ]}
+              />
+              <Breadcrumbs
+                linkAs={Link}
+                breadcrumbs={[
+                  { title: "Tjänster", href: "/tjanster" },
+                  { title: "Bygga och bo", href: "/tjanster/bygga-och-bo" },
+                  { title: "Bygglov", href: "/tjanster/bygga-och-bo/bygglov" },
+                  { title: "Ansökan", href: "/tjanster/bygga-och-bo/bygglov/ansokan" },
+                  { title: "Handlingar", href: "/tjanster/bygga-och-bo/bygglov/ansokan/handlingar" },
+                ]}
+              />
             </CardContent>
           </Card>
 
@@ -463,6 +610,10 @@ export default function Home() {
               <Field label="Password (error)" error="Error message">
                 <PasswordInput name="password_error" defaultValue="secret" />
               </Field>
+              <Field label="Sök">
+                <SearchBar name="query" />
+              </Field>
+              <SearchBarExample />
               <Field label="Datepicker" description="Description">
                 <DateInput name="date" />
               </Field>

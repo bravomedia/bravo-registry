@@ -14,6 +14,7 @@ type FieldContextValue = {
   invalid: boolean
   disabled?: boolean
   describedBy?: string
+  labelId?: string
 }
 
 const FieldContext = React.createContext<FieldContextValue | null>(null)
@@ -45,6 +46,7 @@ function useFieldControl<T extends FieldControlProps>(props: T) {
     },
     invalid: ariaInvalid === true || ariaInvalid === "true",
     disabled: Boolean(props.disabled ?? field?.disabled),
+    labelId: field?.labelId,
   }
 }
 
@@ -111,13 +113,14 @@ function Field({
       id: controlId,
       invalid,
       disabled,
+      labelId: label ? `${controlId}-label` : undefined,
       describedBy: invalid
         ? errorId
         : showDescription
           ? descriptionId
           : undefined,
     }),
-    [controlId, invalid, disabled, errorId, descriptionId, showDescription]
+    [controlId, invalid, disabled, errorId, descriptionId, showDescription, label]
   )
 
   return (
@@ -133,7 +136,7 @@ function Field({
       >
         {(label || tooltip) && (
           <div className="flex items-center gap-1">
-            {label && <Label htmlFor={controlId}>{label}</Label>}
+            {label && <Label id={`${controlId}-label`} htmlFor={controlId}>{label}</Label>}
             {tooltip && (
               <FieldTooltip label={tooltipLabel}>{tooltip}</FieldTooltip>
             )}

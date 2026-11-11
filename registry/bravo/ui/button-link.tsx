@@ -7,7 +7,7 @@ import { Slot } from "radix-ui"
 import { cn } from "@/registry/bravo/lib/utils"
 
 const buttonLinkVariants = cva(
-  "inline-flex items-center gap-2 text-base font-bold leading-6 decoration-solid underline-offset-2 transition-colors outline-none hover:underline focus-visible:rounded-lg focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-6 aria-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
+  "inline-flex items-center gap-2 font-body text-base font-medium leading-6 decoration-solid underline-offset-2 transition-colors outline-none hover:underline focus-visible:rounded-lg focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-6 aria-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6",
   {
     variants: {
       variant: {

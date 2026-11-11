@@ -1,4 +1,38 @@
 {
+  "surface-overlay": {
+    "$type": "color",
+    "$value": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.15000000596046448,
+      "hex": "#000000"
+    },
+    "$extensions": {
+      "com.figma.variableId": "VariableID:4523:7774",
+      "com.figma.scopes": [
+        "ALL_SCOPES"
+      ],
+      "com.figma.composedColor": {
+        "colorArg": {
+          "type": "alias",
+          "alias": {
+            "targetVariableId": "VariableID:c66e907a8745b46a7b1adf3918c0423ee8c00fb9/-1:-1",
+            "targetVariableName": "black",
+            "targetVariableSetId": "VariableCollectionId:3d88b8d2c2c5df16331f3a846cf1749e64bfd476/-1:-1",
+            "targetVariableSetName": "Color palette"
+          }
+        },
+        "opacityArg": {
+          "type": "number",
+          "value": 15
+        }
+      }
+    }
+  },
   "background": {
     "background-base": {
       "$type": "color",
@@ -982,12 +1016,12 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.8980392217636108,
-          0.8980392217636108,
-          0.8980392217636108
+          0.8313725590705872,
+          0.8313725590705872,
+          0.8313725590705872
         ],
         "alpha": 1,
-        "hex": "#E5E5E5"
+        "hex": "#D4D4D4"
       },
       "$description": "Used for eg. meta data or information that can be shown in a more subtle way",
       "$extensions": {
@@ -996,8 +1030,8 @@
           "ALL_FILLS"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:7d20148770f09d85ffa31b69e964657de75b359f/-1:-1",
-          "targetVariableName": "gray/200",
+          "targetVariableId": "VariableID:e580df8047d4dfa619d41f953cc8a8fafb0c5cb8/-1:-1",
+          "targetVariableName": "gray/300",
           "targetVariableSetId": "VariableCollectionId:3d88b8d2c2c5df16331f3a846cf1749e64bfd476/-1:-1",
           "targetVariableSetName": "Color palette"
         }
@@ -1267,12 +1301,12 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.6392157077789307,
-          0.6392157077789307,
-          0.6392157077789307
+          0.8313725590705872,
+          0.8313725590705872,
+          0.8313725590705872
         ],
         "alpha": 1,
-        "hex": "#A3A3A3"
+        "hex": "#D4D4D4"
       },
       "$extensions": {
         "com.figma.variableId": "VariableID:4172:1932",
@@ -1280,8 +1314,8 @@
           "STROKE"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:14cfd9f50821707634ee60cff33db71edc3a2f86/-1:-1",
-          "targetVariableName": "gray/400",
+          "targetVariableId": "VariableID:e580df8047d4dfa619d41f953cc8a8fafb0c5cb8/-1:-1",
+          "targetVariableName": "gray/300",
           "targetVariableSetId": "VariableCollectionId:3d88b8d2c2c5df16331f3a846cf1749e64bfd476/-1:-1",
           "targetVariableSetName": "Color palette"
         }
