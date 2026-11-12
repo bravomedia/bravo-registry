@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "product-card",
+  "title": "Product Card",
+  "description": "A router-compatible product preview with an image, optional badge and campaign pricing.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme",
+    "@bravo/badge"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/product-card.tsx",
+      "content": "import * as React from \"react\"\nimport { Slot } from \"radix-ui\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { Badge } from \"@/registry/bravo/ui/badge\"\n\ntype ProductCardPrice = {\n  amount: string\n  fraction?: string\n  separator?: string\n}\n\ntype ProductCardProps = Omit<React.ComponentProps<\"a\">, \"children\"> & {\n  src: string\n  alt: string\n  title: string\n  metadata?: React.ReactNode\n  badge?: React.ReactNode\n  price: ProductCardPrice\n  originalPrice?: ProductCardPrice\n} & (\n  | { asChild: true; children: React.ReactElement }\n  | { asChild?: false; children?: never }\n)\n\nfunction ProductPrice({ price }: { price: ProductCardPrice }) {\n  return (\n    <span className=\"inline-flex items-baseline font-heading text-2xl leading-8 font-bold whitespace-nowrap\">\n      {price.amount}\n      {price.fraction && (\n        <>\n          <span className=\"sr-only\">{price.separator ?? \",\"}</span>\n          <span className=\"relative -top-1 text-base leading-8\">{price.fraction}</span>\n        </>\n      )}\n    </span>\n  )\n}\n\nfunction ProductCard({\n  asChild = false,\n  src,\n  alt,\n  title,\n  metadata,\n  badge,\n  price,\n  originalPrice,\n  className,\n  children,\n  ...props\n}: ProductCardProps) {\n  const Comp = asChild ? Slot.Root : \"a\"\n\n  return (\n    <Comp\n      data-slot=\"product-card\"\n      className={cn(\n        \"flex min-w-0 flex-col gap-4 rounded-default outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus\",\n        className\n      )}\n      {...props}\n    >\n      <div data-slot=\"product-card-media\" className=\"relative aspect-square w-full\">\n        <img data-slot=\"product-card-image\" src={src} alt={alt} className=\"size-full rounded-default object-cover\" />\n        {badge && <Badge data-slot=\"product-card-badge\" className=\"absolute top-4 left-4\">{badge}</Badge>}\n      </div>\n      <div data-slot=\"product-card-content\" className=\"flex min-w-0 flex-col gap-4\">\n        <div data-slot=\"product-card-details\" className=\"font-body font-bold\">\n          <div data-slot=\"product-card-title\" className=\"truncate text-base leading-6 text-text-primary\">{title}</div>\n          {metadata && <div data-slot=\"product-card-metadata\" className=\"text-sm leading-5 wrap-break-word text-text-muted\">{metadata}</div>}\n        </div>\n        <div data-slot=\"product-card-prices\" className=\"flex flex-wrap items-baseline gap-2\">\n          <span data-slot=\"product-card-price\" className={originalPrice ? \"text-text-error\" : \"text-text-primary\"}>\n            <ProductPrice price={price} />\n          </span>\n          {originalPrice && (\n            <del data-slot=\"product-card-original-price\" className=\"text-text-disabled\">\n              <ProductPrice price={originalPrice} />\n            </del>\n          )}\n        </div>\n      </div>\n      {asChild && <Slot.Slottable>{children}</Slot.Slottable>}\n    </Comp>\n  )\n}\n\nexport { ProductCard, type ProductCardPrice, type ProductCardProps }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq",
+  "title": "FAQ",
+  "description": "An accessible accordion for frequently asked questions, with default and inverse variants.",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react",
+    "radix-ui",
+    "tw-animate-css"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/faq.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { ChevronDown } from \"lucide-react\"\nimport { Accordion as AccordionPrimitive } from \"radix-ui\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\n\nconst faqVariants = cva(\"group/faq w-full font-body\", {\n  variants: {\n    variant: {\n      default: \"text-text-primary\",\n      inverse: \"text-text-primary-inverse\",\n    },\n  },\n  defaultVariants: {\n    variant: \"default\",\n  },\n})\n\nfunction Faq({\n  className,\n  variant = \"default\",\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Root> & VariantProps<typeof faqVariants>) {\n  return (\n    <AccordionPrimitive.Root\n      data-slot=\"faq\"\n      data-variant={variant}\n      className={cn(faqVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction FaqItem({ className, ...props }: React.ComponentProps<typeof AccordionPrimitive.Item>) {\n  return (\n    <AccordionPrimitive.Item\n      data-slot=\"faq-item\"\n      className={cn(\n        \"relative before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-border-subtle last:after:absolute last:after:inset-x-0 last:after:bottom-0 last:after:h-px last:after:bg-border-subtle\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction FaqTrigger({ className, children, ...props }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {\n  return (\n    <AccordionPrimitive.Header data-slot=\"faq-header\" className=\"flex\">\n      <AccordionPrimitive.Trigger\n        data-slot=\"faq-trigger\"\n        className={cn(\n          \"flex flex-1 items-center justify-between gap-4 py-6 pr-1 text-left text-base leading-6 font-bold outline-none hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus group-data-[variant=inverse]/faq:focus-visible:outline-border-focus-inverse disabled:pointer-events-none disabled:opacity-50 data-[state=open]:pb-0 motion-safe:transition-[padding] motion-safe:duration-300 motion-safe:ease-in-out [&[data-state=open]>svg]:rotate-180\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        <ChevronDown aria-hidden className=\"pointer-events-none size-8 shrink-0 transition-transform duration-300 ease-in-out motion-reduce:transition-none\" />\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  )\n}\n\nfunction FaqContent({ className, children, ...props }: React.ComponentProps<typeof AccordionPrimitive.Content>) {\n  return (\n    <AccordionPrimitive.Content\n      data-slot=\"faq-content\"\n      className=\"overflow-hidden motion-safe:data-[state=open]:animate-accordion-down motion-safe:data-[state=closed]:animate-accordion-up motion-safe:duration-300 motion-safe:ease-in-out\"\n      {...props}\n    >\n      <div className={cn(\"max-w-178.5 pt-4 pb-8 text-base leading-6 font-regular text-text-secondary group-data-[variant=inverse]/faq:text-text-secondary-inverse\", className)}>\n        {children}\n      </div>\n    </AccordionPrimitive.Content>\n  )\n}\n\nexport { Faq, FaqItem, FaqTrigger, FaqContent, faqVariants }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

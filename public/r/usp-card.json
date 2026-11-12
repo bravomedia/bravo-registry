@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "usp-card",
+  "title": "USP Card",
+  "description": "A benefit card with an icon, description and optional router-compatible action.",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme",
+    "@bravo/button"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/usp-card.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { House } from \"lucide-react\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\nimport { Button } from \"@/registry/bravo/ui/button\"\n\nconst uspCardVariants = cva(\n  \"flex min-w-0 flex-col items-start gap-6 rounded-default p-8 inset-ring-1\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-surface-base text-text-primary inset-ring-border-subtle\",\n        inverse: \"bg-surface-strong text-text-primary-inverse inset-ring-border-strong\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\ntype UspCardProps = Omit<React.ComponentProps<\"article\">, \"children\"> &\n  VariantProps<typeof uspCardVariants> & {\n    icon?: React.ReactNode\n    heading: React.ReactNode\n    headingAs?: \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\"\n    description: React.ReactNode\n  } & (\n    | { asChild: true; children: React.ReactElement; href?: never; linkText?: never }\n    | { asChild?: false; children?: never; href: string; linkText: React.ReactNode }\n    | { asChild?: false; children?: never; href?: never; linkText?: never }\n  )\n\nfunction UspCard({\n  icon = <House />,\n  heading,\n  headingAs: Heading = \"h3\",\n  description,\n  variant = \"default\",\n  asChild = false,\n  href,\n  linkText,\n  children,\n  className,\n  ...props\n}: UspCardProps) {\n  return (\n    <article data-slot=\"usp-card\" data-variant={variant} className={cn(uspCardVariants({ variant }), className)} {...props}>\n      <span data-slot=\"usp-card-icon\" aria-hidden className=\"flex size-10 shrink-0 items-center justify-center [&_svg:not([class*='size-'])]:size-10\">\n        {icon}\n      </span>\n      <div data-slot=\"usp-card-content\" className=\"flex min-w-0 w-full flex-col gap-2\">\n        <Heading data-slot=\"usp-card-heading\" className=\"font-heading text-2xl leading-8 font-bold wrap-break-word\">{heading}</Heading>\n        <p data-slot=\"usp-card-description\" className={cn(\"font-body text-base leading-6 font-regular wrap-break-word\", variant === \"inverse\" ? \"text-text-secondary-inverse\" : \"text-text-secondary\")}>{description}</p>\n      </div>\n      {(asChild || href) && (\n        <Button asChild variant={variant === \"inverse\" ? \"outline-inverse\" : \"outline\"} className=\"font-medium\">\n          {asChild ? children : <a href={href}>{linkText}</a>}\n        </Button>\n      )}\n    </article>\n  )\n}\n\nexport { UspCard, uspCardVariants, type UspCardProps }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

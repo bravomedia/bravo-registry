@@ -22,7 +22,7 @@ function ShortcutCard({
     <Comp
       data-slot="shortcut-card"
       className={cn(
-        "flex min-w-70.5 items-center gap-3 rounded-xl bg-surface-base px-8 py-6 font-body text-xl font-bold leading-7 wrap-break-word text-text-primary inset-ring-1 inset-ring-border-subtle transition-colors outline-none hover:bg-surface-base-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus",
+        "flex min-w-70.5 items-center gap-3 rounded-xl bg-surface-base px-8 py-6 font-body text-xl font-bold leading-7 wrap-break-word text-text-primary inset-ring-1 inset-ring-border-subtle transition-colors outline-none hover:bg-surface-base-hover focus-visible:bg-surface-base focus-visible:inset-ring-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus",
         className
       )}
       {...props}

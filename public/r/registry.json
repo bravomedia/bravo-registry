@@ -143,6 +143,90 @@
       ]
     },
     {
+      "name": "faq",
+      "type": "registry:ui",
+      "title": "FAQ",
+      "description": "An accessible accordion for frequently asked questions, with default and inverse variants.",
+      "dependencies": ["class-variance-authority", "lucide-react", "radix-ui", "tw-animate-css"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/faq.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "image-card",
+      "type": "registry:ui",
+      "title": "Image Card",
+      "description": "A linked image card with square and landscape ratios and default or inverse labels.",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/image-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "article-card",
+      "type": "registry:ui",
+      "title": "Article Card",
+      "description": "An article preview with an image, heading, summary, optional date and router-compatible link.",
+      "dependencies": ["class-variance-authority", "lucide-react", "radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/button-link"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/article-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "product-card",
+      "type": "registry:ui",
+      "title": "Product Card",
+      "description": "A router-compatible product preview with an image, optional badge and campaign pricing.",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/badge"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/product-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "contact-card",
+      "type": "registry:ui",
+      "title": "Contact Card",
+      "description": "A router-compatible contact preview with a portrait, role and contact details.",
+      "dependencies": ["radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/contact-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "usp-card",
+      "type": "registry:ui",
+      "title": "USP Card",
+      "description": "A benefit card with an icon, description and optional router-compatible action.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme", "@bravo/button"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/usp-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
@@ -165,6 +249,20 @@
       "files": [
         {
           "path": "registry/bravo/ui/pagination-progressive.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A badge for statuses, categories and promotions. Use `asChild` with Inertia's <Link>.",
+      "dependencies": ["class-variance-authority", "radix-ui"],
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/badge.tsx",
           "type": "registry:ui"
         }
       ]
@@ -276,6 +374,19 @@
       "files": [
         {
           "path": "registry/bravo/ui/view-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "category-tab",
+      "type": "registry:ui",
+      "title": "Category Tab",
+      "description": "Accessible tabs for switching between content categories.",
+      "registryDependencies": ["@bravo/view-switcher"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/category-tab.tsx",
           "type": "registry:ui"
         }
       ]

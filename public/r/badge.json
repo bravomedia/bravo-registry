@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "A badge for statuses, categories and promotions. Use `asChild` with Inertia's <Link>.",
+  "dependencies": [
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/badge.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { Slot } from \"radix-ui\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\n\nconst badgeVariants = cva(\n  \"inline-flex w-fit shrink-0 items-center justify-center gap-0.5 overflow-hidden rounded-badge px-2 py-1 font-body text-sm leading-5 font-regular whitespace-nowrap transition-[color,box-shadow] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-surface-base text-text-primary [a&]:hover:bg-surface-base-hover\",\n        secondary: \"bg-surface-subtle text-text-primary [a&]:hover:bg-surface-subtle-hover\",\n        inverse: \"bg-surface-strong text-text-primary-inverse [a&]:hover:bg-surface-strong-hover\",\n        sale: \"bg-surface-destructive text-text-primary-inverse [a&]:hover:bg-surface-destructive-hover\",\n        brand: \"bg-surface-brand text-text-on-brand [a&]:hover:bg-surface-brand-hover\",\n        destructive:\n          \"bg-destructive text-white focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40 [a&]:hover:bg-destructive/90\",\n        outline:\n          \"text-foreground inset-ring-1 inset-ring-border [a&]:hover:bg-accent [a&]:hover:text-accent-foreground\",\n        ghost: \"[a&]:hover:bg-accent [a&]:hover:text-accent-foreground\",\n        link: \"text-primary underline-offset-4 [a&]:hover:underline\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nfunction Badge({\n  className,\n  variant = \"default\",\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> &\n  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot.Root : \"span\"\n\n  return (\n    <Comp\n      data-slot=\"badge\"\n      data-variant={variant}\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Badge, badgeVariants }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

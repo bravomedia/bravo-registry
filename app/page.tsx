@@ -15,8 +15,16 @@ import {
   Typography,
 } from "@/registry/bravo/ui/typography";
 import { Button } from "@/registry/bravo/ui/button";
+import { ArticleCard } from "@/registry/bravo/ui/article-card";
+import { Badge } from "@/registry/bravo/ui/badge";
 import { Breadcrumbs } from "@/registry/bravo/ui/breadcrumbs";
 import { ButtonLink } from "@/registry/bravo/ui/button-link";
+import {
+  CategoryTab,
+  CategoryTabContent,
+  CategoryTabList,
+  CategoryTabs,
+} from "@/registry/bravo/ui/category-tab";
 import {
   Card,
   CardContent,
@@ -24,7 +32,10 @@ import {
   CardTitle,
 } from "@/registry/bravo/ui/card";
 import { Checkbox } from "@/registry/bravo/ui/checkbox";
+import { CheckboxGroupExample } from "@/app/checkbox-group-example";
+import { ContactCard } from "@/registry/bravo/ui/contact-card";
 import { DateInput } from "@/registry/bravo/ui/date-input";
+import { Faq, FaqContent, FaqItem, FaqTrigger } from "@/registry/bravo/ui/faq";
 import {
   Dialog,
   DialogClose,
@@ -54,6 +65,7 @@ import {
   FieldSet,
 } from "@/registry/bravo/ui/field";
 import { Input } from "@/registry/bravo/ui/input";
+import { ImageCard } from "@/registry/bravo/ui/image-card";
 import { Label } from "@/registry/bravo/ui/label";
 import { ButtonIcon } from "@/registry/bravo/ui/button-icon";
 import {
@@ -69,6 +81,7 @@ import { NumberInput } from "@/registry/bravo/ui/number-input";
 import { PaginationExample } from "@/app/pagination-example";
 import { PaginationProgressiveExample } from "@/app/pagination-progressive-example";
 import { PasswordInput } from "@/registry/bravo/ui/password-input";
+import { ProductCard } from "@/registry/bravo/ui/product-card";
 import { RadioGroup, RadioGroupItem } from "@/registry/bravo/ui/radio-group";
 import { SearchBar } from "@/registry/bravo/ui/search-bar";
 import {
@@ -84,6 +97,7 @@ import { ShortcutCard } from "@/registry/bravo/ui/shortcut-card";
 import { Textarea } from "@/registry/bravo/ui/textarea";
 import { SearchBarExample } from "@/app/search-bar-example";
 import { ToastExample } from "@/app/toast-example";
+import { UspCard } from "@/registry/bravo/ui/usp-card";
 import {
   Tooltip,
   TooltipContent,
@@ -250,6 +264,20 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
             </CardContent>
           </Card>
 
+          <Card id="badge">
+            <CardHeader>
+              <CardTitle>Badge</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap items-center gap-3 bg-background-subtle">
+              <Badge>Standard</Badge>
+              <Badge variant="secondary">Sekundär</Badge>
+              <Badge variant="inverse">Inverterad</Badge>
+              <Badge variant="sale">Rea</Badge>
+              <Badge variant="brand">Varumärke</Badge>
+              <Badge asChild variant="brand"><Link href="#badge">Länk</Link></Badge>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Button</CardTitle>
@@ -288,6 +316,173 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
                   </div>
                 </div>
               ))}
+            </CardContent>
+          </Card>
+
+          <Card id="article-card">
+            <CardHeader>
+              <CardTitle>Article card</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+              <ArticleCard
+                src="/spotlight-example.png"
+                alt=""
+                heading="Nyheter från verksamheten"
+                summary="Här kan du läsa mer om det senaste som händer hos oss."
+                date="14 augusti 2026"
+                dateTime="2026-08-14"
+                href="#form-fields"
+                linkText="Läs artikeln"
+              />
+              <ArticleCard
+                asChild
+                src="/spotlight-example.png"
+                alt=""
+                aspectRatio="3:2"
+                heading="Så utvecklar vi våra tjänster"
+                summary="Vi arbetar tillsammans för att göra våra tjänster bättre."
+              >
+                <Link href="#form-fields">Läs artikeln</Link>
+              </ArticleCard>
+              <ArticleCard
+                className="sm:col-span-2"
+                src="/spotlight-example.png"
+                alt=""
+                aspectRatio="2:1"
+                heading="En plats för fler möjligheter"
+                summary="Ta del av våra senaste initiativ och kommande aktiviteter."
+                href="#form-fields"
+                linkText="Läs artikeln"
+              />
+            </CardContent>
+          </Card>
+
+          <Card id="usp-card">
+            <CardHeader>
+              <CardTitle>USP card</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <UspCard
+                heading="Nära till allt"
+                description="Här finns plats för både vardagens behov och nya möjligheter."
+                href="#usp-card"
+                linkText="Läs mer"
+              />
+              <UspCard
+                asChild
+                variant="inverse"
+                heading="Nära till allt"
+                description="Här finns plats för både vardagens behov och nya möjligheter."
+              >
+                <Link href="#usp-card">Läs mer</Link>
+              </UspCard>
+            </CardContent>
+          </Card>
+
+          <Card id="contact-card">
+            <CardHeader>
+              <CardTitle>Contact card</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-6">
+              <ContactCard
+                className="max-w-117"
+                href="#contact-card"
+                src="/spotlight-example.png"
+                alt=""
+                name="Anna Andersson"
+                jobTitle="Webbutvecklare"
+                email="anna.andersson@example.com"
+                phone="+46 70 123 45 67"
+              />
+              <ContactCard
+                asChild
+                className="max-w-117"
+                src="/spotlight-example.png"
+                alt=""
+                name="Erik Eriksson"
+                jobTitle="Projektledare"
+                email="erik.eriksson@example.com"
+                phone="+46 70 234 56 78"
+              >
+                <Link href="#contact-card" />
+              </ContactCard>
+            </CardContent>
+          </Card>
+
+          <Card id="product-card">
+            <CardHeader>
+              <CardTitle>Product card</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+              <ProductCard
+                href="#product-card"
+                src="/spotlight-example.png"
+                alt=""
+                title="Produktnamn"
+                metadata="Kategori eller varumärke"
+                badge="Nyhet"
+                price={{ amount: "499", fraction: "90" }}
+              />
+              <ProductCard
+                asChild
+                src="/spotlight-example.png"
+                alt=""
+                title="Produktnamn"
+                metadata="Kategori eller varumärke"
+                badge="Nyhet"
+                price={{ amount: "499", fraction: "90" }}
+                originalPrice={{ amount: "599", fraction: "90" }}
+              >
+                <Link href="#product-card" />
+              </ProductCard>
+            </CardContent>
+          </Card>
+
+          <Card id="image-card">
+            <CardHeader>
+              <CardTitle>Image card</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-6">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <ImageCard href="#form-fields" src="/spotlight-example.png" alt="" label="Tjänster" />
+                <ImageCard asChild src="/spotlight-example.png" alt="" label="Aktuellt" variant="inverse">
+                  <Link href="#form-fields" />
+                </ImageCard>
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <ImageCard href="#form-fields" src="/spotlight-example.png" alt="" label="Våra verksamheter" aspectRatio="3:2" />
+                <ImageCard href="#form-fields" src="/spotlight-example.png" alt="" label="Om oss" aspectRatio="3:2" variant="inverse" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card id="faq">
+            <CardHeader>
+              <CardTitle>FAQ</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-6">
+              <Faq type="multiple" defaultValue={["contact"]}>
+                <FaqItem value="contact">
+                  <FaqTrigger>Hur kontaktar jag er?</FaqTrigger>
+                  <FaqContent>Du kan kontakta oss via telefon eller e-post. Vi svarar så snart vi kan.</FaqContent>
+                </FaqItem>
+                <FaqItem value="hours">
+                  <FaqTrigger>Vilka öppettider har ni?</FaqTrigger>
+                  <FaqContent>Vi har öppet måndag till fredag, klockan 9 till 16.</FaqContent>
+                </FaqItem>
+              </Faq>
+              <div className="bg-background-strong p-6">
+                <Faq type="multiple" variant="inverse" defaultValue={["contact"]}>
+                  <FaqItem value="contact">
+                    <FaqTrigger>Hur kontaktar jag er?</FaqTrigger>
+                    <FaqContent>Du kan kontakta oss via telefon eller e-post. Vi svarar så snart vi kan.</FaqContent>
+                  </FaqItem>
+                  <FaqItem value="hours">
+                    <FaqTrigger>Vilka öppettider har ni?</FaqTrigger>
+                    <FaqContent>Vi har öppet måndag till fredag, klockan 9 till 16.</FaqContent>
+                  </FaqItem>
+                </Faq>
+              </div>
             </CardContent>
           </Card>
 
@@ -428,6 +623,24 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
             </CardContent>
           </Card>
 
+          <Card id="category-tab">
+            <CardHeader>
+              <CardTitle>Category tab</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <CategoryTabs defaultValue="all">
+                <CategoryTabList aria-label="Välj kategori">
+                  <CategoryTab value="all"><Info aria-hidden />Alla</CategoryTab>
+                  <CategoryTab value="news">Nyheter</CategoryTab>
+                  <CategoryTab value="events">Evenemang</CategoryTab>
+                </CategoryTabList>
+                <CategoryTabContent value="all"><Text>Alla kategorier</Text></CategoryTabContent>
+                <CategoryTabContent value="news"><Text>Senaste nyheterna</Text></CategoryTabContent>
+                <CategoryTabContent value="events"><Text>Kommande evenemang</Text></CategoryTabContent>
+              </CategoryTabs>
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Button icon</CardTitle>
@@ -497,12 +710,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
                     <FieldLabel className="text-base leading-6 font-regular">Bekräfta ditt val</FieldLabel>
                   </div>
                 </Field>
-                <Field className="gap-2">
-                  <div className="flex items-center gap-2">
-                    <Checkbox name="checkbox_indeterminate" defaultChecked="indeterminate" />
-                    <FieldLabel className="text-base leading-6 font-regular">Delvis valt</FieldLabel>
-                  </div>
-                </Field>
+                <CheckboxGroupExample />
               </form>
             </CardContent>
           </Card>

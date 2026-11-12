@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "category-tab",
+  "title": "Category Tab",
+  "description": "Accessible tabs for switching between content categories.",
+  "registryDependencies": [
+    "@bravo/view-switcher"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/category-tab.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nimport {\n  Tabs,\n  TabsContent,\n  TabsList,\n  TabsTrigger,\n} from \"@/registry/bravo/ui/view-switcher\";\n\nfunction CategoryTabList(props: Omit<React.ComponentProps<typeof TabsList>, \"variant\">) {\n  return <TabsList {...props} variant=\"category\" />;\n}\n\nexport {\n  Tabs as CategoryTabs,\n  CategoryTabList,\n  TabsTrigger as CategoryTab,\n  TabsContent as CategoryTabContent,\n};",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

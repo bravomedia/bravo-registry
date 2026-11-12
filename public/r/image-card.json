@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "image-card",
+  "title": "Image Card",
+  "description": "A linked image card with square and landscape ratios and default or inverse labels.",
+  "dependencies": [
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/image-card.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { Slot } from \"radix-ui\"\n\nimport { cn } from \"@/registry/bravo/lib/utils\"\n\nconst imageCardVariants = cva(\n  \"group/image-card relative flex min-w-0 items-end rounded-default p-6 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border-focus\",\n  {\n    variants: {\n      variant: {\n        default: \"text-text-primary\",\n        inverse: \"text-text-primary-inverse\",\n      },\n      aspectRatio: {\n        \"1:1\": \"aspect-square\",\n        \"3:2\": \"aspect-3/2\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      aspectRatio: \"1:1\",\n    },\n  }\n)\n\ntype ImageCardProps = Omit<React.ComponentProps<\"a\">, \"children\"> &\n  VariantProps<typeof imageCardVariants> & {\n    src: string\n    alt: string\n    label: React.ReactNode\n  } & (\n    | { asChild: true; children: React.ReactElement }\n    | { asChild?: false; children?: never }\n  )\n\nfunction ImageCard({\n  asChild = false,\n  src,\n  alt,\n  label,\n  variant = \"default\",\n  aspectRatio = \"1:1\",\n  className,\n  children,\n  ...props\n}: ImageCardProps) {\n  const Comp = asChild ? Slot.Root : \"a\"\n\n  return (\n    <Comp\n      data-slot=\"image-card\"\n      data-variant={variant}\n      data-aspect-ratio={aspectRatio}\n      className={cn(imageCardVariants({ variant, aspectRatio }), className)}\n      {...props}\n    >\n      <img data-slot=\"image-card-image\" src={src} alt={alt} className=\"absolute inset-0 size-full rounded-default object-cover\" />\n      <span\n        data-slot=\"image-card-label\"\n        className={cn(\n          \"relative max-w-full rounded-inner bg-surface-base p-4 font-heading text-2xl leading-8 font-bold wrap-break-word text-text-primary\",\n          variant === \"inverse\" && \"bg-surface-strong text-text-primary-inverse\"\n        )}\n      >\n        {label}\n      </span>\n      <span data-slot=\"image-card-overlay\" aria-hidden className=\"pointer-events-none absolute inset-0 rounded-default bg-surface-overlay/20 opacity-0 transition-opacity duration-300 group-hover/image-card:opacity-100 motion-reduce:transition-none\" />\n      {asChild && <Slot.Slottable>{children}</Slot.Slottable>}\n    </Comp>\n  )\n}\n\nexport { ImageCard, imageCardVariants, type ImageCardProps }",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
