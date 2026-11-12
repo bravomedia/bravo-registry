@@ -64,6 +64,7 @@ import {
   FieldSeparator,
   FieldSet,
 } from "@/registry/bravo/ui/field";
+import { Grid } from "@/registry/bravo/ui/grid";
 import { Input } from "@/registry/bravo/ui/input";
 import { ImageCard } from "@/registry/bravo/ui/image-card";
 import { Label } from "@/registry/bravo/ui/label";
@@ -980,6 +981,28 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
           </Card>
         </main>
       </div>
+
+      <section className="py-8">
+        <Grid className="gap-y-4">
+          <Heading as="h2" size="lg" className="col-span-full">
+            Grid
+          </Heading>
+          {Array.from({ length: 12 }, (_, index) => (
+            <div
+              key={index}
+              className={
+                index >= 8
+                  ? "hidden h-24 bg-background-subtle p-2 lg:block"
+                  : index >= 4
+                    ? "hidden h-24 bg-background-subtle p-2 md:block"
+                    : "h-24 bg-background-subtle p-2"
+              }
+            >
+              {index + 1}
+            </div>
+          ))}
+        </Grid>
+      </section>
 
       <SectionsPageTemplate
         content={{ sections }}

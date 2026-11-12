@@ -337,6 +337,19 @@
       ]
     },
     {
+      "name": "grid",
+      "type": "registry:ui",
+      "title": "Grid",
+      "description": "Responsive page grid with four, eight or twelve columns.",
+      "registryDependencies": ["@bravo/utils", "@bravo/bravo-theme"],
+      "files": [
+        {
+          "path": "registry/bravo/ui/grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dialog-box",
       "type": "registry:ui",
       "title": "Dialog Box",
@@ -666,6 +679,7 @@
         "@bravo/utils",
         "@bravo/bravo-theme",
         "@bravo/button",
+        "@bravo/grid",
         "@bravo/tiptap",
         "@bravo/typography"
       ],
@@ -686,6 +700,7 @@
         "@bravo/utils",
         "@bravo/bravo-theme",
         "@bravo/button",
+        "@bravo/grid",
         "@bravo/tiptap",
         "@bravo/typography"
       ],
@@ -706,6 +721,7 @@
         "@bravo/utils",
         "@bravo/bravo-theme",
         "@bravo/button",
+        "@bravo/grid",
         "@bravo/tiptap",
         "@bravo/typography"
       ],

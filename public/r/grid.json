@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "grid",
+  "title": "Grid",
+  "description": "Responsive page grid with four, eight or twelve columns.",
+  "registryDependencies": [
+    "@bravo/utils",
+    "@bravo/bravo-theme"
+  ],
+  "files": [
+    {
+      "path": "registry/bravo/ui/grid.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/registry/bravo/lib/utils\";\n\nfunction Grid({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"grid\"\n      className={cn(\n        \"mx-auto grid w-full grid-cols-4 gap-x-4 px-4 md:grid-cols-8 md:gap-x-6 md:px-6 lg:grid-cols-12 lg:px-10 2xl:max-w-306 2xl:px-0\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Grid };",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
